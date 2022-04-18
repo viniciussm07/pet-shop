@@ -1,2 +1,5 @@
 # pet-shop
-Trabalho da disciplina introdução ao Desenvolvimento Web - SCC0219 
+
+## Grupo 22
+
+Vinicius Soares Martins - 11794907
