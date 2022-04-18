@@ -1,2 +1,2 @@
 # pet-shop
-Trabalho da disciplina introdição ao Desenvolvimento Web - SCC0219 
+Trabalho da disciplina introdução ao Desenvolvimento Web - SCC0219 
