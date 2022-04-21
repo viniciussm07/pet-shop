@@ -20,7 +20,7 @@ Vinicius Soares Martins - 11794907
       Pássaro---produto3[Produto];
       
       Home---loginSignin[Login / Signin];
-      loginSignin---homeCliente[HomeCliente]
+      loginSignin---homeCliente[Home Cliente]
       homeCliente---dadosPessoais[Dados Pessoais]
       homeCliente---Pedidos
       
