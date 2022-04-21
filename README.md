@@ -6,9 +6,34 @@ Vinicius Soares Martins - 11794907
 
 Érica Ribeiro Filgueira dos Santos - 11836351
 
-# Project Report
+## Navigation Diagram
 
-## Requirements
+```mermaid
+  graph TD;
+      Home---Cachorro;
+      Cachorro---produto1[Produto];
+      
+      Home---Gato;
+      Gato---produto2[Produto];
+      
+      Home---Pássaro;
+      Pássaro---produto3[Produto];
+      
+      Home---loginSignin[Login / Signin];
+      loginSignin---homeCliente[HomeCliente]
+      homeCliente---dadosPessoais[Dados Pessoais]
+      homeCliente---Pedidos
+      
+      produto1---carrinho[Carrinho]
+      produto2---carrinho
+      produto3---carrinho
+      
+      carrinho---finalizarCompra[Finalizar Compra]
+```
+
+## Project Report
+
+### Requirements
 
 - The system must have 2 types of users: Clients and Administrators
     - Administrators are responsible for registering/managing administrators, customers, and products/services provided. The application already comes with an account admin with password admin.
@@ -30,14 +55,14 @@ Product/services records include, at least: name, id, photo, description, price,
 
 - The system must provide accessibility requirements and provide good usability. The system must be responsive.
 
-## Project Description
+### Project Description
 
-## Test Plan
+### Test Plan
 
-## Test Results
+### Test Results
 
-## Build Procedures
+### Build Procedures
 
-## Problems
+### Problems
 
-## Comments
+### Comments
