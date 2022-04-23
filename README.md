@@ -6,6 +6,8 @@ Vinicius Soares Martins - 11794907
 
 Érica Ribeiro Filgueira dos Santos - 11836351
 
+Júlia do Nascimento - 11794758
+
 ## Navigation Diagram
 
 ```mermaid
