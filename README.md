@@ -21,7 +21,7 @@ Júlia do Nascimento - 11794758
       Home---Pássaro;
       Pássaro---produto3[Produto];
       
-      Home---loginSignin[Login / Signin];
+      Home---loginRegister[Login / Register];
       loginSignin---homeCliente[Home Cliente]
       loginSignin[Login / Signin]---esqueciASenha[Esqueceu sua Senha?];
       homeCliente---dadosPessoais[Dados Pessoais]
