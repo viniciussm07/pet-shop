@@ -60,6 +60,10 @@ Product/services records include, at least: name, id, photo, description, price,
 
 ### Project Description
 
+- O projeto consiste no desenvolvimento de uma loja online para um pet shop.
+Nessa loja, o cliente é levado primeiramente a uma homepage que mostra alguns produtos disponíveis para compra, e de onde ele pode ser levado às páginas de produtos para cachorro, gato ou pássaros; além disso, ao escolher um brinquedo para comprar, o cliente pode ouvir os barulhos que ele faz para saber como o seu pet irá reagir a ele.
+
+
 ### Test Plan
 
 ### Test Results
