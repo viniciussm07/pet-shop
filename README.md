@@ -23,8 +23,8 @@ Júlia do Nascimento - 11794758
       
       Home---login[Login];
       login---homeCliente[Home Cliente]
+      login---register[Sign up]
       login---esqueciASenha[Esqueceu sua Senha?];
-      login---register[sign up]
       register---homeCliente
       homeCliente---dadosPessoais[Dados Pessoais]
       homeCliente---Pedidos
