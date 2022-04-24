@@ -21,9 +21,11 @@ Júlia do Nascimento - 11794758
       Home---Pássaro;
       Pássaro---produto3[Produto];
       
-      Home---loginRegister[Login / Register];
-      loginRegister---homeCliente[Home Cliente]
-      loginRegister[Login / Register]---esqueciASenha[Esqueceu sua Senha?];
+      Home---login[Login];
+      login---homeCliente[Home Cliente]
+      login---register[Sign up]
+      login---esqueciASenha[Esqueceu sua Senha?];
+      register---homeCliente
       homeCliente---dadosPessoais[Dados Pessoais]
       homeCliente---Pedidos
       
@@ -31,7 +33,8 @@ Júlia do Nascimento - 11794758
       produto2---carrinho
       produto3---carrinho
       
-      carrinho---finalizarCompra[Finalizar Compra]
+      carrinho---metodoDePagamento[Metodo de Pagamento]
+      metodoDePagamento---finalizarCompra[Finalizar Compra]
 ```
 
 ## Project Report
