@@ -16,13 +16,13 @@ Júlia do Nascimento - 11794758
       Cachorro---produto1[Produto];
       
       Home---Gato[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoGato.png'>Gato</a>];
-      Gato---produto2[Produto][<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoGato.png'>Produto</a>];
+      Gato---produto2[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoGato.png'>Produto</a>];
       
       Home---Pássaro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoPassaro.png'>Pássaro</a>];
-      Pássaro---produto3[Produto][<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoPassaro.png'>Produto</a>];
+      Pássaro---produto3[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoPassaro.png'>Produto</a>];
       Home---login[Login];
       login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
-      login---register[Sign up][<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
+      login---register[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
       login---esqueciASenha[Esqueceu sua Senha?];
       register---homeCliente
       homeCliente---dadosPessoais[Dados Pessoais]
