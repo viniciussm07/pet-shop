@@ -19,7 +19,7 @@ Júlia do Nascimento - 11794758
       Gato---produto2[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoGato.png'>Produto</a>];
       
       Home---Pássaro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoPassaro.png'>Pássaro</a>];
-      Pássaro---produto3[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoPassaro(1).png'>Produto</a>];
+      Pássaro---produto3[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupProdutoPassaro.png?raw=true'>Produto</a>];
       Home---login[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupLogin.png'>Log in</a>];
       login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
       login---register[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
