@@ -8,6 +8,10 @@ Vinicius Soares Martins - 11794907
 
 Júlia do Nascimento - 11794758
 
+## Quick Start
+
+After downloading the project, open src/index.html
+
 ## Navigation Diagram
 
 ```mermaid
