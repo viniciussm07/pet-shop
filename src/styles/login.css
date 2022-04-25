@@ -97,7 +97,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 .v21_56 {
   width: 160px;
@@ -132,7 +132,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 .v21_61 {
   width: 256px;
@@ -167,7 +167,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 .v21_63 {
   width: 256px;
@@ -282,8 +282,8 @@ body {
   text-align: left;
 }
 .v21_37 {
-  width: 25px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   background: rgba(229,229,229,1);
   opacity: 1;
   position: absolute;
@@ -316,13 +316,13 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 .v21_40 {
   width: 94px;
   color: rgba(255,255,255,1);
   position: absolute;
-  top: 19px;
+  top: 12px;
   left: 58px;
   font-family: Fira Sans;
   font-weight: Regular;
@@ -333,15 +333,13 @@ body {
 .v22_2 {
   width: 393px;
   height: 54px;
-  background: url("../images/v22_2.png");
-  background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
   opacity: 1;
   position: absolute;
   top: 83px;
   left: 42px;
   overflow: hidden;
+  border-radius: 15px;
 }
 .v21_30 {
   width: 393px;
@@ -351,24 +349,13 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: solid 0px;
+  border-radius: 15px;
 }
-.v21_29 {
-  width: 256px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 15px;
-  left: 16px;
-  font-family: Fira Sans;
-  font-weight: Regular;
-  font-size: 23px;
-  opacity: 1;
-  text-align: left;
-}
+
 .v22_5 {
   width: 393px;
   height: 53px;
-  background: url("../images/v22_5.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -377,6 +364,7 @@ body {
   top: 165px;
   left: 42px;
   overflow: hidden;
+  border-radius: 15px;
 }
 .v21_36 {
   width: 393px;
@@ -387,18 +375,8 @@ body {
   top: 0px;
   left: 0px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.v21_35 {
-  width: 300px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-family: Fira Sans;
-  font-weight: Regular;
-  font-size: 23px;
-  opacity: 1;
-  text-align: left;
+  border: solid 0px;
+  border-radius: 15px;
 }
 .v21_46 {
   width: 256px;
