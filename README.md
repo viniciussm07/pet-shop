@@ -33,7 +33,7 @@ Júlia do Nascimento - 11794758
       produto3---carrinho
       
       carrinho---metodoDePagamento[Metodo de Pagamento]
-      metodoDePagamento---finalizarCompra[Finalizar Compra]
+      metodoDePagamento---finalizarCompra[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupFinalizarCompra.png?raw=true'>Finalizar Compra </a>]
 ```
 
 ## Project Report
