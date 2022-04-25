@@ -20,9 +20,8 @@ Júlia do Nascimento - 11794758
       
       Home---Pássaro;
       Pássaro---produto3[Produto];
-      
       Home---login[Login];
-      login---homeCliente[Home Cliente]
+      login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
       login---register[Sign up]
       login---esqueciASenha[Esqueceu sua Senha?];
       register---homeCliente
