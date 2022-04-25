@@ -284,11 +284,12 @@ a {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   overflow: hidden;
+  border: solid 0px;
 }
 .v21_202 {
   width: 27px;
   height: 30px;
-  background: url("../images/v21_202.png");
+  background: url("../../images/lupa50x50.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
