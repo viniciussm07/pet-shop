@@ -13,7 +13,7 @@ Júlia do Nascimento - 11794758
 ```mermaid
   graph TD;
       Home[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupHome.png'>Home</a>]---Cachorro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoCachorro.png'>Cachorro</a>];
-      Cachorro---produto1[Produto];
+      Cachorro---produto1[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoCachorro.png'>Produto</a>];
       
       Home---Gato[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoGato.png'>Gato</a>];
       Gato---produto2[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoGato.png'>Produto</a>];
