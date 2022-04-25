@@ -12,27 +12,27 @@ Júlia do Nascimento - 11794758
 
 ```mermaid
   graph TD;
-      Home---Cachorro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoCachorro.png'>Cachorro</a>];
-      Cachorro---produto1[Produto];
+      Home[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupHome.png'>Home</a>]---Cachorro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoCachorro.png'>Cachorro</a>];
+      Cachorro---produto1[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoCachorro.png'>Produto</a>];
       
-      Home---Gato;
-      Gato---produto2[Produto];
+      Home---Gato[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoGato.png'>Gato</a>];
+      Gato---produto2[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupProdutoGato.png'>Produto</a>];
       
-      Home---Pássaro;
-      Pássaro---produto3[Produto];
-      Home---login[Login];
+      Home---Pássaro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoPassaro.png'>Pássaro</a>];
+      Pássaro---produto3[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupProdutoPassaro.png?raw=true'>Produto</a>];
+      Home---login[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupLogin.png'>Log in</a>];
       login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
-      login---register[Sign up]
-      login---esqueciASenha[Esqueceu sua Senha?];
+      login---register[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
+      login---esqueciASenha[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupRecuperacaoSenha.png'>Esqueceu sua senha?</a>];
       register---homeCliente
-      homeCliente---dadosPessoais[Dados Pessoais]
-      homeCliente---Pedidos
+      homeCliente---dadosPessoais[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupMeusDados.png'>Dados Pessoais</a>]
+      homeCliente---Pedidos[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupMeusPedidos.png'>Pedidos</a>]
       
-      produto1---carrinho[Carrinho]
+      produto1---carrinho[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupCarrinhoDeCompras.png'>Carrinho</a>]
       produto2---carrinho
       produto3---carrinho
       
-      carrinho---metodoDePagamento[Metodo de Pagamento]
+      carrinho---metodoDePagamento[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupPagamento.png'>Método de pagamento</a>]
       metodoDePagamento---finalizarCompra[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupFinalizarCompra.png?raw=true'>Finalizar Compra </a>]
 ```
 
