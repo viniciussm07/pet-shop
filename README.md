@@ -12,7 +12,7 @@ Júlia do Nascimento - 11794758
 
 ```mermaid
   graph TD;
-      Home---Cachorro;
+      Home---Cachorro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoCachorro.png</a>];
       Cachorro---produto1[Produto];
       
       Home---Gato;
