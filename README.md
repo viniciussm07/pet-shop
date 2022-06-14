@@ -8,7 +8,13 @@ Vinicius Soares Martins - 11794907
 
 ## Quick Start
 
-After downloading the project, open src/index.html
+After downloading the project open a terminal and type
+
+`yarn install or npm -i`
+
+`yarn dev or npm run dev`
+
+
 
 ## Navigation Diagram
 
