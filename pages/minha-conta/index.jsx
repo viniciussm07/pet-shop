@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Container, Row, Card, Button } from 'react-bootstrap'
 import Navbar from '/components/Navbar'
 import HeroSection from '/components/HeroSection'
 import Footer from '/components/Footer'
