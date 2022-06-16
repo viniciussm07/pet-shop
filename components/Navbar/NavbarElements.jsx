@@ -26,14 +26,12 @@ export const NavbarContainer = styled.div`
     z-index: 1;
     width: 100%;
     padding: 0 24px;
-    max-width: 1100px;
-
 `
 
 
 
 export const ImgWrap = styled.div`
-    max-width:270px;
+    max-width:80px;
     height:100%;
 `
 
@@ -74,7 +72,7 @@ margin-right:-22px;
 `
 
 export const NavItems = styled.li`
-    margin: 30px;
+    margin: 80px;
     height: 70px;
 `
 
