@@ -6,13 +6,13 @@ import SignUp from '../components/Registrar'
 
 export default function Home() {
   return (
-    <Container className="md-container">
+    <>
       <Head>
         <title>Pet Shop</title>
       </Head>
-      <Navbar/>
-        <Login/>
-        <SignUp/>
-    </Container>
+      <Navbar />
+      <Login />
+      <SignUp />
+    </>
   )
 }

@@ -1,16 +1,16 @@
-export const Login = () => {
-    return (<>
-        
+export const LoginContainer = () => {
+    return (
+    <>
         <form method="post">
             <div class="container">
-            <h1>Login</h1>
-                <input type="email" placeholder="Email*" name="email" required/>
+                <h1>Login</h1>
+                <input type="email" placeholder="Email" name="email" required />
 
-                <input type="password" placeholder="Senha*" name="senha" required/>
+                <input type="password" placeholder="Senha" name="senha" required />
 
                 <button type="submit">Login</button>
                 <label>
-                <input type="checkbox" checked="checked" name="remember"/> Lembrar de mim
+                    <input type="checkbox" checked="checked" name="remember" /> Lembrar de mim
                 </label>
             </div>
 
@@ -18,6 +18,6 @@ export const Login = () => {
                 <span class="psw"><a href="#">Esqueceu a senha?</a></span>
             </div>
         </form>
-    
+
     </>)
 }

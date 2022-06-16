@@ -6,13 +6,13 @@ import MyAccount from '/components/UserPage'
 
 export default function Home() {
   return (
-    <Container className="md-container">
+    <>
       <Head>
         <title>Pet Shop</title>
       </Head>
       <Navbar/>
       <MyAccount/>
       <Footer/>
-    </Container>
+    </>
   )
 }

@@ -1,11 +1,11 @@
 import {
-    Login, SignIn
+    LoginContainer
 } from "./LoginElements"
 
 export default function LoginSection() {
     return (
     <>
-        <Login />
+        <LoginContainer />
     </>
        
     )
