@@ -9,9 +9,8 @@ export default function Home() {
       <Head>
         <title>Pet Shop</title>
       </Head>
-      <Navbar/>
-      <HeroSection/>
-      <Footer/>
+      <Navbar />
+      <HeroSection />
     </>
   )
 }
