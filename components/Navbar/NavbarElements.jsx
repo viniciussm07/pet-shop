@@ -49,8 +49,5 @@ export const NavbarContainer = () => {
     </>
     )
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 0bcc9cc4ab0b107659e9dc2db7edd98d76d0cb48
 
