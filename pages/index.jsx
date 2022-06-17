@@ -5,14 +5,13 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <>
+    <Container className="md-container">
       <Head>
-        <meta name="description" content='pet-shop is a company that sells pet products' />
         <title>Pet Shop</title>
       </Head>
-      <Navbar />
-      <HeroSection />
-      <Footer />
-    </>
+      <Navbar/>
+      <HeroSection/>
+      <Footer/>
+    </Container>
   )
 }

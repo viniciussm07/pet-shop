@@ -3,6 +3,7 @@ import Navbar from '/components/Navbar'
 import RecuperarSenha from '/components/RecuperarSenha'
 
 import  {ContainerRow, Div40} from '/style/pagesStyles.jsx'
+import { Button, ButtonContainer } from '../components/style'
 
 export default function Home() {
   return (
@@ -18,4 +19,5 @@ export default function Home() {
       </ContainerRow>
       </>
   )
+
 }

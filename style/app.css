@@ -1,0 +1,106 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+:root{
+  --mainWhite:  rgb(255,255,255);
+  --mainGreen:  rgb(24,169,153);
+  --lightGreen: rgb(182,222,207);
+  --mainOrange: rgb(255,161,10);
+  --mainGrey:   rgb(218,218,218);
+
+}
+
+
+body{
+  font-size: 14px;
+  background-color: var(--mainGrey) !important;
+  font-family: 'Fira Sans', sans-serif !important;
+}
+
+
+a{
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.btn{
+  border: none !important;
+}
+
+.main-green{
+  background-color: var(--mainGreen) !important;
+}
+
+.light-green{
+  background-color: var(--lightGreen) !important;
+}
+
+.main-orange{
+  background-color: var(--mainOrange) !important;
+}
+
+  
+  .brand{
+    margin: 0 50px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  
+  .menu-container{
+    width: 100vw;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  .searchbar{
+    height: 67%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  
+  }
+  
+  .search{
+    width: 40vw !important;
+  }
+
+  
+  #loginTxt{
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  
+  .categories{
+    height: 33%;
+    background-color: var(--lightGreen);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .category{
+    width: 150px;
+    height: 30px;
+    background-color: var(--mainGreen);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 40px;
+    color: white;
+    
+  }
+  
