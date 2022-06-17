@@ -1,7 +1,52 @@
-import styled from 'styled-components'
+import Link from "next/link"
 
-export const NavbarContainer = styled.div `
-    height: 100px;
-    width: 100px;
-    background-color: black;
-`
+import {Button} from '../style.jsx'
+import { InputSearch, Categories, Category, Search, MenuContainer, Searchbar,Brand } from "./style.jsx"
+
+
+export const NavbarContainer = () => {
+    return (
+        <>
+        <MenuContainer>
+            <Searchbar>
+                <Brand>
+                    <Link href = '/'>PetShop</Link>
+                </Brand>
+                <Search>
+                <form>
+                    <InputSearch type="search" placeholder="Buscar Produto" aria-label="Search"/>
+                </form>
+                </Search>
+                <div >
+                <Link href='/login'>
+                    <Button>
+                        <div id='loginTxt'>Entre ou cadastre-se!</div>
+                    </Button>
+                </Link>
+                </div>
+                <div >
+                <Link href='/carrinho'>
+                    <Button>
+                        <div id='loginTxt'>Carrinho</div>
+                    </Button>
+                </Link>
+                </div>
+                
+
+            </Searchbar>
+            <Categories>
+                <Link href="/products/cachorro">
+                    <Category>Cachorro </Category>
+                </Link>
+                <Link href="/products/gato">
+                    <Category>Gato </Category>
+                </Link>
+                <Link href="/products/passaro">
+                    <Category>Pássaro </Category>
+                </Link>
+            </Categories>
+        </MenuContainer>
+    </>
+    )
+}
+

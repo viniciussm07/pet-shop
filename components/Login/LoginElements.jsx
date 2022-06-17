@@ -1,22 +1,33 @@
-export const LoginContainer = () => {
-    return (
-    <>
-        <form method="post">
-            <div class="container">
-                <h1>Login</h1>
-                <input type="email" placeholder="Email" name="email" required />
+import Link from 'next/link.js';
 
-                <input type="password" placeholder="Senha" name="senha" required />
+import {Button, Input, ButtonContainer, FontBold} from '../style.jsx'
 
-                <button type="submit">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember" /> Lembrar de mim
-                </label>
+
+export const Login = () => {
+
+    const loginHandler = async (event) => {
+        event.preventDefault();
+        alert("Usuário Logado!");
+      };
+
+    return (<>
+        
+        <form method="post" onSubmit={loginHandler}>
+            <div >
+            <h5><FontBold>Já é nosso cliente?</FontBold></h5><br/>
+                <Input type="email" placeholder="Email*" name="email" required/><br/>
+
+                <Input type="password" placeholder="Senha*" name="senha" required/><br/>
+                
+                <p><input type="checkbox" name="remember"/> Lembrar de mim
+                <br/></p>
+                <Button type="submit">Login</Button> <br/>
+        
             </div>
 
-            <div class="container">
-                <span class="psw"><a href="#">Esqueceu a senha?</a></span>
-            </div>
+            <ButtonContainer>
+                <span><Link href="/recuperar-senha">Esqueceu a senha?</Link></span>
+            </ButtonContainer>
         </form>
 
     </>)
