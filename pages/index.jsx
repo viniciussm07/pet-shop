@@ -5,13 +5,13 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <Container className="md-container">
+    <>
       <Head>
         <title>Pet Shop</title>
       </Head>
       <Navbar/>
       <HeroSection/>
       <Footer/>
-    </Container>
+    </>
   )
 }
