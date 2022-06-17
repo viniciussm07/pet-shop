@@ -4,120 +4,128 @@ import { Link as LinkS } from 'react-scroll'
 import Image from 'next/image'
 
 export const Nav = styled.nav`
-    background: #18A999;
-    height: 100px;
-    margin-top:-80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    position: sticky;
-    top: 0;
-
-    @media screen and (max-width:1000px){
-        transition: 0.8s all ease;
-    }
-`
-
-export const NavbarContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    padding: 0 24px;
-`
-
-
-
-export const ImgWrap = styled.div`
-    max-width:80px;
-    height:100%;
-`
-
-export const NavLogo = styled(Image)`
-    justify-self: flex-start;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    margin-left: 24px;
-    width: 100%;
-`
-
-export const MobileIcon = styled.div`
-display: none;
-
-@media screen and (max-width:900px){
-
-    display:block;
-    position:absolute;
-    top:0;
-    right:0;
-    transform:translate(-100%,60%);
-    font-size:1.8rem;
-    cursor:pointer;
-    color: #fff;
-}`
-
-export const NavMenu = styled.ul`
-display: flex;
-align-items:center;
-list-style:none;
-text-align:center;
-margin-right:-22px;
-
-@media screen and (max-width:900px){
-    display:none;
-}
-`
-
-export const NavItems = styled.li`
-    margin: 80px;
-    height: 70px;
-`
-
-export const NavLinks = styled.a`
-    color:#fff;
-    background-color: blue;
-    margin: 10px;
-    display: flex;
-    text-decoration:none;
-    padding: 2rem 1rem;
-    height: 100%;
-    cursor: pointer;
-`
-
-export const NavBtn = styled.nav`
-    display: flex;
-    align-items: center;
-
-    @media screen and (max-width: 900px){
-        display: none;
-    }
- `
-
-export const NavBtnLink = styled.a`
-    border-radius:5px;
-    background-color: ${props => props.theme.main};
-    white-space:nowrap;
-    padding: 10px 22px;
     color: white;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    cursor:pointer;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
+    min-width: 560px;
+`
+
+export const NavbarContainer1 = styled.div`
+    background-color: #18A999;
+    width: 100%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+`
+
+export const NavbarContainer2 = styled(NavbarContainer1)`
+    background-color: #B6DECF;
+    height: 70px;
+    padding: 1rem;
+`
+export const NavLogoWrap = styled.a`
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: black;
+
+    @media (min-width: 768px) {
+        margin-bottom: 0px;
+    }
+`
+
+export const Logo = styled.span`
+    margin-left: 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+`
+
+export const Search = styled.form`
+    width: 30rem;
+`
+
+export const Label = styled.label`
+    margin-bottom: 0.5rem;
+    color: gray;
+    content: "Search";
+`
+
+export const InputWrap = styled.div`
+    display: flex;
+`
+
+export const Input = styled.input`
+    display: block;
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    /* padding: 0.5rem 2.5rem 0.5rem 0.5rem; */
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: black;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(209 213 219);
+
+    ::placeholder{
+        color: #B8B0B0;
+    }
+    &:focus{
+        outline: none;
+        box-shadow: 0px 0px 5px black;
+    }
+
+`
+
+export const NavMenu = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    @media (min-width: 768px){
+        margin-left: auto;
+        margin-right: auto;
+    }
+`
+
+export const MenuButton = styled.a`
+    margin-right: 1.25rem;
+    background-color: #18A999;
+    border-radius: 0.25rem;
+    padding: 0.25rem 2rem 0.25rem 2rem;
+    cursor: pointer;
+
+    @media (min-width: 880px){
+        margin: 0 4rem;
+        padding: 0.25rem 3rem;
+    }
 
     &:hover{
-        transition: all 0.2s ease-in-out;
-        background: #fff;
-        color: #010606; 
+        background-color: gray;
+        color: black;
     }
- `
+`
 
-NavBtnLink.defaultProps = {
-    theme: {
-      main: "#FFA10A"
+export const LoginButton = styled.button`
+    border-radius: 0.5rem;
+    border-width: 0px;
+    background-color: #FFA10A;
+    color: white;
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    &:hover{
+        background-color: gray;
+        color: black;
     }
-  }
+`
