@@ -3,7 +3,7 @@ import Resumo from '/components/ResumoPedido'
 import styled from 'styled-components'
 
 
-import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, StyledDiv, ButtonInverted} from '../style.jsx'
 import { useState } from 'react'
 
 
@@ -127,7 +127,7 @@ export const Carrinho = () => {
                                 <td></td>
                                 <td ><FontBold>{produto.nome}</FontBold><br/>{produto.descricao}</td>
                                 <td>Quantidade<br/>
-                                <input type="number" name="quantidade" id="quant" placeholder="1" min={1} max={produto.estoque}/><br/>
+                                <input type="number" name="quantidade" id="quant" placeholder={1} min={1} max={produto.estoque}/><br/>
                                 <a  href='#'>Remover</a>
                                 </td>
                                 <td>Preço<br/>R${produto.preco}</td>
