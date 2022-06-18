@@ -8,18 +8,17 @@ Category,
 ProductName,
 ProductPrice
 } from './ProdutoElements'
-import produto1 from '../../images/home/racao-golden-caes.webp'
 
-const Produto = () => {
+const Produto = (props) => {
   return (
-    <ProdutoWrap>
+    <ProdutoWrap href={props.destiny}>
         <ImgWrap>
-            <Img src={produto1}/>
+            <Img src={props.image}/>
         </ImgWrap>
         <Description>
-            <Category>Cachorro</Category>
-            <ProductName>Ração Golden</ProductName>
-            <ProductPrice>$30,00</ProductPrice>
+            <Category>{props.category}</Category>
+            <ProductName>{props.name}</ProductName>
+            <ProductPrice>${props.price}</ProductPrice>
         </Description>
     </ProdutoWrap>
   )

@@ -1,24 +1,28 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-export const ProdutoWrap = styled.div`
+export const ProdutoWrap = styled.a`
+    background-color: white;
     padding: 1rem;
-    width: 18rem;
     border-radius: 1rem;
+    cursor: pointer;
+    margin: 5px;
 
     @media (min-width: 768px) {
         width: 50%;
     }
     @media (min-width: 1024px) {
-        width: 25%;
+        width: 15%;
+    }
+    &:hover{
+        box-shadow: 0px 0px 5px black;
     }
 `
 
-export const ImgWrap = styled.a`
+export const ImgWrap = styled.div`
     display: block;
     position: relative;
-    height: 16rem;
-    border-radius: 0.5rem;
+    height: 10rem;
     overflow: hidden;
 `
 
@@ -26,8 +30,6 @@ export const Img = styled(Image)`
     display: block;
     object-fit: cover;
     object-position: center;
-    width:100%;
-    height: 100%;
 `
 
 export const Description = styled.div`

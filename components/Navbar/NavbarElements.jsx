@@ -110,8 +110,7 @@ export const MenuButton = styled.a`
     }
 
     &:hover{
-        background-color: gray;
-        color: black;
+        box-shadow: 0px 0px 5px black;
     }
 `
 
@@ -125,7 +124,6 @@ export const LoginButton = styled.button`
     line-height: 1.5rem;
 
     &:hover{
-        background-color: gray;
-        color: black;
+        box-shadow: 0px 0px 5px black;
     }
 `
