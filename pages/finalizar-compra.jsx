@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
-import HeroSection from '/components/HeroSection'
 import Footer from '/components/Footer'
-import MinhaConta from '/components/UserPage'
-import styled from 'styled-components'
+import Carrinho from '/components/Carrinho'
 import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
 import { FontBold } from '/components/style'
-
+import FinalizarCompras from '/components/FinalizarCompra'
 
 
 export default function Home() {
@@ -17,11 +15,10 @@ export default function Home() {
       </Head>
       <Navbar/>
       <ContainerColumn>
-        <h3><FontBold>MINHA CONTA</FontBold></h3>
+        <h3><FontBold>FINALIZAR COMPRA</FontBold></h3>
         <InfoContainer>
 
-          <MinhaConta />
-
+          <FinalizarCompras />
         </InfoContainer>
         
       </ContainerColumn>

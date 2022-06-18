@@ -1,12 +1,9 @@
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
-import HeroSection from '/components/HeroSection'
 import Footer from '/components/Footer'
-import MinhaConta from '/components/UserPage'
-import styled from 'styled-components'
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
+import Pedido from '/components/PedidoDetails'
+import  {ContainerColumn,InfoContainer, Div90} from '/style/pagesStyles.jsx'
 import { FontBold } from '/components/style'
-
 
 
 export default function Home() {
@@ -16,15 +13,18 @@ export default function Home() {
         <title>Pet Shop</title>
       </Head>
       <Navbar/>
+      
       <ContainerColumn>
-        <h3><FontBold>MINHA CONTA</FontBold></h3>
+        <h3><FontBold>PEDIDO #</FontBold></h3>
         <InfoContainer>
-
-          <MinhaConta />
+          <Div90>
+            <Pedido/>
+          </Div90>
 
         </InfoContainer>
         
       </ContainerColumn>
+
       <Footer/>
     </>
   )

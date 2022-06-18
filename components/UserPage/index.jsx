@@ -2,7 +2,7 @@ import {
     UserPage
 } from "./UserPage"
 
-export default function MyAccount() {
+export default function MinhaConta() {
     return (
         <UserPage />
     )
