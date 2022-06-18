@@ -18,7 +18,7 @@ Heading
 
 const Hero = () => {
   return (
-        <HeroContainer id={"Hero Container"}>
+        <HeroContainer>
             <HeroWrapper>
                 <HeroRow>
                     <Column1>
