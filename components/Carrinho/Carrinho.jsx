@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 
 import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted} from '../style.jsx'
+import { useState } from 'react'
 
 
 const EnderecoContainer = styled.div`
@@ -17,7 +18,20 @@ const EnderecoOption = styled.div`
     align-self: flex-end;
 `
 
+const FreteContainer = styled.div`
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+`
+
+const Frete = styled.div`
+    width: 70%;
+`
+
+
 export const Carrinho = () => {
+    const [frete, setFrete] = useState('');
+
     const carrinhoCompras = [
         {
             nome: 'raçao 1kg',
@@ -47,6 +61,20 @@ export const Carrinho = () => {
         referencia: '',
 
     }
+
+    const submitHandler = (event) => {
+        if(frete == ''){
+            event.preventDefault();
+            alert('Escolha um frete');
+        }
+        localStorage.setItem('Frete', frete);
+    };
+
+
+    const onChange = (e) => {
+        let frete = e.target.value;
+        setFrete(frete);
+    };
    
     if(carrinhoCompras.length > 0){
     return (
@@ -74,7 +102,16 @@ export const Carrinho = () => {
                 <InfoContainer> 
                     <h5><FontBold>FRETE</FontBold></h5>
                     <OrderContainer>
-                        Frete
+                        <FreteContainer>
+                            <Frete>
+                                <input type="radio" id="correio" name="frete" value="Correios" required onChange={onChange}/>
+                                <label htmlFor ="correio">&nbsp;Correios - x a y dias úteis</label>
+                            </Frete>
+                            
+
+                            <div>Preço: R$</div>
+                        </FreteContainer>
+                    
                     </OrderContainer>
                 </InfoContainer>
 
@@ -90,7 +127,7 @@ export const Carrinho = () => {
                                 <td></td>
                                 <td ><FontBold>{produto.nome}</FontBold><br/>{produto.descricao}</td>
                                 <td>Quantidade<br/>
-                                <input type="number" name="quantidade" id="quant" min={1} max={produto.estoque}/><br/>
+                                <input type="number" name="quantidade" id="quant" placeholder="1" min={1} max={produto.estoque}/><br/>
                                 <a  href='#'>Remover</a>
                                 </td>
                                 <td>Preço<br/>R${produto.preco}</td>
@@ -114,7 +151,7 @@ export const Carrinho = () => {
                     
                     
                     <ButtonContainer >
-                        <Link href={'/pagamento'}><Button>IR PARA O PAGAMENTO</Button></Link>
+                        <Link href={'/pagamento'}><Button type='submit' onClick={submitHandler}>IR PARA O PAGAMENTO</Button></Link>
                     </ButtonContainer>
                     <ButtonContainer >
                         <Link href={'/'}><ButtonInverted>CONTINUAR COMPRANDO</ButtonInverted></Link>

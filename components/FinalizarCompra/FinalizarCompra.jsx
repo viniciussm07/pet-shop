@@ -6,6 +6,8 @@ import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOpti
 
 
 export const FinalizarCompras = () => {
+    const metodoPagamento = '';
+    const frete = '';
     const carrinhoCompras = [
         {
             nome: 'raçao 1kg',
@@ -35,6 +37,17 @@ export const FinalizarCompras = () => {
         referencia: '',
 
     }
+    
+    const getMetodoPagamento = () => {
+        metodoPagamento = localStorage.getItem('Metodo de Pagamento');
+    }
+
+    const getFrete = () => {
+        frete = localStorage.getItem('Frete');
+    }
+
+    getFrete();
+    getMetodoPagamento();
    
     if(carrinhoCompras.length > 0){
     return (
@@ -52,12 +65,12 @@ export const FinalizarCompras = () => {
                         Rua: {endereco.logradouro}, Número: {endereco.numero}<br/>
                         CEP: {endereco.CEP} - {endereco.cidade}/{endereco.uf}<br/>
                         <br/>
-                        Frete - de x até y dias úteis <br/>
+                        Frete: {frete} - de x até y dias úteis <br/>
                         Custo: R$
                     </OrderContainer>
                     <h5><FontBold>PAGAMENTO</FontBold></h5>
                     <OrderContainer>
-                        [Método de Pagamento]
+                        {metodoPagamento}
                     </OrderContainer>
                 </InfoContainer>
 
