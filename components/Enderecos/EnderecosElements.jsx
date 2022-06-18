@@ -1,7 +1,7 @@
 import Link from 'next/link.js';
+import styled from 'styled-components';
 
-
-import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, FontBold} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer, FontBold} from '../style.jsx'
 
 const EnderecoContainer = styled.div`
     display: flex;

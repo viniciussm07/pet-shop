@@ -53,7 +53,7 @@ export const InfoContainer = styled.div`
     background-color:white;
     margin:10px 30px 40px 0;
     border-radius: 10px;
-    padding: 30px;
+    padding: 25px;
  
 `
 

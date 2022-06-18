@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router.js'
+import { useEffect } from 'react'
+
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import AddEndereco from '/components/AdicionarEndereco'
 import styled from 'styled-components'
-
 
 import  {ContainerRow} from '/style/pagesStyles.jsx'
 
@@ -18,6 +20,15 @@ const Div80 = styled.div`
 
 `
 export default function Home() {
+  const router = useRouter();
+  let isLoggedIn = true;
+
+  if(isLoggedIn==false){
+    useEffect(() => {
+        router.push('/login');
+      }, []);
+  }
+  
   return (
     <>
       <Head>

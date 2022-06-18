@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import styled from 'styled-components'
+
 import Resumo from '/components/ResumoPedido'
 
 import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, OrderTable, InfoContainer, FontBold, ButtonInverted} from '../style.jsx'

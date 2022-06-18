@@ -1,9 +1,21 @@
 import Link from 'next/link'
 import Resumo from '/components/ResumoPedido'
+import styled from 'styled-components'
 
-import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted} from '../style.jsx'
+
+import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted} from '../style.jsx'
 
 
+const EnderecoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`
+
+const EnderecoOption = styled.div`
+    margin-top: 10px;
+    align-self: flex-end;
+`
 
 export const Carrinho = () => {
     const carrinhoCompras = [

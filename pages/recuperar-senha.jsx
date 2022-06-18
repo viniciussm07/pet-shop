@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router.js'
+import { useEffect } from 'react'
+
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import RecuperarSenha from '/components/RecuperarSenha'
@@ -20,6 +23,15 @@ const Div40 = styled.div`
 
 
 export default function Home() {
+  const router = useRouter();
+    let isLoggedIn = false;
+
+    if(isLoggedIn==true){
+        useEffect(() => {
+            router.push('/');
+        }, []);
+    }
+
   return (
     <>
       <Head>

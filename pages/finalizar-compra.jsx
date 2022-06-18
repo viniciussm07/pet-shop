@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router.js'
+import { useEffect } from 'react'
+
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
@@ -7,6 +10,15 @@ import FinalizarCompras from '/components/FinalizarCompra'
 
 
 export default function Home() {
+  const router = useRouter();
+  let isLoggedIn = true;
+
+  if(isLoggedIn==false){
+    useEffect(() => {
+        router.push('/login');
+      }, []);
+  }
+  
   return (
     <>
       <Head>
