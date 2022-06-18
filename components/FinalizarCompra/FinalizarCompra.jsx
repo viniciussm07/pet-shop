@@ -6,8 +6,8 @@ import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOpti
 
 
 export const FinalizarCompras = () => {
-    const metodoPagamento = '';
-    const frete = '';
+    let metodoPagamento = '';
+    let frete = '';
     const carrinhoCompras = [
         {
             nome: 'raçao 1kg',
