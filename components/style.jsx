@@ -103,17 +103,6 @@ export const FontBold = styled.span`
 
 `
 
-export const EnderecoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`
-
-export const EnderecoOption = styled.div`
-    margin-top: 10px;
-    align-self: flex-end;
-`
-
 export const ContainerColumn =styled.div`
     display:flex;
     flex-direction:column;
@@ -126,11 +115,3 @@ export const ContainerRow =styled.div`
 
 `
 
-export const MetodoPagamento = styled.div`
-    width:50vw;
-    background-color:white;
-    margin:10px 30px 0 0;
-    border-radius: 10px;
-    padding: 15px;
-
-`

@@ -16,7 +16,6 @@ export default function Home() {
       <ContainerColumn>
         <h3><FontBold>CARRINHO DE COMPRAS</FontBold></h3>
         <InfoContainer>
-
           <Carrinho />
         </InfoContainer>
         

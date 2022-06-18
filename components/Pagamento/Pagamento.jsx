@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import Resumo from '/components/ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted, MetodoPagamento} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, OrderTable, InfoContainer, FontBold, ButtonInverted} from '../style.jsx'
 
+const MetodoPagamento = styled.div`
+    width:50vw;
+    background-color:white;
+    margin:10px 30px 0 0;
+    border-radius: 10px;
+    padding: 15px;
 
+`
 
 export const Pagamento = () => {
     const carrinhoCompras = [

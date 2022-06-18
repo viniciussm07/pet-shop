@@ -2,7 +2,7 @@ import {
     AddEndereco
 } from "./AddEnderecos"
 
-export default function SignUpSection() {
+export default function AddEnderecoSection() {
     return (
     <>
         <AddEndereco />

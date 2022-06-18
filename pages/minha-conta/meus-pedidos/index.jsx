@@ -3,7 +3,7 @@ import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Pedidos from '/components/Pedidos'
 
-import  {ContainerColumn, InfoContainer, Div100} from '/style/pagesStyles.jsx'
+import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
 import {FontBold}  from '/components/style'
 
 
