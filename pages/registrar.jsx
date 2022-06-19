@@ -6,6 +6,7 @@ import Navbar from '/components/Navbar'
 import SignUp from '/components/Registrar'
 
 import  {ContainerRow, Div80} from '/components/Utils/pagesStyles'
+import Footer from '../components/Footer'
 
 export default function Home() {
 
@@ -29,6 +30,7 @@ export default function Home() {
           <SignUp/>
         </Div80>        
       </ContainerRow>
+      <Footer/>
     </>
 
   )
