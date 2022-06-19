@@ -22,6 +22,7 @@ export const Button = styled.button`
     white-space: normal;
     overflow-wrap: break-word;
     margin: 0 20px;
+    cursor: pointer;
 `
 
 export const ButtonInverted = styled.button`
@@ -46,6 +47,7 @@ export const ButtonInverted = styled.button`
     overflow-wrap: break-word;
     margin: 0 20px;
     border: solid 1px rgb(255,161,10);
+    cursor: pointer;
 `
 
 
