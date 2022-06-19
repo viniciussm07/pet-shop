@@ -6,10 +6,11 @@ export const ProdutoWrap = styled.a`
     padding: 1rem;
     border-radius: 1rem;
     cursor: pointer;
-    margin: 5px;
+    margin: 5px auto 5px auto;
+    width: 30%;
 
     @media (min-width: 768px) {
-        width: 50%;
+        width: 19%;
     }
     @media (min-width: 1024px) {
         width: 15%;
@@ -20,16 +21,14 @@ export const ProdutoWrap = styled.a`
 `
 
 export const ImgWrap = styled.div`
-    display: block;
     position: relative;
-    height: 10rem;
     overflow: hidden;
 `
 
 export const Img = styled(Image)`
-    display: block;
+    /* display: block;
     object-fit: cover;
-    object-position: center;
+    object-position: center; */
 `
 
 export const Description = styled.div`
