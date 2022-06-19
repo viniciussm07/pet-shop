@@ -7,7 +7,7 @@ import Login from '../components/Login'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import  {ContainerRow} from '/style/pagesStyles.jsx'
+import  {ContainerRow} from '/components/Utils'
 import { Button, ButtonContainer, FontBold } from '../components/style'
 
 const Div40 = styled.div`

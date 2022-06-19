@@ -6,7 +6,7 @@ import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import MinhaConta from '/components/UserPage'
 import styled from 'styled-components'
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
+import  {ContainerColumn, InfoContainer} from '/components/Utils'
 import { FontBold } from '/components/style'
 
 

@@ -6,7 +6,7 @@ import Navbar from '/components/Navbar'
 import RecuperarSenha from '/components/RecuperarSenha'
 import styled from 'styled-components'
 
-import  {ContainerRow} from '/style/pagesStyles.jsx'
+import  {ContainerRow} from '/components/Utils'
 
 const Div40 = styled.div`
   background-color: white;

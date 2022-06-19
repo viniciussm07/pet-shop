@@ -6,7 +6,7 @@ import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Pedidos from '/components/Pedidos'
 
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
+import  {ContainerColumn, InfoContainer} from '/components/Utils'
 import {FontBold}  from '/components/style'
 
 export default function Home() {

@@ -8,7 +8,7 @@ import Dados from '/components/DadosBasicos'
 import Enderecos from '/components/Enderecos'
 import styled from 'styled-components'
 
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
+import  {ContainerColumn, InfoContainer} from '/components/Utils'
 import { FontBold } from '/components/style'
 
 

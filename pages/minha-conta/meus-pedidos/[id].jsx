@@ -7,7 +7,7 @@ import Footer from '/components/Footer'
 import Pedido from '/components/PedidoDetails'
 import styled from 'styled-components'
 
-import  {ContainerColumn,InfoContainer} from '/style/pagesStyles.jsx'
+import  {ContainerColumn,InfoContainer} from '/components/Utils'
 import { FontBold } from '/components/style'
 
 const Div90 = styled.div`
