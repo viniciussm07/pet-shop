@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 import { Container } from '../../Utils'
 import Image from 'next/image'
+import ReactStars from 'react-stars'
+import { Button } from "../../style"
 
 export const LayoutContainer = styled(Container)`
     background-color: white;
     width: 80%;
     margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,7 +57,6 @@ export const Content = styled.div`
 export const Title = styled.h1 `
     font-size: 1.875rem;
     line-height: 2.25rem;
-    /* margin: 1rem; */
     font-weight: 500;
     color: black;
 
@@ -65,12 +67,41 @@ export const Title = styled.h1 `
 `
 
 export const Avaliacao = styled.span`
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `
 
+export const Star = styled(ReactStars)`
+    margin: auto;
+    padding: 0;
+`
+
+export const Avaliacoes = styled.span`
+    margin-top: 5px;
+    margin-left: 10px;
+    color: lightgray;
+    font-size: 0.9rem;
+`
+
+export const Linha = styled.hr`
+    margin: 5px;
+    width: 90%;
+`
+
+export const ProductPrice = styled.p`
+    margin-top: 0.25rem;
+    margin-bottom: 2rem;
+    color: #18A999;
+    font-size: 30px;
+`
 
 export const Description = styled.p`
     margin-bottom: 2rem;
     line-height: 1.625;
 `
 
+export const LayoutButton = styled(Button)`
+    font-weight: lighter;
+    margin: 0 0 0 1rem;
+`

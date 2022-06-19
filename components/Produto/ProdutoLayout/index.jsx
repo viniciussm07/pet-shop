@@ -1,17 +1,19 @@
 import React from "react"
 import {
     LayoutContainer,
-    LayoutWraper,
     ImgWrap,
     Img,
     Content,
     Title,
     Avaliacao,
-    Description
+    Avaliacoes,
+    Linha,
+    ProductPrice,
+    Description,
+    Star,
+    LayoutButton
 } from "./ProdutoLayoutElements"
 import img from '../../../images/produtos/brinquedo-1.webp'
-import { Button } from "../../style"
-import ReactStars from 'react-stars'
 
 const Layout = (props) => {
     return(
@@ -23,10 +25,13 @@ const Layout = (props) => {
                     <Content>
                         <Title>Nome do produto</Title>
                         <Avaliacao>
-                            <ReactStars edit={false} value={3.5} size={30}/>
+                            <Star color2="#FFA10A" edit={false} value={3.5} size={30}/>
+                            <Avaliacoes>(x avaliações)</Avaliacoes>
                         </Avaliacao>
+                        <Linha/>
+                        <ProductPrice>R$30,00</ProductPrice>
                         <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis a quae quo ex exercitationem, perferendis atque voluptas veniam labore, eveniet odio quos officia commodi aliquam vitae deserunt? Facere, ex saepe!</Description>
-                        <Button></Button>
+                        <LayoutButton>Adicionar ao Carrinho</LayoutButton>
                     </Content>
             </LayoutContainer>
         </>
