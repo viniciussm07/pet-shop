@@ -6,7 +6,7 @@ import Navbar from '/components/Navbar'
 import AddEndereco from '/components/AdicionarEndereco'
 
 import  {ContainerRow, Div80} from '/components/Utils/pagesStyles'
-
+import  {Title} from '/components/Utils/blankStyles'
 
 export default function Home() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Pet Shop</title>
+        <Title>Pet Shop</Title>
       </Head>
       <Navbar/>
       <ContainerRow>
