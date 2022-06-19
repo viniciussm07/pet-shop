@@ -117,4 +117,6 @@ export const ContainerRow =styled.div`
     flex-direction:row;
 
 `
-
+export const H5 = styled.h5`
+    font-weight: bold;
+`
