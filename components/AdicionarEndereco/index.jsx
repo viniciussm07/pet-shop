@@ -1,6 +1,6 @@
 import { Button, ButtonContainer,Input, FontBold } from '/components/Utils/style'
 
-export const AddEndereco = () => {
+const AddEndereco = () => {
 
     const addEnderecoHandler = async (event) => {
         event.preventDefault();
@@ -39,3 +39,5 @@ export const AddEndereco = () => {
         </form>
     </>)
 }
+
+export default AddEndereco;
