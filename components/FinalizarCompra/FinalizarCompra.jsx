@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import Resumo from '/components/ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer, EnderecoContainer, EnderecoOption, OrderTable, InfoContainer, FontBold, StyledDiv, H4, ButtonInverted} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer,  OrderTable, InfoContainer, FontBold, ButtonInverted} from '../style.jsx'
+import { useEffect } from 'react'
 
 
 
 export const FinalizarCompras = () => {
+    
     const carrinhoCompras = [
         {
             nome: 'raçao 1kg',
@@ -35,7 +37,17 @@ export const FinalizarCompras = () => {
         referencia: '',
 
     }
-   
+    
+    let metodoPagamento;
+    let frete;
+
+    useEffect(()=>{
+        metodoPagamento = localStorage.getItem('Metodo de Pagamento');
+        frete = localStorage.getItem('Frete');
+
+    })
+
+    
     if(carrinhoCompras.length > 0){
     return (
         <>
@@ -52,12 +64,12 @@ export const FinalizarCompras = () => {
                         Rua: {endereco.logradouro}, Número: {endereco.numero}<br/>
                         CEP: {endereco.CEP} - {endereco.cidade}/{endereco.uf}<br/>
                         <br/>
-                        Frete - de x até y dias úteis <br/>
+                        Frete: {frete} - de x até y dias úteis <br/>
                         Custo: R$
                     </OrderContainer>
                     <h5><FontBold>PAGAMENTO</FontBold></h5>
                     <OrderContainer>
-                        [Método de Pagamento]
+                        {metodoPagamento}
                     </OrderContainer>
                 </InfoContainer>
 

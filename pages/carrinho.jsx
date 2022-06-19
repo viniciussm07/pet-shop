@@ -10,14 +10,14 @@ import { FontBold } from '/components/style'
 
 export default function Home() {
   const router = useRouter();
-  let isLoggedIn = true;
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn!="true"){
+          router.push('/login');
+    }
+  }, [])
 
-  if(isLoggedIn==false){
-    useEffect(() => {
-        router.push('/login');
-      }, []);
-  }
-  
   return (
     <>
       <Head>

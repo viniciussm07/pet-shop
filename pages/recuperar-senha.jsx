@@ -24,13 +24,13 @@ const Div40 = styled.div`
 
 export default function Home() {
   const router = useRouter();
-    let isLoggedIn = false;
-
-    if(isLoggedIn==true){
-        useEffect(() => {
-            router.push('/');
-        }, []);
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn=="true"){
+          router.push('/');
     }
+  }, [])
 
   return (
     <>

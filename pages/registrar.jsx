@@ -23,14 +23,14 @@ const Div80 = styled.div`
 export default function Home() {
 
   const router = useRouter();
-  let isLoggedIn = false;
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn=="true"){
+          router.push('/');
+    }
+  }, [])
 
-  if(isLoggedIn==true){
-    useEffect(() => {
-        router.push('/');
-      }, []);
-  }
-  
   return (
     <>
       <Head>
