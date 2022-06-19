@@ -6,6 +6,7 @@ import Navbar from '/components/Navbar'
 import RecuperarSenha from '/components/RecuperarSenha'
 
 import  {ContainerRow, Div40} from '/components/Utils/pagesStyles'
+import Footer from '../components/Footer'
 
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
           <RecuperarSenha/>
         </Div40>       
       </ContainerRow>
+      <Footer/>
       </>
   )
 

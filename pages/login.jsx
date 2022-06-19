@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Login from '/components/Login'
 import Link from 'next/link'
+import Footer from '/components/Footer'
 
 import  {ContainerRow, Div40} from '/components/Utils/pagesStyles'
 import { Button, ButtonContainer, FontBold } from '/components/Utils/style'
@@ -37,6 +38,7 @@ export default function Home() {
         </Div40>
         
       </ContainerRow>
+      <Footer/>
       </>
   )
 
