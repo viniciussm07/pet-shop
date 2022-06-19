@@ -5,13 +5,8 @@ import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Carrinho from '/components/Carrinho'
-<<<<<<< HEAD
-import  {ContainerColumn, InfoContainer} from '/components/Utils'
-import { FontBold } from '/components/style'
-=======
 import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
 import { FontBold } from '/components/Utils/style'
->>>>>>> Erica
 
 export default function Home() {
   const router = useRouter();
