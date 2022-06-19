@@ -7,7 +7,7 @@ import SignUp from '../components/Registrar'
 import styled from 'styled-components'
 
 
-import  {ContainerRow} from '/style/pagesStyles.jsx'
+import  {ContainerRow} from '/components/Utils'
 
 const Div80 = styled.div`
   background-color: white;
