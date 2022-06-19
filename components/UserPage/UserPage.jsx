@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import {FontBold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '../style.jsx'
+import {FontBold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '/components/Utils/style'
 
 
 

@@ -3,7 +3,7 @@ import Resumo from '/components/ResumoPedido'
 import styled from 'styled-components'
 
 
-import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, StyledDiv, ButtonInverted} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, ButtonInverted} from '/components/Utils/style'
 import { useState } from 'react'
 
 

@@ -1,7 +1,7 @@
 import Link from 'next/link.js';
 import styled from 'styled-components';
 
-import {Button, ButtonContainer, OrderContainer, FontBold} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer, FontBold} from '/components/Utils/style'
 
 const EnderecoContainer = styled.div`
     display: flex;
@@ -42,11 +42,6 @@ export const Enderecos = () => {
 
         }
     ]
-
-    const enderecoHandler = async (event) => {
-        event.preventDefault();
-        alert("Endereço salvo");
-      };
 
     return (<>
             <div>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Resumo from '/components/ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer,  OrderTable, InfoContainer, FontBold, ButtonInverted} from '../style.jsx'
+import {Button, ButtonContainer, OrderContainer,  OrderTable, InfoContainer, FontBold, ButtonInverted} from '/components/Utils/style'
 import { useEffect } from 'react'
 
 

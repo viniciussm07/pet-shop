@@ -6,24 +6,10 @@ import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Dados from '/components/DadosBasicos'
 import Enderecos from '/components/Enderecos'
-import styled from 'styled-components'
 
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
-import { FontBold } from '/components/style'
+import  {ContainerColumn, InfoContainer, Div45} from '/components/Utils/pagesStyles'
+import { FontBold } from '/components/Utils/style'
 
-
-
-const Div45 = styled.div`
- background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  margin: 10px 20px;
-  width:45%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-
-`
 
 
 export default function Home() {

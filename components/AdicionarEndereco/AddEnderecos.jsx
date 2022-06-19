@@ -1,4 +1,4 @@
-import { Button, ButtonContainer,Input, FontBold } from '../style'
+import { Button, ButtonContainer,Input, FontBold } from '/components/Utils/style'
 
 export const AddEndereco = () => {
 

@@ -4,9 +4,11 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
-import { FontBold } from '/components/style'
 import FinalizarCompras from '/components/FinalizarCompra'
+
+import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
+import { FontBold } from '/components/Utils/style'
+
 
 
 export default function Home() {

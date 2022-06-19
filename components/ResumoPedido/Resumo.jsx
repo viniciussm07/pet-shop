@@ -1,23 +1,9 @@
-import {Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, FontBold} from '../style.jsx'
+import {OrderContainer, FontBold} from '/components/Utils/style'
 
 
 
 export const Resumo = () => {
-    const carrinhoCompras = [
-        {
-            nome: 'raçao 1kg',
-            descricao:'ração para cachorro',
-            preco: 10.50,
-            quantidade: 3,
-        },
-        {
-            nome: 'brinquedo',
-            descricao:'brinquedo para cachorro',
-            preco: 35.00,
-            quantidade: 1,
-        },
-
-    ]
+    
     return (
     <>
         <div>

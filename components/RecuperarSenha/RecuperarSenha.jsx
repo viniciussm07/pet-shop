@@ -1,5 +1,5 @@
 
-import { Button, ButtonContainer, Input } from '../style';
+import { Button, ButtonContainer, Input } from '/components/Utils/style'
 
 
 export const RecuperarSenha = () => {
