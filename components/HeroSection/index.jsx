@@ -1,39 +1,28 @@
 import React from 'react'
-import img from "../../images/home/example-logo.png"
-import img2 from "../../images/home/example-logo.png"
 import { 
-Column2,
-ImgWrap,
 HeroContainer,
 HeroWrapper,
-HeroRow,
-Column1,
-TextWrapper,
-ImgWrapLogo,
-Subtitle,
-BtnWrap,
-Img,
-Heading
+ImgWrap,
+Img
 } from './HeroElements'
+import Produto from '../Produto'
+import produto1 from '../../images/produtos/racao-golden-caes.webp'
+import produto2 from '../../images/produtos/petisco-caes.webp'
+import produto3 from '../../images/produtos/brinquedo-1.webp'
+import produto4 from '../../images/produtos/racao-gatos.webp'
 
 const Hero = () => {
   return (
-        <HeroContainer id={"Hero Container"}>
+        <HeroContainer>
             <HeroWrapper>
-                <HeroRow>
-                    <Column1>
-                    <TextWrapper>
-                            <Heading>Adicionar produtos</Heading>
-                            <BtnWrap>
-                            </BtnWrap>
-                    </TextWrapper>
-                    </Column1>
-                    <Column2>
-                        <ImgWrap>
-                            <Img src={img} alt="Logo pet shop"/>
-                        </ImgWrap>
-                    </Column2>
-                </HeroRow>
+              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
+              <Produto image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
+              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
+              <Produto image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
             </HeroWrapper>
         </HeroContainer>
   )
