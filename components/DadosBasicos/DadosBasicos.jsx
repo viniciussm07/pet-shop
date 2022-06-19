@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FontBold } from '../style'
+import { FontBold } from '/components/Utils/style'
 
 const Button = styled.button`
 
