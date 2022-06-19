@@ -5,9 +5,8 @@ import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import MinhaConta from '/components/UserPage'
-import styled from 'styled-components'
-import  {ContainerColumn, InfoContainer} from '/components/Utils'
-import { FontBold } from '/components/style'
+import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
+import { FontBold } from '/components/Utils/style'
 
 
 export default function Home() {

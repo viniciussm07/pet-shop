@@ -4,22 +4,8 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import RecuperarSenha from '/components/RecuperarSenha'
-import styled from 'styled-components'
 
-import  {ContainerRow} from '/components/Utils'
-
-const Div40 = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  margin: 10px;
-  width:40%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  text-align:center;
-`
-
+import  {ContainerRow, Div40} from '/components/Utils/pagesStyles'
 
 
 export default function Home() {

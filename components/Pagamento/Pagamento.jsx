@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Resumo from '/components/ResumoPedido'
 
-import {Button, ButtonContainer, InfoContainer, FontBold, ButtonInverted, Input} from '../style.jsx'
+import {Button, ButtonContainer, InfoContainer, FontBold, ButtonInverted, Input} from '/components/Utils/style'
 import { useState } from 'react'
 
 const MetodoPagamento = styled.div`

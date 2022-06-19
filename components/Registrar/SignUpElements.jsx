@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Button, ButtonContainer,Input, FontBold } from '../style'
+import { useState } from 'react';
+import { Button, ButtonContainer,Input, FontBold } from '/components/Utils/style'
 import { router } from 'next/router.js'
 
 import styled from 'styled-components';
