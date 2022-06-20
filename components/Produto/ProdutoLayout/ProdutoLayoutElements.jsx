@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Container } from '../../Utils'
 import Image from 'next/image'
 import ReactStars from 'react-stars'
-import { Button } from "../../style"
+import { Button } from "../../Utils/style"
 
 export const LayoutContainer = styled(Container)`
     background-color: white;
