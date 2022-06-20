@@ -2,12 +2,12 @@ import { useRouter } from 'next/router.js'
 import { useEffect } from 'react'
 
 import Head from 'next/head'
-import Navbar from '/components/Navbar'
-import Footer from '/components/Footer'
-import Pedido from '/components/PedidoDetails'
+import Navbar from '../../../components/Navbar'
+import Footer from '../../../components/Footer'
+import Pedido from '../../../components/PedidoDetails'
 
-import  {ContainerColumn,InfoContainer, Div90} from '/components/Utils/pagesStyles'
-import { FontBold } from '/components/Utils/style'
+import  {ContainerColumn,InfoContainer, Div90} from '../../../components/Utils/pagesStyles'
+import { FontBold } from '../../../components/Utils/style'
 
 
 export default function Home() {

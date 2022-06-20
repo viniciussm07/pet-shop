@@ -1,6 +1,6 @@
 import Link from 'next/link.js';
 
-import {Button, ButtonContainer, OrderContainer, FontBold} from '/components/Utils/style'
+import {Button, ButtonContainer, OrderContainer, FontBold} from '../Utils/style'
 import {EnderecoContainer, EnderecoOption} from './EnderecosElements'
 
 const Enderecos = () => {

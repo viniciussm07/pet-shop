@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 import Link from 'next/link'
-import Resumo from '/components/ResumoPedido'
+import Resumo from '../ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, ButtonInverted} from '/components/Utils/style'
+import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, ButtonInverted} from '../Utils/style'
 import {
     EnderecoContainer,
     EnderecoOption,

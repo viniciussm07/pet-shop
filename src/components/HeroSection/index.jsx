@@ -3,11 +3,11 @@ import { Container } from '../Utils'
 import {
   HeroWrapper
 } from './HeroElements'
-import Produto from '../Produto/ProdutoElement'
-import produto1 from '../../images/produtos/racao-golden-caes.webp'
-import produto2 from '../../images/produtos/petisco-caes.webp'
-import produto3 from '../../images/produtos/brinquedo-1.webp'
-import produto4 from '../../images/produtos/racao-gatos.webp'
+import Produto from '../Produto'
+import produto1 from '/images/produtos/racao-golden-caes.webp'
+import produto2 from '/images/produtos/petisco-caes.webp'
+import produto3 from '/images/produtos/brinquedo-1.webp'
+import produto4 from '/images/produtos/racao-gatos.webp'
 
 const Hero = () => {
   return (

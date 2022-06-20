@@ -2,10 +2,10 @@ import { useRouter } from 'next/router.js'
 import { useEffect } from 'react'
 
 import Head from 'next/head'
-import Navbar from '/components/Navbar'
-import SignUp from '/components/Registrar'
+import Navbar from '../components/Navbar'
+import SignUp from '../components/Registrar'
 
-import  {ContainerRow, Div80} from '/components/Utils/pagesStyles'
+import  {ContainerRow, Div80} from '../components/Utils/pagesStyles'
 import Footer from '../components/Footer'
 
 export default function Home() {

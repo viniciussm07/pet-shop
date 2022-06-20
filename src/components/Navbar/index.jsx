@@ -1,5 +1,4 @@
 import React from 'react'
-//import { FaBars } from 'react-icons/fa'
 import {
     Nav,
     NavbarContainer1,
@@ -14,7 +13,6 @@ import {
     MenuButton,
     LoginButton
 } from './NavbarElements.jsx'
-// import Logo from "../../images/home/example-logo.png"
 
 const Navbar = () => {
     return (

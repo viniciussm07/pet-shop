@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router.js'
-import { Button, ButtonContainer,Input, FontBold } from '/components/Utils/style'
+import { Button, ButtonContainer,Input, FontBold } from '../Utils/style'
 
 import {Errors} from './SignUpElements';
 

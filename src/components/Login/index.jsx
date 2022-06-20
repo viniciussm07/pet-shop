@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { router } from 'next/router.js';
 import Link from 'next/link.js';
 
-import {Button, Input, ButtonContainer, FontBold} from '/components/Utils/style'
+import {Button, Input, ButtonContainer, FontBold} from '../Utils/style'
 
 
 const Login = () => {

@@ -2,13 +2,13 @@ import { useRouter } from 'next/router.js'
 import { useEffect } from 'react'
 
 import Head from 'next/head'
-import Navbar from '/components/Navbar'
-import Footer from '/components/Footer'
-import Dados from '/components/DadosBasicos'
-import Enderecos from '/components/Enderecos'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
+import Dados from '../../components/DadosBasicos'
+import Enderecos from '../../components/Enderecos'
 
-import  {ContainerColumn, InfoContainer, Div45} from '/components/Utils/pagesStyles'
-import { FontBold } from '/components/Utils/style'
+import  {ContainerColumn, InfoContainer, Div45} from '../../components/Utils/pagesStyles'
+import { FontBold } from '../../components/Utils/style'
 
 
 

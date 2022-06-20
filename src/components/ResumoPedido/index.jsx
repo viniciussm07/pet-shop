@@ -1,4 +1,4 @@
-import {OrderContainer, FontBold} from '/components/Utils/style'
+import {OrderContainer, FontBold} from '../Utils/style'
 
 
 export const Resumo = () => {

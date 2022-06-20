@@ -1,7 +1,4 @@
 import styled from 'styled-components'
-import Link from 'next/link';
-import { Link as LinkS } from 'react-scroll'
-import Image from 'next/image'
 
 export const Nav = styled.nav`
     color: white;

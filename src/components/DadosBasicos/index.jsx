@@ -1,4 +1,4 @@
-import { Input, FontBold, Button, ButtonContainer } from '/components/Utils/style'
+import { Input, FontBold, Button, ButtonContainer } from '../Utils/style'
 
 const Dados = () => {
 

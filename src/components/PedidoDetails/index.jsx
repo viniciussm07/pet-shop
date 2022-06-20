@@ -1,4 +1,4 @@
-import {FontBold, OrderContainer, OrderTable, InfoContainer} from '/components/Utils/style'
+import {FontBold, OrderContainer, OrderTable, InfoContainer} from '../Utils/style'
 
 export const Pedido = () => {
     const carrinhoCompras = [

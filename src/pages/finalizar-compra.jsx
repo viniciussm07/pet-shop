@@ -2,12 +2,12 @@ import { useRouter } from 'next/router.js'
 import { useEffect } from 'react'
 
 import Head from 'next/head'
-import Navbar from '/components/Navbar'
-import Footer from '/components/Footer'
-import FinalizarCompras from '/components/FinalizarCompra'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import FinalizarCompras from '../components/FinalizarCompra'
 
-import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
-import { FontBold } from '/components/Utils/style'
+import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
+import { FontBold } from '../components/Utils/style'
 
 
 

@@ -1,5 +1,5 @@
-import { Button, ButtonContainer,Input, H5 } from '/components/Utils/style'
-import { Div, Form, Label, BR } from '/components/Utils/blankStyles'
+import { Button, ButtonContainer,Input, H5 } from '../Utils/style'
+import { Div, Form, Label, BR } from '../Utils/blankStyles'
 
 const AddEndereco = () => {
 

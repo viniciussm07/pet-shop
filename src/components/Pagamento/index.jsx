@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import Resumo from '/components/ResumoPedido'
+import Resumo from '../ResumoPedido'
 
-import {Button, ButtonContainer, InfoContainer, FontBold, ButtonInverted, Input} from '/components/Utils/style'
+import {Button, ButtonContainer, InfoContainer, FontBold, ButtonInverted, Input} from '../Utils/style'
 import {MetodoPagamento, PagamentoCartao} from './Pagamento'
 
 
