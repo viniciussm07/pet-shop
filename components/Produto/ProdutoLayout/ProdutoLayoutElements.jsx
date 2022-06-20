@@ -66,7 +66,7 @@ export const Title = styled.h1 `
     }
 `
 
-export const Avaliacao = styled.span`
+export const Row = styled.span`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -101,7 +101,38 @@ export const Description = styled.p`
     line-height: 1.625;
 `
 
-export const LayoutButton = styled(Button)`
+export const AddCart = styled(Button)`
     font-weight: lighter;
     margin: 0 0 0 1rem;
+    border-radius: 0.5rem;
+`
+
+export const AddSubtractCart = styled.div`
+    background-color: white;
+    border: solid gray thin;
+    color: black;
+    font-size: 1rem;
+    padding: 0.1rem 0rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+`
+
+export const Add = styled(Button)`
+    color: #18A999;
+    padding: 0.25rem 5px 0px 10px;
+    margin: 0;
+    background-color: transparent;
+    &:hover{
+        box-shadow: 0px 0px 0px;
+    }
+`
+
+export const Subtract = styled(Button)`
+    color: #18A999;
+    margin: 0;
+    background-color: transparent;
+    padding: 0.25rem 10px 0px 5px;
+    &:hover{
+        box-shadow: 0px 0px 0px;
+    }
 `
