@@ -63,6 +63,10 @@ export const Div45 = styled.div`
   flex-direction: column;
   align-content: center;
 
+  @media (max-width: 880px){
+    width:80%;
+  }
+
 `
 
 export const Div40 = styled.div`
