@@ -1,19 +1,9 @@
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import HeroSection from '../components/HeroSection'
-import Footer from '../components/Footer'
-import { useEffect } from 'react'
-
-import { useRouter } from 'next/router'
+import Navbar from '/components/Navbar'
+import HeroSection from '/components/HeroSection'
+import Footer from '/components/Footer'
 
 export default function Animal() {
-  const router = useRouter();
-  useEffect(() => {
-    if(localStorage.getItem('isLoggedIn') == null){
-      localStorage.setItem('isLoggedIn',''); 
-    }
-    router.push('/');
-  }, []);
 
   return (
     <>

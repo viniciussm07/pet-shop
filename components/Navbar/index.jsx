@@ -21,7 +21,7 @@ const Navbar = () => {
         <>
             <Nav>
                 <NavbarContainer1>
-                    <NavLogoWrap>
+                    <NavLogoWrap href="/">
                         <Logo>
                             Pet Shop
                         </Logo>
@@ -32,13 +32,13 @@ const Navbar = () => {
                             <Input placeholder='Pesquisar'/>
                         </InputWrap>
                     </Search>
-                    <LoginButton>Entre ou Cadastre-se</LoginButton>
+                    <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
                 </NavbarContainer1>
                 <NavbarContainer2>
                     <NavMenu>
-                        <MenuButton>Cachorro</MenuButton>
-                        <MenuButton>Gato</MenuButton>
-                        <MenuButton>Pássaro</MenuButton>
+                        <MenuButton href="/animal/cachorro">Cachorro</MenuButton>
+                        <MenuButton href="/animal/gato">Gato</MenuButton>
+                        <MenuButton href="/animal/passaro">Pássaro</MenuButton>
                     </NavMenu>
                 </NavbarContainer2>
             </Nav>
