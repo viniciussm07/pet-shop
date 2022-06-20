@@ -6,6 +6,8 @@ Vinicius Soares Martins - 11794907
 
 Érica Ribeiro Filgueira dos Santos - 11836351
 
+## Para ver o site em produção clique [aqui](https://pet-shop-olive.vercel.app/)
+
 ## Quick Start
 
 After downloading the project open a terminal and type
