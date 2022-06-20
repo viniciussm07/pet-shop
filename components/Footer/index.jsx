@@ -36,7 +36,7 @@ const Footer = () => {
                     </FooterLinkItems>
                     <FooterLinkItems>
                         <FooterLinkTitle>Contato</FooterLinkTitle>
-                        <FooterLink href="mailto:petshop@petshop.com.br"><GrMail/> contato@sustentoenergiasolar.com.br</FooterLink>
+                        <FooterLink href="mailto:petshop@petshop.com.br"><GrMail/> contato@pet-shop.com.br</FooterLink>
                         <FooterLink href="/"><FaWhatsapp/> (16) 99999-9999</FooterLink>
                     </FooterLinkItems>
                 </FooterLinksWrapper>
