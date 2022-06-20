@@ -17,7 +17,7 @@ import {
     Add,
     Subtract
 } from "./ProdutoLayoutElements"
-import img from '../../../images/produtos/brinquedo-1.webp'
+import img from '/images/produtos/brinquedo-1.webp'
 
 const Layout = (props) => {
     return(
