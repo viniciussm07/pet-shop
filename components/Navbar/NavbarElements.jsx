@@ -37,6 +37,8 @@ export const NavLogoWrap = styled.a`
     align-items: center;
     font-weight: 500;
     color: black;
+    text-decoration: none;
+    cursor: pointer;
 
     @media (min-width: 768px) {
         margin-bottom: 0px;
@@ -102,6 +104,8 @@ export const MenuButton = styled.a`
     background-color: #18A999;
     border-radius: 0.25rem;
     padding: 0.25rem 2rem 0.25rem 2rem;
+    text-decoration: none;
+    color: white;
     cursor: pointer;
 
     @media (min-width: 880px){
@@ -114,7 +118,7 @@ export const MenuButton = styled.a`
     }
 `
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.a`
     border-radius: 0.5rem;
     border-width: 0px;
     background-color: #FFA10A;
@@ -122,6 +126,8 @@ export const LoginButton = styled.button`
     padding: 0.8rem 1rem 0.8rem 1rem;
     font-size: 1rem;
     line-height: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
 
     &:hover{
         box-shadow: 0px 0px 5px black;
