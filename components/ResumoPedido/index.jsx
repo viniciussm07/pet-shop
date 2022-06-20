@@ -1,9 +1,25 @@
-import {
-    Resumo
-} from "./Resumo"
+import {OrderContainer, FontBold} from '/components/Utils/style'
 
-export default function ResumoPedido() {
+
+export const Resumo = () => {
+    
     return (
-        <Resumo />
+    <>
+        <div>
+            <br/>
+            Valor dos produtos: R$ <br/>
+            Frete: R$ <br/>
+            <hr/>
+            Total a prazo: R$ <br/>
+            <OrderContainer>
+                Valor a vista: 
+                <h4><FontBold>&nbsp;R$</FontBold></h4>
+
+            </OrderContainer>
+        </div>
+    </>
+        
     )
 }
+
+export default Resumo;

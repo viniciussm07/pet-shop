@@ -6,19 +6,18 @@ import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Pedidos from '/components/Pedidos'
 
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
-import {FontBold}  from '/components/style'
+import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
+import {FontBold}  from '/components/Utils/style'
 
 export default function Home() {
   const router = useRouter();
-  let isLoggedIn = true;
-
-  if(isLoggedIn==false){
-    useEffect(() => {
-        router.push('/login');
-      }, []);
-  }
-  
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn!="true"){
+          router.push('/login');
+    }
+  }, [])
   return (
     <>
       <Head>

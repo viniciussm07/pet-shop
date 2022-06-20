@@ -2,35 +2,23 @@ import { useRouter } from 'next/router.js'
 import { useEffect } from 'react'
 
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import SignUp from '../components/Registrar'
-import styled from 'styled-components'
+import Navbar from '/components/Navbar'
+import SignUp from '/components/Registrar'
 
-
-import  {ContainerRow} from '/style/pagesStyles.jsx'
-
-const Div80 = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  margin: 10px;
-  width:80%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-`
+import  {ContainerRow, Div80} from '/components/Utils/pagesStyles'
+import Footer from '../components/Footer'
 
 export default function Home() {
 
   const router = useRouter();
-  let isLoggedIn = false;
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn=="true"){
+          router.push('/');
+    }
+  }, [])
 
-  if(isLoggedIn==true){
-    useEffect(() => {
-        router.push('/');
-      }, []);
-  }
-  
   return (
     <>
       <Head>
@@ -42,6 +30,7 @@ export default function Home() {
           <SignUp/>
         </Div80>        
       </ContainerRow>
+      <Footer/>
     </>
 
   )

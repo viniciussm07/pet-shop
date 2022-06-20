@@ -5,19 +5,19 @@ import Head from 'next/head'
 import Navbar from '/components/Navbar'
 import Footer from '/components/Footer'
 import Carrinho from '/components/Carrinho'
-import  {ContainerColumn, InfoContainer} from '/style/pagesStyles.jsx'
-import { FontBold } from '/components/style'
+import  {ContainerColumn, InfoContainer} from '/components/Utils/pagesStyles'
+import { FontBold } from '/components/Utils/style'
 
 export default function Home() {
   const router = useRouter();
-  let isLoggedIn = true;
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn!="true"){
+          router.push('/login');
+    }
+  }, [])
 
-  if(isLoggedIn==false){
-    useEffect(() => {
-        router.push('/login');
-      }, []);
-  }
-  
   return (
     <>
       <Head>
