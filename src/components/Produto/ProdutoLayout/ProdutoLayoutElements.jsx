@@ -14,6 +14,17 @@ export const LayoutContainer = styled(Container)`
     align-items: center;
     border-radius: 1rem;
     padding-top: 1rem;
+`
+
+export const LayoutWrap = styled(Container)`
+    background-color: white;
+    width: 80%;
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    padding-top: 1rem;
 
     @media (min-width: 768px){
         flex-direction: row;
