@@ -24,6 +24,9 @@ export const Button = styled.button`
     margin: 0 20px;
     cursor: pointer;
 
+    &:hover{
+        box-shadow: 0px 0px 5px black;
+    }
 `
 
 export const ButtonInverted = styled.button`
