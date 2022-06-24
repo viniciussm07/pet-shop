@@ -19,9 +19,34 @@ import {
     Subtract
 } from "./ProdutoLayoutElements"
 import img from '/images/produtos/brinquedo-1.webp'
-import { produtos } from "../../../core/produtos"
 
-const Layout = (props) => {
+export async function getStaticProps(context) {
+    const {params} = context;
+    const data = await fetch(`/jsonServer/produtos.json/${params.id}`);
+
+    const produto = await data.json();
+
+    return {
+        props: {produto}
+    }
+}
+
+export async function getStaticPath() {
+    const response = await fetch("/jsonServer/produtos.json");
+    const data = await response.json();
+
+    const paths = data.map((produto) => {
+        return {
+            params: {
+                produtoId: `${produto.id}`
+            }
+        }
+    })
+
+    return {paths, fallback: false};
+}
+
+const Layout = ({produto}) => {
     const [quantidade, setQuantidade] = useState(1);
 
     function addQuantidade() {
@@ -39,17 +64,17 @@ const Layout = (props) => {
             <LayoutContainer>
                 <LayoutWrap>
                     <ImgWrap>
-                        <Img src={img} />
+                        <Img src={produto.imageUrl} />
                     </ImgWrap>
                     <Content>
-                        <Title>Nome do produto</Title>
+                        <Title>{produto.nome}</Title>
                         <Row>
-                            <Star color2="#FFA10A" edit={false} value={3.5} size={30} />
+                            <Star color2="#FFA10A" edit={false} value={produto.avaliacao} size={30} />
                             <Avaliacoes>(x avaliações)</Avaliacoes>
                         </Row>
                         <Linha />
-                        <ProductPrice>R$30,00</ProductPrice>
-                        <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis a quae quo ex exercitationem, perferendis atque voluptas veniam labore, eveniet odio quos officia commodi aliquam vitae deserunt? Facere, ex saepe!</Description>
+                        <ProductPrice>R${produts.preco}</ProductPrice>
+                        <Description>{produto.descricao}</Description>
                         <Row>
                             <AddSubtractCart>
                                 <Subtract onClick={subQuantidade}>
