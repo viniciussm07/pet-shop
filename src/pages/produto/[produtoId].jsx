@@ -1,3 +1,6 @@
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
+
 import React, { useState } from "react"
 import { HiMinusSm, HiPlusSm } from "react-icons/hi"
 import {
@@ -17,43 +20,39 @@ import {
     AddSubtractCart,
     Add,
     Subtract
-} from "./ProdutoLayoutElements"
-import img from '/images/produtos/brinquedo-1.webp'
+} from "../../components/Produto/ProdutoLayout/ProdutoLayoutElements"
+import { produtos } from "/src/produtos"
+import img from "../../../images/produtos/brinquedo-1.webp"
 
-export async function getStaticProps(context) {
-    const {params} = context;
-    const data = await fetch(`/jsonServer/produtos.json/${params.id}`);
-
-    const produto = await data.json();
-
+export async function getStaticProps ({ params = {} }) {
+    const produto = produtos.find(({id}) => `${id}` === `${params.produtoId}`);
     return {
-        props: {produto}
+        props: {
+            produto
+        },
     }
 }
 
-export async function getStaticPath() {
-    const response = await fetch("/jsonServer/produtos.json");
-    const data = await response.json();
-
-    const paths = data.map((produto) => {
+export async function getStaticPaths() {
+    const paths = produtos.map((produto) => {
+        const {id} = produto;
         return {
             params: {
-                produtoId: `${produto.id}`
+                produtoId: id.toString()
             }
         }
     })
-
-    return {paths, fallback: false};
+    return { paths, fallback: false }
 }
 
-const Layout = ({produto}) => {
+export default ({ produto }) => {
     const [quantidade, setQuantidade] = useState(1);
 
     function addQuantidade() {
         setQuantidade(quantidade + 1);
     }
-    function subQuantidade(){
-        if (quantidade == 1){
+    function subQuantidade() {
+        if (quantidade == 1) {
             return quantidade;
         }
         setQuantidade(quantidade - 1);
@@ -61,10 +60,15 @@ const Layout = ({produto}) => {
 
     return (
         <>
+            <Navbar />
             <LayoutContainer>
                 <LayoutWrap>
                     <ImgWrap>
-                        <Img src={produto.imageUrl} />
+                        <Img
+                        src={produto.imageUrl}
+                        width="1000%"
+                        height="1000%"
+                        />
                     </ImgWrap>
                     <Content>
                         <Title>{produto.nome}</Title>
@@ -73,7 +77,7 @@ const Layout = ({produto}) => {
                             <Avaliacoes>(x avaliações)</Avaliacoes>
                         </Row>
                         <Linha />
-                        <ProductPrice>R${produts.preco}</ProductPrice>
+                        <ProductPrice>R${produto.preco}</ProductPrice>
                         <Description>{produto.descricao}</Description>
                         <Row>
                             <AddSubtractCart>
@@ -93,8 +97,7 @@ const Layout = ({produto}) => {
                     Teste
                 </LayoutWrap>
             </LayoutContainer>
+            <Footer />
         </>
     )
 }
-
-export default Layout

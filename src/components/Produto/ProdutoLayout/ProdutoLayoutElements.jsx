@@ -43,8 +43,8 @@ export const ImgWrap = styled.div`
 `
 
 export const Img = styled(Image)`
-    object-fit: cover;
-    object-position: center;
+    /* object-fit: cover;
+    object-position: center; */
 `
 
 export const Content = styled.div`
@@ -110,6 +110,7 @@ export const ProductPrice = styled.p`
 export const Description = styled.p`
     margin-bottom: 2rem;
     line-height: 1.625;
+    
 `
 
 export const AddCart = styled(Button)`
