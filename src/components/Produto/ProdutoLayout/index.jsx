@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { HiMinusSm, HiPlusSm } from "react-icons/hi"
 import {
     LayoutContainer,
@@ -19,8 +19,21 @@ import {
     Subtract
 } from "./ProdutoLayoutElements"
 import img from '/images/produtos/brinquedo-1.webp'
+import { produtos } from "../../../core/produtos"
 
 const Layout = (props) => {
+    const [quantidade, setQuantidade] = useState(1);
+
+    function addQuantidade() {
+        setQuantidade(quantidade + 1);
+    }
+    function subQuantidade(){
+        if (quantidade == 1){
+            return quantidade;
+        }
+        setQuantidade(quantidade - 1);
+    }
+
     return (
         <>
             <LayoutContainer>
@@ -39,11 +52,11 @@ const Layout = (props) => {
                         <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis a quae quo ex exercitationem, perferendis atque voluptas veniam labore, eveniet odio quos officia commodi aliquam vitae deserunt? Facere, ex saepe!</Description>
                         <Row>
                             <AddSubtractCart>
-                                <Subtract>
+                                <Subtract onClick={subQuantidade}>
                                     <HiMinusSm />
                                 </Subtract>
-                                Quantidade
-                                <Add>
+                                {quantidade}
+                                <Add onClick={addQuantidade}>
                                     <HiPlusSm />
                                 </Add>
                             </AddSubtractCart>
