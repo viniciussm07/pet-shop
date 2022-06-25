@@ -13,18 +13,18 @@ const Hero = () => {
   return (
         <Container>
             <HeroWrapper>
-              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
-              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
-              <Produto image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
-              <Produto image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
-              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
-              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
-              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
-              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
-              <Produto image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
-              <Produto image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
-              <Produto image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
-              <Produto image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto destiny="/produto/0" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto destiny="/produto/" image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto destiny="/produto/" image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
+              <Produto destiny="/produto/" image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
+              <Produto destiny="/produto/" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto destiny="/produto/" image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto destiny="/produto/" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto destiny="/produto/" image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
+              <Produto destiny="/produto/" image = {produto3} category = {"Cachorro"} name ={"Bolinha LCM Cravinho"} price = {10.00}/>
+              <Produto destiny="/produto/" image = {produto4} category = {"Gato"} name ={"Ração Gran Plus 10,1kg"} price = {150.00}/>
+              <Produto destiny="/produto/" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              <Produto destiny="/produto/" image = {produto2} category = {"Cachorro"} name ={"Petisco Doguitos"} price = {15.00}/>
             </HeroWrapper>
         </Container>
   )

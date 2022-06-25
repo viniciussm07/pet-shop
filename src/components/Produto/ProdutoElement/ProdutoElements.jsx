@@ -8,6 +8,7 @@ export const ProdutoWrap = styled.a`
     cursor: pointer;
     margin: 5px auto 5px auto;
     width: 30%;
+    text-decoration: none;
 
     @media (min-width: 768px) {
         width: 19%;
