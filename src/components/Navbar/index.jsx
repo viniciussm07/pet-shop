@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Nav,
     NavbarContainer1,
@@ -11,10 +11,31 @@ import {
     Input,
     NavMenu,
     MenuButton,
-    LoginButton
+    LoginButton,
+    CartButton,
+    MyAccountButton,
+    WrapButtons
 } from './NavbarElements.jsx'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
 
 const Navbar = () => {
+
+    const [loggedNav, setLoggedNav] = useState(false);
+    let isLoggedIn;
+
+    const changeNav = () => {
+        isLoggedIn = localStorage.getItem('isLoggedIn');
+        if(isLoggedIn){
+            setLoggedNav(true);
+        } else{
+            setLoggedNav(false);
+        }
+    }
+
+    useEffect(() => {
+        changeNav()
+    }, [isLoggedIn])
+
     return (
         <>
             <Nav>
@@ -30,7 +51,11 @@ const Navbar = () => {
                             <Input placeholder='Pesquisar'/>
                         </InputWrap>
                     </Search>
-                    <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
+                    <WrapButtons>
+                        <LoginButton loggedNav={loggedNav} href="/login">Entre ou Cadastre-se</LoginButton>
+                        <CartButton loggedNav={loggedNav} href="/carrinho"><AiOutlineShoppingCart/></CartButton>
+                        <MyAccountButton loggedNav={loggedNav} href="/minha-conta">Minha Conta</MyAccountButton>
+                    </WrapButtons>
                 </NavbarContainer1>
                 <NavbarContainer2>
                     <NavMenu>

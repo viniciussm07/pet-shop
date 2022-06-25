@@ -115,7 +115,7 @@ export const MenuButton = styled.a`
     }
 `
 
-export const LoginButton = styled.a`
+const NavButton = styled.a`
     border-radius: 0.5rem;
     border-width: 0px;
     background-color: #FFA10A;
@@ -129,4 +129,23 @@ export const LoginButton = styled.a`
     &:hover{
         box-shadow: 0px 0px 5px black;
     }
+`
+
+export const LoginButton = styled(NavButton)`
+    display: ${({loggedNav}) => (loggedNav ? 'none' : 'flex')};
+`
+
+export const CartButton = styled(NavButton)`
+    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    margin: 0 20px;
+`
+
+export const MyAccountButton = styled(NavButton)`
+    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    margin: 0 20px;
+`
+
+export const WrapButtons = styled.div`
+    display: flex;
+    flex-direction: row;
 `
