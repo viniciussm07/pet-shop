@@ -13,7 +13,7 @@ export const produtos = [
     },
     {
         id: 1,
-        nome: "Bolinha",
+        nome: "Bolinha LCM Cravinho",
         preco: 10.00,
         avaliacao: 4,
         descricao: "Indicada para cães e gatos,\n Divirta e mantenha seu melhor amigo sempre ativo;\n Formato anatômico;\n Brinquedo que entretêm o animalzinho;\n Proporciona momentos de muita alegria e descontração;\n Disponível em embalagem com 1 unidade.",
@@ -22,7 +22,7 @@ export const produtos = [
             "Adorei morde-lá"
         ],
         imageUrl: "/images/produtos/brinquedo-1.webp",
-        categoria: "Brinquedo"
+        categoria: "Cachorro"
     },
     {
         id: 2,
@@ -33,7 +33,20 @@ export const produtos = [
         comentarios: [
             "Gostei do sabor"
         ],
-        imageUrl: "/images/produtos/example-logo.png",
+        imageUrl: "/images/produtos/racao-gatos.webp",
+        categoria: "Gato"
+    },
+    {
+        id: 3,
+        nome: "Petisco Doguitos",
+        preco: 7.00,
+        avaliacao: 4,
+        descricao: "Indicada para gatos adultos, cozida a vapor, feita para os paladares mais exigentes, auxilia no controle de peso, alimento reduzido em calorias e gorduras e enriquecido com carnitina, contribui para saúde da pele e do pelo, com ômega 6, zinco e vitamina A, sem conservantes, aromas e corantes artificiais e está disponível em embalagem de 10,1kg.",
+        comentarios: [
+            "Gostei do sabor"
+        ],
+        imageUrl: "/images/produtos/petisco-caes.webp",
         categoria: "Cachorro"
     }
+
 ]
