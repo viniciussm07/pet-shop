@@ -17,9 +17,9 @@ export const LayoutContainer = styled(Container)`
 `
 
 export const LayoutWrap = styled(Container)`
-    background-color: white;
+    background-color: ${(props) => (props.bgColor)};
     width: 80%;
-    margin-top: 2.5rem;
+    margin-top: ${(props) => (props.mgTop)};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,7 +65,7 @@ export const Content = styled.div`
     }
 `
 
-export const Title = styled.h1 `
+export const Title1 = styled.h1`
     font-size: 1.875rem;
     line-height: 2.25rem;
     font-weight: 500;
@@ -75,6 +75,13 @@ export const Title = styled.h1 `
         font-size: 2.25rem;
         line-height: 2.5rem;
     }
+`
+
+export const Title2 = styled.h2`
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #6f6f6f;
 `
 
 export const Row = styled.span`

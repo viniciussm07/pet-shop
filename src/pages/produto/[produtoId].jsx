@@ -9,7 +9,8 @@ import {
     ImgWrap,
     Img,
     Content,
-    Title,
+    Title1,
+    Title2,
     Row,
     Avaliacoes,
     Linha,
@@ -21,20 +22,11 @@ import {
     Add,
     Subtract
 } from "../../components/Produto/ProdutoLayout/ProdutoLayoutElements"
-import { produtos } from "/src/produtos"
-import img from "../../../images/produtos/brinquedo-1.webp"
+import { produtos as listaProdutos } from "/src/produtos"
 
-export async function getStaticProps ({ params = {} }) {
-    const produto = produtos.find(({id}) => `${id}` === `${params.produtoId}`);
-    return {
-        props: {
-            produto
-        },
-    }
-}
-
+// Gera uma rota dinâmica para cada produto na lista de produtos
 export async function getStaticPaths() {
-    const paths = produtos.map((produto) => {
+    const paths = listaProdutos.map((produto) => {
         const {id} = produto;
         return {
             params: {
@@ -45,7 +37,17 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-export default ({ produto }) => {
+// Retorna um produto que corresponde ao id passado no path
+export async function getStaticProps ({ params = {} }) {
+    const produto = listaProdutos.find(({id}) => `${id}` === `${params.produtoId}`);
+    return {
+        props: {
+            produto
+        },
+    }
+}
+
+export default ({ produto }, props) => {
     const [quantidade, setQuantidade] = useState(1);
 
     function addQuantidade() {
@@ -57,12 +59,15 @@ export default ({ produto }) => {
         }
         setQuantidade(quantidade - 1);
     }
+    function formatPreco(s){
+        return s.replace('.',',')
+    }
 
     return (
         <>
             <Navbar />
             <LayoutContainer>
-                <LayoutWrap>
+                <LayoutWrap bgColor = "#fff" mgTop="2.5rem">
                     <ImgWrap>
                         <Img
                         src={produto.imageUrl}
@@ -71,13 +76,13 @@ export default ({ produto }) => {
                         />
                     </ImgWrap>
                     <Content>
-                        <Title>{produto.nome}</Title>
+                        <Title1>{produto.nome}</Title1>
                         <Row>
                             <Star color2="#FFA10A" edit={false} value={produto.avaliacao} size={30} />
                             <Avaliacoes>(x avaliações)</Avaliacoes>
                         </Row>
                         <Linha />
-                        <ProductPrice>R${produto.preco}</ProductPrice>
+                        <ProductPrice>R${formatPreco(produto.preco.toFixed(2).toString())}</ProductPrice>
                         <Description>{produto.descricao}</Description>
                         <Row>
                             <AddSubtractCart>
@@ -93,8 +98,8 @@ export default ({ produto }) => {
                         </Row>
                     </Content>
                 </LayoutWrap>
-                <LayoutWrap>
-                    Teste
+                <LayoutWrap bgColor="#F6F6F6" mgTop="1rem">
+                    <Title2>Avaliações</Title2>
                 </LayoutWrap>
             </LayoutContainer>
             <Footer />
