@@ -30,10 +30,17 @@ After downloading the project open a terminal and type
       
       Home---Pássaro[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSecaoPassaro.png'>Pássaro</a>];
       Pássaro---produto3[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupProdutoPassaro.png?raw=true'>Produto</a>];
+      
       Home---login[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupLogin.png'>Log in</a>];
       login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
       login---register[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
       login---esqueciASenha[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupRecuperacaoSenha.png'>Esqueceu sua senha?</a>];
+      login---homeAdm[Home Adm]
+      
+      homeAdm---editarProduto[Editar Produto]
+      homeAdm---editarCliente[Editar Cliente]
+      homeAdm---editarDados[Editar Dados Pessoais]
+      
       register---homeCliente
       homeCliente---dadosPessoais[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupMeusDados.png'>Dados Pessoais</a>]
       homeCliente---Pedidos[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupMeusPedidos.png'>Pedidos</a>]
