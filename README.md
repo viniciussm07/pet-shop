@@ -37,9 +37,11 @@ After downloading the project open a terminal and type
       login---esqueciASenha[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupRecuperacaoSenha.png'>Esqueceu sua senha?</a>];
       login---homeAdm[Home Adm]
       
-      homeAdm---editarProduto[Editar Produto]
-      homeAdm---editarCliente[Editar Cliente]
-      homeAdm---editarDados[Editar Dados Pessoais]
+      homeAdm---listaProdutos[Lista Produtos]
+      listaProdutos---editarProduto[Editar Produto]
+      homeAdm---listaClientes[Lista Clientes]
+      listaClientes---editarCliente[Editar Cliente]
+      
       
       register---homeCliente
       homeCliente---dadosPessoais[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupMeusDados.png'>Dados Pessoais</a>]
