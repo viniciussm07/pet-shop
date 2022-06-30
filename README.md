@@ -35,12 +35,12 @@ After downloading the project open a terminal and type
       login---homeCliente[<a href='https://github.com/viniciussm07/pet-shop/blob/main/mockups/mockupHomeClient.png?raw=true'>Home Cliente</a>]
       login---register[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupSignUp.png'>Sign up</a>]
       login---esqueciASenha[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupRecuperacaoSenha.png'>Esqueceu sua senha?</a>];
-      login---homeAdm[Home Adm]
+      login---homeAdm[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupHomeAdmin.png'>Home Adm</a>]
       
-      homeAdm---listaProdutos[Lista Produtos]
-      listaProdutos---editarProduto[Editar Produto]
-      homeAdm---listaClientes[Lista Clientes]
-      listaClientes---editarCliente[Editar Cliente]
+      homeAdm---listaProdutos[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupListaProdutos.png'>Lista Produtos</a>]
+      listaProdutos---editarProduto[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupEditarProduto.png'>Editar Produto</a>]
+      homeAdm---listaClientes[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupListaClientes.png'>Lista Clientes</a>]
+      listaClientes---editarCliente[<a href='https://raw.githubusercontent.com/viniciussm07/pet-shop/main/mockups/mockupEditarCliente.png'>Editar Cliente</a>]
       
       
       register---homeCliente
