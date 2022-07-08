@@ -11,7 +11,7 @@ const app = express();
 
 const router = express.Router();
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.l036gtn.mongodb.net/test")
+mongoose.connect("mongodb+srv://admin:admin@mongodb")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
