@@ -6,15 +6,17 @@ import Product from "./models/products-model.js";
 import indexRoute from './routes/index.js'
 import productRoute from './routes/product-route.js'
 import mongoose from "mongoose"
+import morgan from "morgan"
 
 const app = express();
 
 const router = express.Router();
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.l036gtn.mongodb.net/test")
+mongoose.connect("mongodb://localhost:27017/pet-shop")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan("dev"));
 
 app.use('/', indexRoute);
 app.use('/products', productRoute);
