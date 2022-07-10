@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/router.js'
 import { Button, ButtonContainer,Input, FontBold } from '../Utils/style'
 
+import api from '../../pages/api/api'
+
 import {Errors} from './SignUpElements';
 
 const SignUp = () => {
@@ -11,7 +13,6 @@ const SignUp = () => {
         cpf: "",
         dateNasc: "",
         sexo: "",
-        gender: "",
         telefone: "",
         email: "",
         psw: "",
@@ -21,38 +22,34 @@ const SignUp = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     
+    let errorsNum = 0;
     
-    const addUser = () => {
+    const addUser = async () => {
         // Criando objeto com dados dos inputs
-        const email = values.email;
-        const senha = values.psw;
-        const dataObj = { email, senha};
-
-        const users = JSON.parse(localStorage.getItem('users'));
-        if ( users === null) {
-            // Adicionando um array com um objeto no localstorage
-            localStorage.setItem('users', JSON.stringify([dataObj]));
-        } else {
-            let index = users.findIndex(user => user.email == values.email);
-            if(index === -1){
-                // Copiando o array existente no localstorage e adicionando o novo objeto ao final.
-                localStorage.setItem(
-                'users',
-                // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
-                JSON.stringify([
-                    ...JSON.parse(localStorage.getItem('users')),
-                    dataObj
-                ])
-                );
-            }
-            else{
-                return 1;
-            }
-            
+        const data = {
+            name: values.name,
+            cpf:  values.cpf,
+            birthday:  values.dateNasc,
+            telefone:  values.telefone,
+            email:  values.email,
+            password:  values.psw,
+            isAdmin: false,
         }
-        setTimeout(()=>{
-            router.push('/');
-        },2500)
+
+        console.log(data);
+
+        const response = await api.post('/customer/', data);
+
+        if(response.status===201){
+            setTimeout(()=>{
+                router.push('/login');
+            },2000)
+        }
+        else{
+            alert("Erro ao cadastrar");
+        }
+
+
         return 0;
     }
 
@@ -60,6 +57,9 @@ const SignUp = () => {
         event.preventDefault();
         setFormErrors(validate(values));
         setIsSubmit(true);
+        if(errorsNum === 0){
+            addUser();
+        }
       };
 
     
@@ -67,23 +67,18 @@ const SignUp = () => {
         const errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         
-        if(Object.keys(values.cpf).length>11){
+        if(Object.keys(values.cpf).length!=11){
             errors.cpf = "CPF inválido!";
+            errorsNum++;
         }
         if (!regexEmail.test(values.email)) {
-          errors.email = "This is not a valid email format!";
+          errors.email = "Formato de email inválido!";
+          errorsNum++;
         }
         if (values.pswRepeat != values.psw) {
           errors.senha = "Senhas não correspondem!";
-        }
-        const users = JSON.parse(localStorage.getItem('users'));
-        if(users!=null){
-            let index = users.findIndex(user => user.email == values.email);
-            if(index != -1){
-                errors.email = "Email já cadastrado!";
-            }
-        }
-        
+          errorsNum++;
+        }        
         return errors;
       };
 
@@ -123,9 +118,9 @@ const SignUp = () => {
                 <Errors>{formErrors.senha}</Errors>
 
                 {Object.keys(formErrors).length === 0 && isSubmit ? (
-                    <div onLoad={addUser()}>Cadastro com sucesso!</div>
+                    <div>Cadastro com sucesso!</div>
                     
-                )
+                ) 
                 : (
                     <></>
                 )}
