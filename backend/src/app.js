@@ -16,7 +16,7 @@ app.use(cors())
 
 const router = express.Router();
 
-mongoose.connect("mongodb+srv://erica_admin:X1jbf0uciDf6ZDFL@cluster0.x0dra.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://admin:admin@mongodb")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
