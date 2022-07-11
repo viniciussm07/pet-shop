@@ -47,3 +47,18 @@ export const InfoContainer = styled.div`
   justify-content: center;
   margin: 30px 0;
 `;
+
+export const Div60 = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 10px 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  @media (max-width: 880px) {
+    width: 80%;
+  }
+`;

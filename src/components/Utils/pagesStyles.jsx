@@ -46,21 +46,6 @@ export const Div80 = styled.div`
   align-content: center;
 `;
 
-export const Div60 = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  margin: 10px 20px;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-
-  @media (max-width: 880px) {
-    width: 80%;
-  }
-`;
-
 export const Div45 = styled.div`
   background-color: white;
   border-radius: 10px;

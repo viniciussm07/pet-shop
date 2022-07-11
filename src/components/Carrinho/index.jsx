@@ -9,7 +9,6 @@ import {
   OrderContainer,
   OrderTable,
   InfoContainer,
-  bold,
   ButtonInverted,
 } from "../Utils/style";
 import {
