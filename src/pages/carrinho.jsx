@@ -8,7 +8,7 @@ import Carrinho from '../components/Carrinho'
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
 import { FontBold } from '../components/Utils/style'
 
-export default function Carrinho() {
+export default function () {
   return (
     <>
       <Head>
