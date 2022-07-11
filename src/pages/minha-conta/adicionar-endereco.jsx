@@ -7,13 +7,12 @@ import Footer from '../../components/Footer'
 import AddEndereco from '../../components/AdicionarEndereco'
 
 import  {ContainerRow, Div80} from '../../components/Utils/pagesStyles'
-import  {Title} from '../../components/Utils/blankStyles'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <Title>Pet Shop</Title>
+        <title>Pet Shop</title>
       </Head>
       <Navbar/>
       <ContainerRow>

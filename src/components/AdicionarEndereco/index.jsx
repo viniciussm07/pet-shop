@@ -1,44 +1,69 @@
-import { Button, ButtonContainer,Input, H5 } from '../Utils/style'
-import { Div, Form, Label, BR } from '../Utils/blankStyles'
+import { Button, ButtonContainer, Input, H5 } from "../Utils/style";
 
 const AddEndereco = () => {
+  const addEnderecoHandler = async (event) => {
+    event.preventDefault();
+    alert("Endereço Adicionado!");
+  };
 
-    const addEnderecoHandler = async (event) => {
-        event.preventDefault();
-        alert("Endereço Adicionado!");
-      };
+  return (
+    <>
+      <form action="/" method="POST" onSubmit={addEnderecoHandler}>
+        <div>
+          <H5>Adicionar Endereço</H5>
+          <br />
+          <label>CEP*</label>
+          <Input
+            type="number"
+            placeholder="CEP"
+            name="cep"
+            maxLength={8}
+            required
+          />
+          <br />
+          <label>Identificação*</label>
+          <Input type="text" placeholder="Identificação" name="id" required />
+          <br />
+          <label>Logradouro*</label>
+          <Input
+            type="text"
+            placeholder="Logradouro"
+            name="logradouro"
+            required
+          />
+          <br />
+          <label>Número*</label>
+          <br />
+          <Input type="text" placeholder="Número" name="numero" required />
+          <br />
+          <label>Bairro*</label>
+          <br />
+          <Input type="text" placeholder="Bairro" name="bairro" required />
+          <br />
+          <label>Cidade*</label>
+          <br />
+          <Input type="text" placeholder="Cidade" name="cidade" required />
+          <br />
+          <label>Estado*</label>
+          <br />
+          <Input type="text" placeholder="Estado" name="uf" required />
+          <br />
+          <label>Complemento</label>
+          <br />
+          <Input type="text" placeholder="Complemento" name="complemento" />
+          <br />
+          <label>Referencia</label>
+          <br />
+          <Input type="text" placeholder="Referencia" name="referencia" />
+          <br />
 
-    return (<>
-        
-        <Form action="/" method='POST' onSubmit={addEnderecoHandler}>
-            <Div>
-                <H5>Adicionar Endereço</H5><BR/>
-                <Label>CEP*</Label>
-                <Input type="number" placeholder="CEP" name="cep" maxLength={8} required/><BR/>
-                <Label>Identificação*</Label>
-                <Input type="text" placeholder="Identificação" name="id" required/><BR/>
-                <Label>Logradouro*</Label>
-                <Input type="text" placeholder="Logradouro" name="logradouro" required/><BR/>
-                <Label>Número*</Label><BR/>
-                <Input type="text" placeholder="Número" name="numero" required/><BR/>
-                <Label>Bairro*</Label><BR/>
-                <Input type="text" placeholder="Bairro" name="bairro" required/><BR/>
-                <Label>Cidade*</Label><BR/>
-                <Input type="text" placeholder="Cidade" name="cidade" required/><BR/>
-                <Label>Estado*</Label><BR/>
-                <Input type="text" placeholder="Estado" name="uf" required/><BR/>
-                <Label>Complemento</Label><BR/>
-                <Input type="text" placeholder="Complemento" name="complemento"/><BR/>
-                <Label>Referencia</Label><BR/>
-                <Input type="text" placeholder="Referencia" name="referencia"/><BR/>
-                
-
-                <ButtonContainer >
-                    <Button type="submit">Salvar Endereço</Button>
-                </ButtonContainer>
-            </Div>
-        </Form>
-    </>)
-}
+          <ButtonContainer>
+            <Button type="submit">Salvar Endereço</Button>
+          </ButtonContainer>
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default AddEndereco;
