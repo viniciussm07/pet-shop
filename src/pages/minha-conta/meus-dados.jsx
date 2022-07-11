@@ -8,7 +8,7 @@ import Dados from '../../components/DadosBasicos'
 import Enderecos from '../../components/Enderecos'
 
 import  {ContainerColumn, InfoContainer, Div45} from '../../components/Utils/pagesStyles'
-import { FontBold } from '../../components/Utils/style'
+import { bold } from '../../components/Utils/style'
 
 
 
@@ -21,7 +21,7 @@ export default function Home() {
       <Navbar/>
       
       <ContainerColumn>
-        <h3><FontBold>MEUS DADOS</FontBold></h3>
+        <h3><bold>MEUS DADOS</bold></h3>
         <InfoContainer>
             <Div45>
                 <Dados />

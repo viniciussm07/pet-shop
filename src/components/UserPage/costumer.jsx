@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import {FontBold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '../Utils/style'
+import {bold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '../Utils/style'
 
 
 const UserPage = () => {
@@ -19,7 +19,7 @@ const UserPage = () => {
         <ContainerColumn>
             <InfoContainer>
                 <StyledDiv>
-                    <h4><FontBold>Informações de Acesso</FontBold></h4>
+                    <h4><bold>Informações de Acesso</bold></h4>
                     <Link href="/minha-conta/meus-dados"><Button>Meus Dados</Button></Link>
                 </StyledDiv>
                 <span>Nome do cliente</span><br/>
@@ -28,13 +28,13 @@ const UserPage = () => {
 
             <InfoContainer> 
                 <StyledDiv>
-                    <h4><FontBold>Meus Pedidos</FontBold></h4>
+                    <h4><bold>Meus Pedidos</bold></h4>
                     <Link href="/minha-conta/meus-pedidos"><Button>Ver todos</Button></Link>
                 </StyledDiv>
 
                 {pedidos.length< 1 &&
                     <ButtonContainer>
-                        <h6><FontBold><p>Você ainda não fez nenhum pedido.</p></FontBold></h6>
+                        <h6><bold><p>Você ainda não fez nenhum pedido.</p></bold></h6>
                         <h6>Aproveite nossas ofertas!</h6>
                     </ButtonContainer>
                 }

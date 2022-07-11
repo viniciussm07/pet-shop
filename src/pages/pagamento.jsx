@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 import Pagamento from '../components/Pagamento'
 
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
-import { FontBold } from '../components/Utils/style'
+import { bold } from '../components/Utils/style'
 
 export default function Home() {
 
@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <ContainerColumn>
-        <h3><FontBold>MÉTODO DE PAGAMENTO</FontBold></h3>
+        <h3><bold>MÉTODO DE PAGAMENTO</bold></h3>
         <InfoContainer>
 
           <Pagamento />

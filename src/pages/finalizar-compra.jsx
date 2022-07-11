@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 import FinalizarCompras from '../components/FinalizarCompra'
 
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
-import { FontBold } from '../components/Utils/style'
+import { bold } from '../components/Utils/style'
 
 
 
@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <ContainerColumn>
-        <h3><FontBold>FINALIZAR COMPRA</FontBold></h3>
+        <h3><bold>FINALIZAR COMPRA</bold></h3>
         <InfoContainer>
 
           <FinalizarCompras />

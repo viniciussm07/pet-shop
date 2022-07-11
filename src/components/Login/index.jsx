@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { router } from 'next/router.js';
 import Link from 'next/link.js';
 
-import {Button, Input, ButtonContainer, FontBold} from '../Utils/style'
+import {Button, Input, ButtonContainer, bold} from '../Utils/style'
 
 
 const Login = () => {
@@ -46,7 +46,7 @@ const Login = () => {
         
         <form method="post" onSubmit={loginHandler}>
             <div >
-            <h5><FontBold>Já é nosso cliente?</FontBold></h5><br/>
+            <h5><bold>Já é nosso cliente?</bold></h5><br/>
                 <Input type="email" placeholder="Email*" name="email" required onChange={onChange}/><br/>
 
                 <Input type="password" placeholder="Senha*" name="psw" required onChange={onChange}/><br/>

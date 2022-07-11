@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Footer from '../components/Footer'
 
 import  {ContainerRow, Div40} from '../components/Utils/pagesStyles'
-import { Button, ButtonContainer, FontBold } from '../components/Utils/style'
+import { Button, ButtonContainer, bold } from '../components/Utils/style'
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
           <Login/>
         </Div40>
         <Div40>
-          <h5><FontBold>Ainda não é cliente?</FontBold></h5>
+          <h5><bold>Ainda não é cliente?</bold></h5>
           <h6>Venha fazer parte da nossa comunidade!</h6>
           <ButtonContainer><Link href='/registrar'><Button>Fazer cadastro</Button></Link></ButtonContainer>
         </Div40>

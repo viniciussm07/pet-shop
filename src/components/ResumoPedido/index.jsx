@@ -1,4 +1,4 @@
-import {OrderContainer, FontBold} from '../Utils/style'
+import {OrderContainer, bold} from '../Utils/style'
 
 
 export const Resumo = () => {
@@ -13,7 +13,7 @@ export const Resumo = () => {
             Total a prazo: R$ <br/>
             <OrderContainer>
                 Valor a vista: 
-                <h4><FontBold>&nbsp;R$</FontBold></h4>
+                <h4><bold>&nbsp;R$</bold></h4>
 
             </OrderContainer>
         </div>

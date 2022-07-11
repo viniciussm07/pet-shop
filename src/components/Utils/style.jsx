@@ -104,11 +104,6 @@ export const ButtonContainer = styled.div`
     margin-top: 20px;
 `
 
-export const FontBold = styled.span`
-    font-weight: bold;
-
-`
-
 export const ContainerColumn =styled.div`
     display:flex;
     flex-direction:column;

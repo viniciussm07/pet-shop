@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Carrinho from '../components/Carrinho'
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
-import { FontBold } from '../components/Utils/style'
 
 export default function () {
   return (
@@ -16,7 +15,7 @@ export default function () {
       </Head>
       <Navbar/>
       <ContainerColumn>
-        <h3><FontBold>CARRINHO DE COMPRAS</FontBold></h3>
+        <h3><bold>CARRINHO DE COMPRAS</bold></h3>
         <InfoContainer>
           <Carrinho />
         </InfoContainer>

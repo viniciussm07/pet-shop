@@ -1,4 +1,4 @@
-import { Input, FontBold, Button, ButtonContainer } from '../Utils/style'
+import { Input, bold, Button, ButtonContainer } from '../Utils/style'
 
 const Dados = () => {
 
@@ -20,7 +20,7 @@ const Dados = () => {
         
         <form action="/" method='POST' onSubmit={updateHandler}>
             <div>
-                <h5><FontBold>Dados Básicos</FontBold></h5><br/>
+                <h5><bold>Dados Básicos</bold></h5><br/>
                 <label>Nome completo*</label>
                 <Input type="text" placeholder={dados.nomecompleto} name="name" value={dados.nomecompleto} required/><br/>
                 <label>Email*</label>

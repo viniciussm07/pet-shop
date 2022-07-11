@@ -1,6 +1,6 @@
 import Link from 'next/link.js';
 
-import {Button, ButtonContainer, OrderContainer, FontBold} from '../Utils/style'
+import {Button, ButtonContainer, OrderContainer, bold} from '../Utils/style'
 import {EnderecoContainer, EnderecoOption} from './EnderecosElements'
 
 const Enderecos = () => {
@@ -34,13 +34,13 @@ const Enderecos = () => {
 
     return (<>
             <div>
-                <h5><FontBold>Endereços</FontBold></h5>
+                <h5><bold>Endereços</bold></h5>
                 {enderecos.map((endereco, index) => {
                     return(
                         <OrderContainer key = {index}> 
                         <EnderecoContainer>
                         <div>
-                            <p><FontBold>{endereco.identificacao}</FontBold></p>
+                            <p><bold>{endereco.identificacao}</bold></p>
                         
                             {endereco.logradouro}<br/>
                             Número: {endereco.numero}, {endereco.complemento}<br/>

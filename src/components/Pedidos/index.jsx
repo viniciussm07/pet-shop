@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import {Button, OrderContainer, OrderTable, InfoContainer, FontBold} from '../Utils/style'
+import {Button, OrderContainer, OrderTable, InfoContainer, bold} from '../Utils/style'
 
 
 export const Pedidos = () => {
@@ -73,7 +73,7 @@ export const Pedidos = () => {
         return (
             <>
                 <div>
-                    <h5><FontBold><p>Você ainda não fez nenhum pedido.</p></FontBold></h5>
+                    <h5><bold><p>Você ainda não fez nenhum pedido.</p></bold></h5>
                     <h5>Aproveite nossas ofertas!</h5>
                 </div>
             </>

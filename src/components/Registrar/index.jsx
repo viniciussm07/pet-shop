@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router.js'
-import { Button, ButtonContainer,Input, FontBold } from '../Utils/style'
+import { Button, ButtonContainer,Input, bold } from '../Utils/style'
 
 import {Errors} from './SignUpElements';
 
@@ -96,7 +96,7 @@ const SignUp = () => {
         
         <form action="/" method='POST' onSubmit={signUpHandler}>
             <div>
-                <h5><FontBold>Crie sua conta</FontBold></h5><br/>
+                <h5><bold>Crie sua conta</bold></h5><br/>
                 <label>Nome e Sobrenome*</label>
                 <Input type="text" placeholder="Nome" name="name" required onChange={onChange}/><br/>
                 <label>CPF*</label>

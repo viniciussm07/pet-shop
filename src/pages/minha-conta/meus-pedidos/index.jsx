@@ -7,7 +7,7 @@ import Footer from '../../../components/Footer'
 import Pedidos from '../../../components/Pedidos'
 
 import  {ContainerColumn, InfoContainer} from '../../../components/Utils/pagesStyles'
-import {FontBold}  from '../../../components/Utils/style'
+import {bold}  from '../../../components/Utils/style'
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <Navbar/>
       
       <ContainerColumn>
-        <h3><FontBold>MEUS PEDIDOS</FontBold></h3>
+        <h3><bold>MEUS PEDIDOS</bold></h3>
         <InfoContainer>
           
             <Pedidos/>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Resumo from '../ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, FontBold, ButtonInverted} from '../Utils/style'
+import {Button, ButtonContainer, OrderContainer, OrderTable, InfoContainer, bold, ButtonInverted} from '../Utils/style'
 import {
     EnderecoContainer,
     EnderecoOption,
@@ -64,11 +64,11 @@ const Carrinho = () => {
         <>
             <div>
                 <InfoContainer>
-                    <h5><FontBold>SELECIONE O ENDEREÇO</FontBold></h5>
+                    <h5><bold>SELECIONE O ENDEREÇO</bold></h5>
                     <OrderContainer>
                         <EnderecoContainer>
                         <div>
-                    <p><FontBold>{endereco.identificacao}</FontBold></p>
+                    <p><bold>{endereco.identificacao}</bold></p>
                     
                         {endereco.logradouro}<br/>
                         Número: {endereco.numero}, {endereco.complemento}<br/>
@@ -83,7 +83,7 @@ const Carrinho = () => {
                 </InfoContainer>
 
                 <InfoContainer> 
-                    <h5><FontBold>FRETE</FontBold></h5>
+                    <h5><bold>FRETE</bold></h5>
                     <OrderContainer>
                         <FreteContainer>
                             <Frete>
@@ -99,7 +99,7 @@ const Carrinho = () => {
                 </InfoContainer>
 
                 <InfoContainer> 
-                    <h5><FontBold>PRODUTOS</FontBold></h5>
+                    <h5><bold>PRODUTOS</bold></h5>
                     {carrinhoCompras.map((produto, index) => {
                     return(
                     <OrderContainer key = {index}> 
@@ -108,7 +108,7 @@ const Carrinho = () => {
                             <tbody> 
                             <tr>
                                 <td></td>
-                                <td ><FontBold>{produto.nome}</FontBold><br/>{produto.descricao}</td>
+                                <td ><bold>{produto.nome}</bold><br/>{produto.descricao}</td>
                                 <td>Quantidade<br/>
                                 <input type="number" name="quantidade" id="quant" placeholder={1} min={1} max={produto.estoque}/><br/>
                                 <a  href='#'>Remover</a>
@@ -128,7 +128,7 @@ const Carrinho = () => {
             </div>
             <div>
             <InfoContainer>
-                    <h5><FontBold>RESUMO</FontBold></h5>
+                    <h5><bold>RESUMO</bold></h5>
                     
                         <Resumo/>
                     
@@ -150,7 +150,7 @@ const Carrinho = () => {
         return (
             <>
                 <div>
-                    <h5><FontBold>Seu carrinho está vazio!</FontBold></h5>
+                    <h5><bold>Seu carrinho está vazio!</bold></h5>
                 </div>
             </>
         )
