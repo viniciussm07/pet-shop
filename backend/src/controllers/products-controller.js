@@ -6,7 +6,7 @@ const controller = {}
 
 controller.get = async (req, res) => {
     try {
-        const data = await Product.find({active: true}, 'title price slug');
+        const data = await Product.find({active: true}, 'title price slug image _id');
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error)
@@ -22,6 +22,7 @@ controller.getBySlug = async (req, res) => {
     }
 }
 
+// 30:56
 controller.post = async (req, res) => {
     const product = new Product(req.body);
     try {

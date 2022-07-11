@@ -4,25 +4,32 @@ import {
   HeroWrapper
 } from './HeroElements'
 import Produto from '../Produto/ProdutoElement'
-import api from '../../service/api'
+import api from '../../services/api'
 
 const Hero = () => {
   const [produtos, setProdutos] = useState([]);
+  
 
   useEffect(() => {
-    api.get("produtos").then(({data}) => {
-      setProdutos(data.produtos);
-    })
+    api.get("/").then(({data}) => {
+      setProdutos(data);
+    });
+    console.log(produtos);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
         <Container>
             <HeroWrapper>
-              <Produto destiny="/produto/0" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/>
+              {/* <Produto destiny="/produto/0" image = {produto1} category = {"Cachorro"} name ={"Ração Golden 1kg"} price = {30.00}/> */}
               {produtos?.map((produto) => (
                 <Produto
+                  name={produto.title}
+                  image={produto.image}
                   key={produto._id}
                   id={produto._id}
-                  title={produto.title}
+                  price = {produto.price}
+                  destiny = "/"
                 />
               ))}
             </HeroWrapper>

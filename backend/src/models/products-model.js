@@ -35,6 +35,10 @@ const schema = new Schema({
         type: String,
         required: false,
         trim: true
+    },
+    stock: {
+        type: Number,
+        required: true
     }
 });
 
