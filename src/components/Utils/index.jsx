@@ -28,7 +28,7 @@ export const ContainerColumn = styled.div`
   flex-direction: column;
   padding: 40px;
   flex-wrap: wrap;
-  width:100vw;
+  width:100%;
 `
 
 export const ContainerRow = styled.div`
@@ -37,7 +37,7 @@ export const ContainerRow = styled.div`
   justify-content: center;
   padding: 40px;
   flex-wrap: wrap;
-  width:100vw;
+  width:100%;
 `
 
 export const InfoContainer= styled.div`
@@ -46,8 +46,5 @@ export const InfoContainer= styled.div`
   flex-wrap: wrap;
   justify-content:center;
   margin: 30px 0;
-
-
-
 `
 

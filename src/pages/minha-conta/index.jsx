@@ -4,22 +4,12 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import MinhaConta from '../../components/UserPage'
+import MinhaConta from '../../components/UserPage/costumer'
 import  {ContainerColumn, InfoContainer} from '../../components/Utils/pagesStyles'
 import { FontBold } from '../../components/Utils/style'
 
 
 export default function Home() {
-  const router = useRouter();
-  let isLoggedIn;
-  useEffect(() => {
-    isLoggedIn = localStorage.getItem('isLoggedIn');
-    if(isLoggedIn!="true"){
-          router.push('/login');
-    }
-  }, [])
-
-
   return (
     <>
       <Head>

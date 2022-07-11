@@ -132,16 +132,16 @@ const NavButton = styled.a`
 `
 
 export const LoginButton = styled(NavButton)`
-    display: ${({loggedNav}) => (loggedNav ? 'none' : 'flex')};
+    display: 'flex';
 `
 
 export const CartButton = styled(NavButton)`
-    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    display: 'none';
     margin: 0 20px;
 `
 
 export const MyAccountButton = styled(NavButton)`
-    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    display: 'none';
     margin: 0 20px;
 `
 

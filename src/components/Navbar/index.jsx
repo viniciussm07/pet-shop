@@ -18,24 +18,7 @@ import {
 } from './NavbarElements.jsx'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 
-const Navbar = () => {
-
-    const [loggedNav, setLoggedNav] = useState(false);
-    let isLoggedIn;
-
-    const changeNav = () => {
-        isLoggedIn = localStorage.getItem('isLoggedIn');
-        if(isLoggedIn){
-            setLoggedNav(true);
-        } else{
-            setLoggedNav(false);
-        }
-    }
-
-    useEffect(() => {
-        changeNav()
-    }, [isLoggedIn])
-
+const Navbar = (props) => {
     return (
         <>
             <Nav>
@@ -52,9 +35,9 @@ const Navbar = () => {
                         </InputWrap>
                     </Search>
                     <WrapButtons>
-                        <LoginButton loggedNav={loggedNav} href="/login">Entre ou Cadastre-se</LoginButton>
-                        <CartButton loggedNav={loggedNav} href="/carrinho"><AiOutlineShoppingCart/></CartButton>
-                        <MyAccountButton loggedNav={loggedNav} href="/minha-conta">Minha Conta</MyAccountButton>
+                        <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
+                        {/* <CartButton href="/carrinho"><AiOutlineShoppingCart/></CartButton>
+                        <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton> */}
                     </WrapButtons>
                 </NavbarContainer1>
                 <NavbarContainer2>
