@@ -2,10 +2,10 @@ import {
   InfoContainer,
   ContainerColumn,
   Div60
-} from "../../components/Utils";
-import Dados from "../../components/DadosBasicos";
+} from "../Utils";
+import Dados from "../DadosBasicos";
 
-export default function admin() {
+export default function Admin() {
   return (
     <>
         <ContainerColumn>
