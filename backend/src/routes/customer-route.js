@@ -4,14 +4,15 @@ import controller from "../controllers/customer-controller.js";
 
 const router = express.Router();
 
-//router.get('/', controller.get);
+router.get('/', controller.get);
 
-//router.get('/:slug', controller.getBySlug);
+router.get('/:id', controller.getById);
 
-router.post('/', controller.post);
+router.post('/auth/register', controller.register);
+router.post('/auth/login', controller.login);
 
-//router.put('/:id', controller.put);
+router.put('/:id', controller.updateCustomer);
 
-//router.delete('/:id', controller.delete);
+router.delete('/:id', controller.delete);
 
 export default router;

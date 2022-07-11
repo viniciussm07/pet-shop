@@ -6,11 +6,12 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     name: {
         type: String,
-        required: false
+        required: true
     },
     cpf:{
         type: String,
-        required: false
+        required: true,
+        unique: true
     },
     birthday:{
         type: Date,
@@ -22,11 +23,12 @@ const schema = new Schema({
     },
     email: {
         type: String,
-        required: false
+        required: true,
+        unique: true
     },
     password: {
         type: String,
-        required: false
+        required: true
     },
     adresses: [{
         cep: {

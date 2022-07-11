@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router.js'
-import { Button, ButtonContainer,Input, FontBold } from '../Utils/style'
+import { Button, ButtonContainer,Input, FontBold, Errors } from '../Utils/style'
 
-import api from '../../pages/api/api'
-
-import {Errors} from './SignUpElements';
+import api from '../../services/api'
 
 const SignUp = () => {
     const router = useRouter();
@@ -35,10 +33,10 @@ const SignUp = () => {
             password:  values.psw,
             isAdmin: false,
         }
+        
+        const response = await api.post('/customer/auth/register', data)
 
-        console.log(data);
-
-        const response = await api.post('/customer/', data);
+        console.log(response);
 
         if(response.status===201){
             setTimeout(()=>{
@@ -95,7 +93,7 @@ const SignUp = () => {
                 <label>Nome e Sobrenome*</label>
                 <Input type="text" placeholder="Nome" name="name" required onChange={onChange}/><br/>
                 <label>CPF*</label>
-                <Input type="number" placeholder="CPF" name="cpf" maxLength={11} required onChange={onChange}/><br/>
+                <Input type="text" placeholder="CPF" name="cpf" maxLength={11} required onChange={onChange}/><br/>
                 <Errors>{formErrors.cpf}</Errors>
                 <label>Data de nascimento</label>
                 <Input type="date" placeholder="Data de Nascimento" name="dateNasc" onChange={onChange}/><br/>

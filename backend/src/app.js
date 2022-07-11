@@ -8,10 +8,9 @@ import indexRoute from './routes/index.js'
 import productRoute from './routes/product-route.js'
 import customerRoute from './routes/customer-route.js'
 import mongoose from "mongoose"
-
-const app = express();
 import cors from 'cors'
 
+const app = express();
 app.use(cors())
 
 const router = express.Router();

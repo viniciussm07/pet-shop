@@ -123,3 +123,10 @@ export const ContainerRow =styled.div`
 export const H5 = styled.h5`
     font-weight: bold;
 `
+
+export const Errors = styled.div`
+    color: red;
+    padding: 7px 0;
+    font-size: 12px;
+
+`
