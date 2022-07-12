@@ -1,21 +1,25 @@
-import {
-  InfoContainer,
-  ContainerColumn,
-  Div60
-} from "../Utils";
 import Dados from "../DadosBasicos";
+import {
+  ListaContainer,
+  Title,
+  WrapColumn,
+  Column,
+  ListaWrap
+} from "./AdminElements";
 
 export default function Admin() {
   return (
     <>
-        <ContainerColumn>
-          <h2>Meus Dados</h2>
-          <InfoContainer>
-            <Div60>
+      <ListaContainer>
+        <Title>Meus Dados</Title>
+        <WrapColumn>
+          <ListaWrap>
+              <Column align="center">
                 <Dados />
-            </Div60>
-          </InfoContainer>
-        </ContainerColumn>
+              </Column>
+          </ListaWrap>
+        </WrapColumn>
+      </ListaContainer>
     </>
   );
 }

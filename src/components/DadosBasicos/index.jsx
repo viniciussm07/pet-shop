@@ -1,4 +1,4 @@
-import { Input, bold, Button, ButtonContainer } from "../Utils/style";
+import { Input, H5, Button, ButtonContainer } from "../Utils/style";
 
 const Dados = () => {
   const dados = {
@@ -16,85 +16,82 @@ const Dados = () => {
 
   return (
     <>
-      <form action="/" method="POST" onSubmit={updateHandler}>
-        <div>
-          <h5>
-            <bold>Dados Básicos</bold>
-          </h5>
-          <br />
-          <label>Nome completo*</label>
-          <Input
-            type="text"
-            placeholder={dados.nomecompleto}
-            name="name"
-            value={dados.nomecompleto}
-            required
-          />
-          <br />
-          <label>Email*</label>
-          <Input
-            type="email"
-            placeholder={dados.email}
-            name="email"
-            required
-            disabled
-          />
-          <label>CPF*</label>
-          <Input
-            type="number"
-            placeholder={dados.cpf}
-            name="cpf"
-            maxLength="11"
-            required
-            disabled
-          />
-          <br />
-          <label>Sexo</label>
-          <br />
-          <input type="radio" id="feminino" name="sexo" value="Feminino" />
-          <label htmlFor="feminino"> Feminino</label>
-          <br />
-          <input type="radio" id="masculino" name="sexo" value="Masculino" />
-          <label htmlFor="masculino"> Masculino</label>
-          <br />
-          <input
-            type="radio"
-            id="nao-informar"
-            name="sexo"
-            value="Nao-Informar"
-          />
-          <label htmlFor="nao-informar"> Não Informar</label>
-          <br />
-          <label>Data de nascimento</label>
-          <Input
-            type="text"
-            placeholder={dados.datanascimento}
-            name="date-nasc"
-            disabled
-          />
-          <br />
-          <label>Telefone Celular</label>
-          <Input
-            type="text"
-            placeholder={dados.telefone}
-            name="telefonecel"
-            value={dados.telefone}
-          />
-          <br />
-          <label>Telefone Contato</label>
-          <Input
-            type="text"
-            placeholder={dados.telefone}
-            name="telefonecont"
-            value={dados.telefone}
-          />
-          <br />
-
-          <ButtonContainer>
-            <Button type="submit">Salvar</Button>
-          </ButtonContainer>
-        </div>
-      </form>
+        <form action="/" method="POST" onSubmit={updateHandler}>
+          <div>
+              <H5>Dados Básicos</H5>
+            <br />
+            <label>Nome completo*</label>
+            <Input
+              type="text"
+              placeholder={dados.nomecompleto}
+              name="name"
+              value={dados.nomecompleto}
+              required
+            />
+            <br />
+            <label>Email*</label>
+            <Input
+              type="email"
+              placeholder={dados.email}
+              name="email"
+              required
+              disabled
+            />
+            <label>CPF*</label>
+            <Input
+              type="number"
+              placeholder={dados.cpf}
+              name="cpf"
+              maxLength="11"
+              required
+              disabled
+            />
+            <br />
+            <label>Sexo</label>
+            <br />
+            <input type="radio" id="feminino" name="sexo" value="Feminino" />
+            <label htmlFor="feminino"> Feminino</label>
+            <br />
+            <input type="radio" id="masculino" name="sexo" value="Masculino" />
+            <label htmlFor="masculino"> Masculino</label>
+            <br />
+            <input
+              type="radio"
+              id="nao-informar"
+              name="sexo"
+              value="Nao-Informar"
+            />
+            <label htmlFor="nao-informar"> Não Informar</label>
+            <br />
+            <label>Data de nascimento</label>
+            <Input
+              type="text"
+              placeholder={dados.datanascimento}
+              name="date-nasc"
+              disabled
+            />
+            <br />
+            <label>Telefone Celular</label>
+            <Input
+              type="text"
+              placeholder={dados.telefone}
+              name="telefonecel"
+              value={dados.telefone}
+            />
+            <br />
+            <label>Telefone Contato</label>
+            <Input
+              type="text"
+              placeholder={dados.telefone}
+              name="telefonecont"
+              value={dados.telefone}
+            />
+            <br />
+            <ButtonContainer>
+              <Button type="submit">Salvar</Button>
+            </ButtonContainer>
+          </div>
+        </form>
     </>
   );
 };

@@ -10,8 +10,11 @@ import {
   EditButton,
   WrapButton,
   Trash,
+  ImgWrap,
+  Img,
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import Produto1 from "../../../../images/produtos/brinquedo-1.webp";
 
 export default function ListaClientes() {
   return (
@@ -27,15 +30,22 @@ export default function ListaClientes() {
         </FixedButton>
       </WrapFixedButton>
       <ListaContainer>
-        <Title>Lista Clientes</Title>
+        <Title>Lista Produtos</Title>
         <WrapColumn>
           <ListaWrap>
             <Row>
+              <ImgWrap>
+                <Img src={Produto1}/>
+              </ImgWrap>
               <Column>
-                <Row height="0.5rem">Nome do Cliente</Row>
+                <Row height="0.5rem">Nome do Produto</Row>
                 <Row height="0.5rem">
-                  <Column>Id: </Column>
-                  <Column>123456789</Column>
+                  <Column>Preço: </Column>
+                  <Column>R$30,00</Column>
+                </Row>
+                <Row height="0.5rem">
+                  <Column>Estoque: </Column>
+                  <Column>50</Column>
                 </Row>
               </Column>
               <WrapButton>

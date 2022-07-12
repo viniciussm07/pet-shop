@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { Container } from "../Utils";
+import Image from "next/image";
 import { Button } from "../Utils/style";
 
 export const Title = styled.h2`
-    
-    font-weight: bold;
-`
+  margin-left: 4rem;
+  margin-bottom: 3rem;
+`;
 
 export const ListaContainer = styled.div`
   width: 100%;
@@ -38,7 +38,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   margin: 1rem 1rem;
-  width: 70%;
+  width: ${(props) => (props.width ? props.width : "80%")};
   align-items: center;
   height: ${(props) => (props.height ? props.height : "6rem")};
 `;
@@ -47,7 +47,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: ${(props) => (props.align ? props.align : "center")};
+  align-items: ${(props) => (props.align ? props.align : "flex-start")};
 `;
 
 export const WrapColumn = styled.div`
@@ -56,7 +56,7 @@ export const WrapColumn = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const WrapButton = styled.div`
+export const WrapFixedButton = styled.div`
   position: fixed;
   right: 2rem;
   bottom: 1rem;
@@ -70,7 +70,31 @@ export const FixedButton = styled(Button)`
   width: 45px;
 `;
 
+export const WrapButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+`;
+
 export const EditButton = styled(Button)`
-    align-self: flex-end;
-    margin: 0;
-`
+  margin: 0;
+`;
+
+export const Trash = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  align-items: flex-end;
+  cursor: pointer;
+`;
+
+export const ImgWrap = styled.div`
+  width: 30%;
+  padding-right: 1rem;
+`;
+
+export const Img = styled(Image)`
+  height: 200px;
+  width: 100px;
+`;
