@@ -24,7 +24,7 @@ export const ListaWrap = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 1rem;
-  padding-top: 1rem;
+  padding-top: 2.5rem;
   min-height: 500px;
 `;
 

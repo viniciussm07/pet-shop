@@ -42,7 +42,7 @@ export default function ListaClientes() {
                 <EditButton>Editar</EditButton>
               </WrapButton>
               <Trash>
-                <FaTrash />
+                <FaTrash color="red" size={20}/>
               </Trash>
             </Row>
           </ListaWrap>
