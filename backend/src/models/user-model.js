@@ -19,7 +19,8 @@ const schema = new Schema({
     }],
     isAdm: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 });
 
