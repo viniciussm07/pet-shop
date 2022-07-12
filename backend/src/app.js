@@ -1,7 +1,9 @@
 import express from "express"
 import bodyParser from "body-parser";
 
+// Carrega os modelos
 import Product from "./models/products-model.js";
+import Customer from "./models/customer-model.js"
 
 import indexRoute from './routes/index.js'
 // Carrega a rota
