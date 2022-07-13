@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router.js'
-import { Button, ButtonContainer,Input, bold } from '../Utils/style'
+import { Button, ButtonContainer,Input, FontBold, Errors } from '../Utils/style'
 
-import {Errors} from './SignUpElements';
+import api from '../../services/api'
 
 const SignUp = () => {
     const router = useRouter();
@@ -10,8 +10,6 @@ const SignUp = () => {
         name: "",
         cpf: "",
         dateNasc: "",
-        sexo: "",
-        gender: "",
         telefone: "",
         email: "",
         psw: "",
@@ -21,75 +19,86 @@ const SignUp = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     
-    
-    const addUser = () => {
-        // Criando objeto com dados dos inputs
-        const email = values.email;
-        const senha = values.psw;
-        const dataObj = { email, senha};
+    let errorsNum = 0;
 
-        const users = JSON.parse(localStorage.getItem('users'));
-        if ( users === null) {
-            // Adicionando um array com um objeto no localstorage
-            localStorage.setItem('users', JSON.stringify([dataObj]));
-        } else {
-            let index = users.findIndex(user => user.email == values.email);
-            if(index === -1){
-                // Copiando o array existente no localstorage e adicionando o novo objeto ao final.
-                localStorage.setItem(
-                'users',
-                // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
-                JSON.stringify([
-                    ...JSON.parse(localStorage.getItem('users')),
-                    dataObj
-                ])
-                );
-            }
-            else{
-                return 1;
+    //Função que adiciona os dados cadastrados no banco de dados
+    const addUser = async () => {
+        // Criando objeto com dados dos inputs
+        const data = {
+            name: values.name,
+            cpf:  values.cpf,
+            birthday:  values.dateNasc,
+            telefone:  values.telefone,
+            email:  values.email,
+            password:  values.psw,
+            isAdmin: false,
+        }
+        
+        const response = await api.post('/customer/auth/register', data)
+
+        console.log(response);
+        
+        if(response.status===201){
+            setIsSubmit(true);
+            setTimeout(()=>{
+                router.push('/login');
+            },2000)
+        }
+        else if(response.status===200){
+            const errors = {}
+            if(response.data.status ===2){
+                errors.email = "Email já cadastrado!"
+                setFormErrors(errors);
             }
             
         }
-        setTimeout(()=>{
-            router.push('/');
-        },2500)
+
+
         return 0;
     }
 
     const signUpHandler = (event) => {
         event.preventDefault();
         setFormErrors(validate(values));
-        setIsSubmit(true);
+        if(errorsNum === 0){
+            addUser();
+        }
       };
 
-    
+    //Função para validação dos dados de cadastro
       const validate = (values) => {
         const errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const dateNasc = values.dateNasc.split('-');
+        const anoNasc = parseInt(dateNasc[0]);
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+
         
-        if(Object.keys(values.cpf).length>11){
+        if(Object.keys(values.cpf).length!=11){
             errors.cpf = "CPF inválido!";
+            errorsNum++;
         }
         if (!regexEmail.test(values.email)) {
-          errors.email = "This is not a valid email format!";
+          errors.email = "Formato de email inválido!";
+          errorsNum++;
         }
         if (values.pswRepeat != values.psw) {
           errors.senha = "Senhas não correspondem!";
-        }
-        const users = JSON.parse(localStorage.getItem('users'));
-        if(users!=null){
-            let index = users.findIndex(user => user.email == values.email);
-            if(index != -1){
-                errors.email = "Email já cadastrado!";
-            }
-        }
-        
+          errorsNum++;
+        }      
+        if (anoAtual - anoNasc < 13) {
+            errors.date = "Informe uma data válida";
+            errorsNum++;
+        }       
         return errors;
       };
 
 
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
+        setFormErrors('');
+
     };
 
     return (<>
@@ -100,17 +109,11 @@ const SignUp = () => {
                 <label>Nome e Sobrenome*</label>
                 <Input type="text" placeholder="Nome" name="name" required onChange={onChange}/><br/>
                 <label>CPF*</label>
-                <Input type="number" placeholder="CPF" name="cpf" maxLength={11} required onChange={onChange}/><br/>
+                <Input type="text" placeholder="CPF" name="cpf" maxLength={11} required onChange={onChange}/><br/>
                 <Errors>{formErrors.cpf}</Errors>
                 <label>Data de nascimento</label>
-                <Input type="date" placeholder="Data de Nascimento" name="dateNasc" onChange={onChange}/><br/>
-                <label>Sexo</label><br/>
-                <input type="radio" id="feminino" name="sexo" value="Feminino" onChange={onChange}/>
-                <label htmlFor ="feminino"> Feminino</label><br/>
-                <input type="radio" id="masculino" name="sexo" value="Masculino" onChange={onChange}/>
-                <label htmlFor ="masculino"> Masculino</label><br/>
-                <input type="radio" id="nao-informar" name="sexo" value="Nao-Informar" onChange={onChange}/>
-                <label htmlFor ="nao-informar"> Não Informar</label><br/>
+                <Input type="date" placeholder="Data de Nascimento" name="dateNasc" required onChange={onChange}/><br/>
+                <Errors>{formErrors.date}</Errors>
                 <label>Telefone</label>
                 <Input type="text" placeholder="Telefone" name="telefone" onChange={onChange}/><br/>
                 <label>Email*</label>
@@ -123,9 +126,9 @@ const SignUp = () => {
                 <Errors>{formErrors.senha}</Errors>
 
                 {Object.keys(formErrors).length === 0 && isSubmit ? (
-                    <div onLoad={addUser()}>Cadastro com sucesso!</div>
+                    <div>Cadastro com sucesso!</div>
                     
-                )
+                ) 
                 : (
                     <></>
                 )}

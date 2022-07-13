@@ -2,11 +2,10 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import Footer from '../components/Footer'
-import { useEffect } from 'react'
-
-import { useRouter } from 'next/router'
 
 export default function Home() {
+
+
   return (
     <>
       <Head>

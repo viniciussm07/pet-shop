@@ -7,11 +7,19 @@ import Footer from '../components/Footer'
 import FinalizarCompras from '../components/FinalizarCompra'
 
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
-import { bold } from '../components/Utils/style'
-
-
+import { FontBold } from '../components/Utils/style'
+import {getIsLoggedIn } from '../services/auth'
 
 export default function Home() {
+  const router = useRouter();
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = getIsLoggedIn();
+    if(isLoggedIn!="true"){
+          router.push('/login');
+    }
+  }, [])
+
   return (
     <>
       <Head>

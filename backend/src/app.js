@@ -1,19 +1,19 @@
-import express from "express"
+import express from "express";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import cors from 'cors';
 
 // Carrega os modelos
 import Product from "./models/products-model.js";
-import Customer from "./models/customer-model.js"
+import Customer from "./models/customer-model.js";
 
 import indexRoute from './routes/index.js'
 // Carrega a rota
 import productRoute from './routes/product-route.js'
 import mongoose from "mongoose"
 import morgan from "morgan"
-import cors from "cors"
 
 const app = express();
-
 const router = express.Router();
 
 // Conecta ao banco de dados
@@ -32,5 +32,6 @@ app.use(morgan("dev"));
 
 app.use('/', productRoute);
 // app.use('/products', productRoute);
+app.use('/customer', customerRoute);
 
 export default app;
