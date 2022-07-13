@@ -139,6 +139,10 @@ export const H5 = styled.h5`
     font-weight: bold;
 `
 
+export const FontBold = styled.span`
+  font-weight: bold;
+`
+
 export const Errors = styled.div`
     color: red;
     padding: 7px 0;

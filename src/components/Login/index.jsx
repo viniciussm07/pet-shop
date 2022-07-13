@@ -39,7 +39,7 @@ const Login = () => {
                 setIdName(response.data.username);
                 setUserType(response.data.isAdmin);
 
-                window.location.href('/');
+                router.push('/');
             }
             else if(response.data.status===2){
                 setLoginError ("Senha ou email incorretos");

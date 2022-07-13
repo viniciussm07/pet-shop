@@ -7,7 +7,6 @@ import { getIdUser } from '../../services/auth';
 
 import {Button, ButtonContainer, OrderContainer, FontBold, ButtonInverted, Input, Errors} from '../Utils/style'
 import {EnderecoContainer} from './EnderecosElements'
-import {Label, BR } from '../Utils/blankStyles'
 
 const Enderecos = () => {
     const router = useRouter();
@@ -158,11 +157,11 @@ const Enderecos = () => {
                     
                 ):
                 <>
-                <BR/>
+                <br/>
                     <h4>Editar Endereço</h4>
                     
-                    <BR/> 
-                    <Label>CEP*</Label>
+                    <br/> 
+                    <label>CEP*</label>
                     <Input 
                         type="number" 
                         name="cep" 
@@ -170,8 +169,8 @@ const Enderecos = () => {
                         placeholder={cep}
                         disabled
                         required
-                    /><BR/>
-                    <Label>Identificação*</Label>
+                    /><br/>
+                    <label>Identificação*</label>
                     <Input 
                         type="text" 
                         placeholder="Identificação" 
@@ -179,17 +178,17 @@ const Enderecos = () => {
                         value={identificacao}
                         onChange={e => setIdentificacao(e.target.value)}
                         required
-                    /><BR/>
+                    /><br/>
                     <Errors>{formErrors.identificacao}</Errors>
-                    <Label>Logradouro*</Label>
+                    <label>Logradouro*</label>
                     <Input 
                         type="text" 
                         name="logradouro" 
                         placeholder={logradouro}
                         disabled
                         required
-                    /><BR/>
-                    <Label>Número*</Label><BR/>
+                    /><br/>
+                    <label>Número*</label><br/>
                     <Input 
                         type="number" 
                         placeholder="Número" 
@@ -197,47 +196,47 @@ const Enderecos = () => {
                         value={numero}
                         onChange={e => setNumero(e.target.value)}
                         required
-                    /><BR/>
-                    <Label>Bairro*</Label><BR/>
+                    /><br/>
+                    <label>Bairro*</label><br/>
                     <Input 
                         type="text"
                         name="bairro" 
                         placeholder={bairro}
                         disabled
                         required
-                    /><BR/>
-                    <Label>Cidade*</Label><BR/>
+                    /><br/>
+                    <label>Cidade*</label><br/>
                     <Input 
                         type="text" 
                         name="cidade" 
                         placeholder={cidade}
                         disabled
                         required
-                    /><BR/>
-                    <Label>Estado*</Label><BR/>
+                    /><br/>
+                    <label>Estado*</label><br/>
                     <Input 
                         type="text" 
                         name="uf" 
                         placeholder={estado}
                         disabled
                         required
-                    /><BR/>
-                    <Label>Complemento</Label><BR/>
+                    /><br/>
+                    <label>Complemento</label><br/>
                     <Input 
                         type="text" 
                         placeholder="Complemento" 
                         name="complemento"
                         value={complemento}
                         onChange={e => setComplemento(e.target.value)}
-                    /><BR/>
-                    <Label>Referencia</Label><BR/>
+                    /><br/>
+                    <label>Referencia</label><br/>
                     <Input 
                         type="text" 
                         placeholder="Referencia" 
                         name="referencia"
                         value={referencia}
                         onChange={e => setReferencia(e.target.value)}
-                    /><BR/>
+                    /><br/>
                     
 
                     <ButtonContainer >

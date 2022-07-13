@@ -1,5 +1,4 @@
 import { Button, ButtonInverted, ButtonContainer,Input, H5, Errors } from '../Utils/style'
-import { Div, Form, Label, BR } from '../Utils/blankStyles'
 import { useEffect, useState } from 'react'
 import { getIdUser } from '../../services/auth'
 import api from '../../services/api'
@@ -35,7 +34,7 @@ const AddEndereco = () => {
         fetchCustomer();
     }, [])
 
-    const [formErrors, setFormErrors] = useState([]);
+    const [formErrors, setformErrors] = useState([]);
 
 
     //Funcao que realiza a inserção de um novo endereço
@@ -70,7 +69,7 @@ const AddEndereco = () => {
             if (response.data.status === 2){
                 errors.identificacao = response.data.message;
             }
-            setFormErrors(errors);
+            setformErrors(errors);
         }
         else{
             alert("Erro ao adicionar endereço!");
@@ -80,10 +79,10 @@ const AddEndereco = () => {
 
     return (<>
         
-        <Form action="/" method='POST' onSubmit={addEnderecoHandler}>
-            <Div>
-                <H5>Adicionar Endereço</H5><BR/>
-                <Label>CEP*</Label>
+        <form action="/" method='POST' onSubmit={addEnderecoHandler}>
+            <div>
+                <H5>Adicionar Endereço</H5><br/>
+                <label>CEP*</label>
                 <Input 
                     type="number" 
                     placeholder="CEP" 
@@ -92,9 +91,9 @@ const AddEndereco = () => {
                     value={cep}
                     onChange={e => setCEP(e.target.value)}
                     required
-                /><BR/>
+                /><br/>
                 <Errors>{formErrors.cep}</Errors>
-                <Label>Identificação*</Label>
+                <label>Identificação*</label>
                 <Input 
                     type="text" 
                     placeholder="Identificação" 
@@ -102,9 +101,9 @@ const AddEndereco = () => {
                     value={identificacao}
                     onChange={e => setIdentificacao(e.target.value)}
                     required
-                /><BR/>
+                /><br/>
                 <Errors>{formErrors.identificacao}</Errors>
-                <Label>Logradouro*</Label>
+                <label>Logradouro*</label>
                 <Input 
                     type="text" 
                     placeholder="Logradouro" 
@@ -112,8 +111,8 @@ const AddEndereco = () => {
                     value={logradouro}
                     onChange={e => setLogradouro(e.target.value)}
                     required
-                /><BR/>
-                <Label>Número*</Label><BR/>
+                /><br/>
+                <label>Número*</label><br/>
                 <Input 
                     type="number" 
                     placeholder="Número" 
@@ -121,8 +120,8 @@ const AddEndereco = () => {
                     value={numero}
                     onChange={e => setNumero(e.target.value)}
                     required
-                /><BR/>
-                <Label>Bairro*</Label><BR/>
+                /><br/>
+                <label>Bairro*</label><br/>
                 <Input 
                     type="text"
                     placeholder="Bairro" 
@@ -130,8 +129,8 @@ const AddEndereco = () => {
                     value={bairro}
                     onChange={e => setBairro(e.target.value)}
                     required
-                /><BR/>
-                <Label>Cidade*</Label><BR/>
+                /><br/>
+                <label>Cidade*</label><br/>
                 <Input 
                     type="text" 
                     placeholder="Cidade" 
@@ -139,8 +138,8 @@ const AddEndereco = () => {
                     value={cidade}
                     onChange={e => setCidade(e.target.value)}
                     required
-                /><BR/>
-                <Label>Estado*</Label><BR/>
+                /><br/>
+                <label>Estado*</label><br/>
                 <Input 
                     type="text" 
                     placeholder="Estado" 
@@ -148,30 +147,30 @@ const AddEndereco = () => {
                     value={estado}
                     onChange={e => setEstado(e.target.value)}
                     required
-                /><BR/>
-                <Label>Complemento</Label><BR/>
+                /><br/>
+                <label>Complemento</label><br/>
                 <Input 
                     type="text" 
                     placeholder="Complemento" 
                     name="complemento"
                     value={complemento}
                     onChange={e => setComplemento(e.target.value)}
-                /><BR/>
-                <Label>Referencia</Label><BR/>
+                /><br/>
+                <label>Referencia</label><br/>
                 <Input 
                     type="text" 
                     placeholder="Referencia" 
                     name="referencia"
                     value={referencia}
                     onChange={e => setReferencia(e.target.value)}
-                /><BR/>
+                /><br/>
                 
 
                 <ButtonContainer >
                     <Button type="submit">Salvar Endereço</Button>
                 </ButtonContainer>
-            </Div>
-        </Form>
+            </div>
+        </form>
         <ButtonContainer >
             <Link href={'/minha-conta/meus-dados'}><ButtonInverted>Voltar</ButtonInverted></Link>
         </ButtonContainer>
