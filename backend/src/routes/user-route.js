@@ -1,6 +1,6 @@
 import express from "express";
 
-import controller from "../controllers/customer-controller.js";
+import controller from "../controllers/user-controller.js";
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post('/auth/login', controller.login);
 router.get('/auth/checkToken', controller.checkToken);
 router.get('/auth/destroyToken', controller.destroyToken);
 
-router.put('/:id', controller.updateCustomer);
+router.put('/:id', controller.updateUser);
 router.get('/address/:id', controller.getAddress);
 router.post('/address/:id', controller.addAddress);
 router.put('/address/:id', controller.deleteAddress);

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import jwt from 'jsonwebtoken';
 
-const Customer = mongoose.model('Customer');
+const User = mongoose.model('User');
 
 const controller = {}
 
@@ -10,7 +10,7 @@ const secret = "mySecret";
 
 controller.get = async (req, res) => {
     try {
-        const data = await Customer.find();
+        const data = await User.find();
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error)
@@ -19,7 +19,7 @@ controller.get = async (req, res) => {
 
 controller.register = async (req, res) => {
 
-    const emailExists = await Customer.findOne({email: req.body.email});
+    const emailExists = await User.findOne({email: req.body.email});
     
     if(emailExists){
         return res.status(200).send({
@@ -29,10 +29,10 @@ controller.register = async (req, res) => {
     }
     
 
-    const customer = new Customer(req.body);
+    const user = new User(req.body);
 
     try {
-        await customer.save();
+        await user.save();
         res.status(201).send({
             message: "Usuario cadastrado."
         })
@@ -49,7 +49,7 @@ controller.register = async (req, res) => {
 
 controller.login = async (req, res) => {
     const {email, password} = req.body;
-    Customer.findOne({email: email}, (err, user) => {
+    User.findOne({email: email}, (err, user) => {
         if(err){
             console.log(err);
             res.status(200).json({error: "Erro no servidor!"})
@@ -119,7 +119,7 @@ controller.destroyToken = async (req, res) => {
 
 controller.getById = async (req, res) => {
     try {
-        const data = await Customer.findById(req.params.id);
+        const data = await User.findById(req.params.id);
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error)
@@ -127,10 +127,10 @@ controller.getById = async (req, res) => {
 }
 
 
-controller.updateCustomer = async (req, res) => {
+controller.updateUser = async (req, res) => {
     
     try {
-        await Customer.findByIdAndUpdate(req.params.id, {
+        await User.findByIdAndUpdate(req.params.id, {
             $set: {
                 name: req.body.name,
                 cpf:  req.body.cpf,
@@ -156,7 +156,7 @@ controller.updateCustomer = async (req, res) => {
 
 controller.getAddress = async (req, res) => {
     try {
-        const data = await Customer.findById(req.params.id);
+        const data = await User.findById(req.params.id);
         res.status(200).send(data.addresses);
     } catch (error) {
         res.status(400).send(error)
@@ -165,8 +165,8 @@ controller.getAddress = async (req, res) => {
 
 
 controller.addAddress = async (req, res) => {
-    const cepExists = await Customer.findOne({'addresses.cep': req.body.cep});
-    const idExists = await Customer.findOne({'addresses.identificacao': req.body.identificacao});
+    const cepExists = await User.findOne({'addresses.cep': req.body.cep});
+    const idExists = await User.findOne({'addresses.identificacao': req.body.identificacao});
     if(cepExists){
         return res.status(200).send({
             status:1,
@@ -182,7 +182,7 @@ controller.addAddress = async (req, res) => {
     }
 
     try {
-        await Customer.findByIdAndUpdate(req.params.id, {
+        await User.findByIdAndUpdate(req.params.id, {
             $addToSet: {
                 addresses:{
                     cep:req.body.cep,
@@ -214,7 +214,7 @@ controller.addAddress = async (req, res) => {
 
 
 controller.updateAddress = async (req, res) => {
-    const idExists = await Customer.findOne({'addresses.identificacao': req.body.identificacao});
+    const idExists = await User.findOne({'addresses.identificacao': req.body.identificacao});
     if(idExists){
         return res.status(200).send({
             status:1,
@@ -223,7 +223,7 @@ controller.updateAddress = async (req, res) => {
     }
 
     try {
-        await Customer.findOneAndUpdate({_id:req.params.id, 'addresses._id':req.body._id}, {
+        await User.findOneAndUpdate({_id:req.params.id, 'addresses._id':req.body._id}, {
             $set: {
                 'addresses.$':{
                     cep:req.body.cep,
@@ -250,7 +250,7 @@ controller.updateAddress = async (req, res) => {
 
 controller.deleteAddress = async (req, res) => {
     try {
-        await Customer.findByIdAndUpdate(req.params.id,{
+        await User.findByIdAndUpdate(req.params.id,{
             $pull:{
                 addresses:{
                     _id:req.body._id,
@@ -272,7 +272,7 @@ controller.deleteAddress = async (req, res) => {
 
 controller.delete = async (req, res) => {
     try {
-        await Customer.deleteById(req.params.id);
+        await User.deleteById(req.params.id);
         res.status(200).send({
             message: 'Ususario deletado com sucesso!'
         });

@@ -4,11 +4,11 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 import Product from "./models/products-model.js";
-import Customer from "./models/customer-model.js";
+import User from "./models/user-model.js";
 
 import indexRoute from './routes/index.js'
 import productRoute from './routes/product-route.js'
-import customerRoute from './routes/customer-route.js'
+import customerRoute from './routes/user-route.js'
 
 
 const app = express();
