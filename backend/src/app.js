@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from 'cors';
+import morgan from "morgan"
 
 // Carrega os modelos
 import Product from "./models/products-model.js";
@@ -10,8 +11,7 @@ import Customer from "./models/customer-model.js";
 import indexRoute from './routes/index.js'
 // Carrega a rota
 import productRoute from './routes/product-route.js'
-import mongoose from "mongoose"
-import morgan from "morgan"
+import customerRoute from './routes/customer-route.js'
 
 const app = express();
 const router = express.Router();

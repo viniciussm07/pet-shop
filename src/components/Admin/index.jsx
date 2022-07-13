@@ -7,7 +7,7 @@ import {
   ListaWrap
 } from "./AdminElements";
 
-export default function Admin() {
+function HomeAdmin() {
   return (
     <>
       <ListaContainer>
@@ -23,3 +23,5 @@ export default function Admin() {
     </>
   );
 }
+
+export default HomeAdmin;
