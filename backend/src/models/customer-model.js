@@ -11,13 +11,16 @@ const schema = new Schema({
     cpf:{
         type: String,
         required: true,
-        unique: true
     },
     birthday:{
-        type: Date,
-        required: false
+        type: String,
+        required: true
     },
     telefone:{
+        type: String,
+        required: false
+    },
+    celular:{
         type: String,
         required: false
     },
@@ -30,34 +33,35 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    adresses: [{
+    addresses: [{
         cep: {
             type: String,
-            required: false,
+            required: true,
         },
         identificacao: {
             type: String,
-            required: false
+            required: true,
+            unique:true
         },
         logradouro: {
             type: String,
-            required: false
+            required: true
         },
         numero: {
             type: Number,
-            required: false,
+            required: true,
         },
         bairro: {
             type: String,
-            required: false
+            required: true
         },
         cidade: {
             type: String,
-            required: false
+            required: true
         },
         estado: {
             type: String,
-            required: false,
+            required: true,
         },
         complemento: {
             type: String,

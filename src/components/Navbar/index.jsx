@@ -17,6 +17,7 @@ import {
     WrapButtons
 } from './NavbarElements.jsx'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
+import { getIsLoggedIn } from '../../services/auth.js';
 
 const Navbar = () => {
 
@@ -24,8 +25,8 @@ const Navbar = () => {
     let isLoggedIn;
 
     const changeNav = () => {
-        isLoggedIn = localStorage.getItem('isLoggedIn');
-        if(isLoggedIn){
+        isLoggedIn = getIsLoggedIn();
+        if(isLoggedIn==='true'){
             setLoggedNav(true);
         } else{
             setLoggedNav(false);

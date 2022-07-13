@@ -25,7 +25,7 @@ export const Button = styled.button`
     cursor: pointer;
 
     &:hover{
-        box-shadow: 0px 0px 5px black;
+        box-shadow: 0px 0px 5px grey;
     }
 `
 
@@ -52,6 +52,10 @@ export const ButtonInverted = styled.button`
     margin: 0 20px;
     border: solid 1px rgb(255,161,10);
     cursor: pointer;
+
+    &:hover{
+        box-shadow: 0px 0px 5px grey;
+    }
 `
 
 

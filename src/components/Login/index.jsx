@@ -3,7 +3,7 @@ import { router } from 'next/router.js';
 import Link from 'next/link.js';
 
 import api from '../../services/api'
-import {login, setIdName, setIdUser} from '../../services/auth'
+import {login, setIdName, setIdUser, setUserType} from '../../services/auth'
 
 
 import {Button, Input, ButtonContainer, FontBold, Errors} from '../Utils/style'
@@ -22,6 +22,8 @@ const Login = () => {
         validateLogin();
       };
     
+
+    //Função para validação do login
     const validateLogin = async () => {
         const data = {
             email: values.email,
@@ -30,15 +32,14 @@ const Login = () => {
 
         const response = await api.post('/customer/auth/login', data);
 
-        console.log(response);
-
         if(response.status === 200){
             if(response.data.status===1){
                 login(response.data.token);
                 setIdUser(response.data.id);
                 setIdName(response.data.username);
+                setUserType(response.data.isAdmin);
 
-                router.push('/');
+                window.location.href('/');
             }
             else if(response.data.status===2){
                 setLoginError ("Senha ou email incorretos");
@@ -47,29 +48,11 @@ const Login = () => {
         else{
             alert("Erro no servidor");
         }
-
-         /*const users = JSON.parse(localStorage.getItem('users'));
-       if (users === null){
-            console.log("Não há usuários cadastrados ainda...");
-        }
-        else{
-            let index = users.findIndex(user => user.email == values.email);
-            if(index == -1 || (values.psw !== users[index].senha)) {
-                alert("Usuário ou senha incorretos");
-            }
-            else{
-                const email = values.email;
-                const senha = values.psw;
-                const dataObj = { email, senha};
-                localStorage.setItem('userLogado', JSON.stringify([dataObj]));
-                localStorage.setItem('isLoggedIn', true);
-                
-            }
-        }  */  
     }
 
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
+        setLoginError('');
     };
 
 

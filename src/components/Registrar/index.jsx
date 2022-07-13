@@ -10,7 +10,6 @@ const SignUp = () => {
         name: "",
         cpf: "",
         dateNasc: "",
-        sexo: "",
         telefone: "",
         email: "",
         psw: "",
@@ -21,7 +20,8 @@ const SignUp = () => {
     const [isSubmit, setIsSubmit] = useState(false);
     
     let errorsNum = 0;
-    
+
+    //Função que adiciona os dados cadastrados no banco de dados
     const addUser = async () => {
         // Criando objeto com dados dos inputs
         const data = {
@@ -37,14 +37,20 @@ const SignUp = () => {
         const response = await api.post('/customer/auth/register', data)
 
         console.log(response);
-
+        
         if(response.status===201){
+            setIsSubmit(true);
             setTimeout(()=>{
                 router.push('/login');
             },2000)
         }
-        else{
-            alert("Erro ao cadastrar");
+        else if(response.status===200){
+            const errors = {}
+            if(response.data.status ===2){
+                errors.email = "Email já cadastrado!"
+                setFormErrors(errors);
+            }
+            
         }
 
 
@@ -54,16 +60,20 @@ const SignUp = () => {
     const signUpHandler = (event) => {
         event.preventDefault();
         setFormErrors(validate(values));
-        setIsSubmit(true);
         if(errorsNum === 0){
             addUser();
         }
       };
 
-    
+    //Função para validação dos dados de cadastro
       const validate = (values) => {
         const errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const dateNasc = values.dateNasc.split('-');
+        const anoNasc = parseInt(dateNasc[0]);
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+
         
         if(Object.keys(values.cpf).length!=11){
             errors.cpf = "CPF inválido!";
@@ -76,13 +86,19 @@ const SignUp = () => {
         if (values.pswRepeat != values.psw) {
           errors.senha = "Senhas não correspondem!";
           errorsNum++;
-        }        
+        }      
+        if (anoAtual - anoNasc < 13) {
+            errors.date = "Informe uma data válida";
+            errorsNum++;
+        }       
         return errors;
       };
 
 
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
+        setFormErrors('');
+
     };
 
     return (<>
@@ -96,14 +112,8 @@ const SignUp = () => {
                 <Input type="text" placeholder="CPF" name="cpf" maxLength={11} required onChange={onChange}/><br/>
                 <Errors>{formErrors.cpf}</Errors>
                 <label>Data de nascimento</label>
-                <Input type="date" placeholder="Data de Nascimento" name="dateNasc" onChange={onChange}/><br/>
-                <label>Sexo</label><br/>
-                <input type="radio" id="feminino" name="sexo" value="Feminino" onChange={onChange}/>
-                <label htmlFor ="feminino"> Feminino</label><br/>
-                <input type="radio" id="masculino" name="sexo" value="Masculino" onChange={onChange}/>
-                <label htmlFor ="masculino"> Masculino</label><br/>
-                <input type="radio" id="nao-informar" name="sexo" value="Nao-Informar" onChange={onChange}/>
-                <label htmlFor ="nao-informar"> Não Informar</label><br/>
+                <Input type="date" placeholder="Data de Nascimento" name="dateNasc" required onChange={onChange}/><br/>
+                <Errors>{formErrors.date}</Errors>
                 <label>Telefone</label>
                 <Input type="text" placeholder="Telefone" name="telefone" onChange={onChange}/><br/>
                 <label>Email*</label>
