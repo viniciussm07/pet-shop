@@ -24,6 +24,8 @@ const FinalizarCompras = () => {
   let [addressId, setAddressId] = useState("");
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+
 
   useEffect(() => {
     const getPayment = sessionStorage.getItem("Payment")
@@ -32,10 +34,6 @@ const FinalizarCompras = () => {
     const getFretePrice = sessionStorage.getItem("Frete Price");
     const addressId = sessionStorage.getItem("Address");
 
-    if (getAddress == null || getFreteOption == null || addressId == null|| getPayment == null) {
-      alert("Dados inválidos!");
-      router.push("/carrinho");
-    } else {
       setMetodoPagamento(getPayment);
       setFreteOption(getFreteOption);
       setFretePrice(getFretePrice);
@@ -54,7 +52,7 @@ const FinalizarCompras = () => {
       };
       fetchAddress();
       fetchCustomer();
-    }
+    
   }, []);
 
   
@@ -101,7 +99,7 @@ const FinalizarCompras = () => {
     },
   ];
 
-  if (carrinhoCompras.length > 0) {
+  if (cartItems != "") {
     return (
       <>
         <div>

@@ -18,6 +18,8 @@ import { MetodoPagamento, PagamentoCartao } from "./Pagamento";
 const Pagamento = () => {
   const router = useRouter();
   const [metodoPagamento, setMetodoPagamento] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+
   const [infoCartao, setInfoCartao] = useState({
     cvv: "",
     mesValidade: "",
@@ -25,17 +27,6 @@ const Pagamento = () => {
     name: "",
     cpf: "",
   });
-
-  //Pegar os dados do pedido aramzenados localmente
-  useEffect(() => {
-    const getAddress = sessionStorage.getItem("Address");
-    const getFreteOption = sessionStorage.getItem("Frete Option");
-
-    if (getAddress == null || getFreteOption == null) {
-      alert("Dados inválidos!");
-      router.push("/carrinho");
-    } 
-  }, []);
 
   const carrinhoCompras = [
     {
@@ -81,14 +72,14 @@ const Pagamento = () => {
     let metodo = e.target.value;
     setMetodoPagamento(metodo);
     sessionStorage.setItem("Payment", payment);
-    if(payment != "Cartão"){
-        sessionStorage.removeItem("Dados Cartao")
+    if (payment != "Cartão") {
+      sessionStorage.removeItem("Dados Cartao");
     }
   };
 
   const salvarInfoCartao = (e) => {
     setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
-    setFormErrors('');
+    setFormErrors("");
   };
 
   const [formErrors, setFormErrors] = useState({});
@@ -112,7 +103,6 @@ const Pagamento = () => {
       infoCartao.name == "" ||
       infoCartao.cpf == ""
     ) {
-        
       errorsNum++;
       errors.all = "Preencha as informações do cartão!";
     } else {
@@ -127,7 +117,10 @@ const Pagamento = () => {
         errors.mes = "Mês inválido!";
         errorsNum++;
       }
-      if (infoCartao.anoValidade < anoAtual || infoCartao.anoValidade - anoAtual > 5 ) {
+      if (
+        infoCartao.anoValidade < anoAtual ||
+        infoCartao.anoValidade - anoAtual > 5
+      ) {
         errors.ano = "Ano inválido!";
         errorsNum++;
       }
@@ -135,8 +128,8 @@ const Pagamento = () => {
         errors.cpf = "CPF inválido!";
         errorsNum++;
       }
-      
-    }return errors;
+    }
+    return errors;
   };
 
   console.log(infoCartao);
@@ -153,135 +146,135 @@ const Pagamento = () => {
     alert("Informações salvas!");
   };
 
-  if (carrinhoCompras.length > 0) {
-    return (
-      <>
-        <div>
-          <form>
-            <MetodoPagamento>
-              <input
-                type="radio"
-                id="pix"
-                name="pagamento"
-                value="Pix"
-                onChange={(event) => onChange(event, "Pix")}
-              />
-              <label htmlFor="pix">&nbsp;Pix</label>
-            </MetodoPagamento>
-            <MetodoPagamento>
-              <input
-                type="radio"
-                id="boleto"
-                name="pagamento"
-                value="Boleto"
-                onChange={(event) => onChange(event, "Boleto")}
-              />
-              <label htmlFor="boleto">&nbsp;Boleto</label>
-            </MetodoPagamento>
-            <MetodoPagamento>
-              <input
-                type="radio"
-                id="cartao"
-                name="pagamento"
-                value="Cartão"
-                onChange={(event) => onChange(event, "Cartão")}
-              />
-              <label htmlFor="cartao">&nbsp;Cartão</label>
-              {metodoPagamento == "Cartão" && (
-                <PagamentoCartao>
-                  <label>CVV*</label>
-                  <Input
-                    type="number"
-                    placeholder="CVV*"
-                    name="cvv"
-                    maxLength={3}
-                    required
-                    onChange={salvarInfoCartao}
-                  />
-                  <Errors>{formErrors.cvv}</Errors>
-                  <label>Mês de Validade*</label>
-                  <Input
-                    type="number"
-                    placeholder="Mês Validade*"
-                    name="mesValidade"
-                    min={1}
-                    max={12}
-                    required
-                    onChange={salvarInfoCartao}
-                  />
-                  <Errors>{formErrors.mes}</Errors>
-                  <label>Ano de Validade*</label>
-                  <Input
-                    type="number"
-                    placeholder="Ano de Validade"
-                    name="anoValidade"
-                    required
-                    onChange={salvarInfoCartao}
-                  />
-                  <Errors>{formErrors.ano}</Errors>
-                  <label>Nome do titular*</label>
-                  <Input
-                    type="text"
-                    placeholder="Nome"
-                    name="name"
-                    required
-                    onChange={salvarInfoCartao}
-                  />
-                  <br/>
-                  <br/>
-                  <label>CPF*</label>
-                  <Input
-                    type="number"
-                    placeholder="CPF*"
-                    name="cpf"
-                    maxLength={11}
-                    required
-                    onChange={salvarInfoCartao}
-                  />
-                  <Errors>{formErrors.cpf}</Errors>
-                  <ButtonContainer>
-                    <Button onClick={salvarCartao}>SALVAR INFORMAÇÕES</Button>
-                  </ButtonContainer>
-                  <FontBold><Errors>{formErrors.all}</Errors></FontBold>
-                </PagamentoCartao>
-              )}
-            </MetodoPagamento>
-          </form>
-        </div>
+  return (
+    <>
+      <div>
+        {cartItems != "" ? (
+          <>
+            <form>
+              <MetodoPagamento>
+                <input
+                  type="radio"
+                  id="pix"
+                  name="pagamento"
+                  value="Pix"
+                  onChange={(event) => onChange(event, "Pix")}
+                />
+                <label htmlFor="pix">&nbsp;Pix</label>
+              </MetodoPagamento>
+              <MetodoPagamento>
+                <input
+                  type="radio"
+                  id="boleto"
+                  name="pagamento"
+                  value="Boleto"
+                  onChange={(event) => onChange(event, "Boleto")}
+                />
+                <label htmlFor="boleto">&nbsp;Boleto</label>
+              </MetodoPagamento>
+              <MetodoPagamento>
+                <input
+                  type="radio"
+                  id="cartao"
+                  name="pagamento"
+                  value="Cartão"
+                  onChange={(event) => onChange(event, "Cartão")}
+                />
+                <label htmlFor="cartao">&nbsp;Cartão</label>
+                {metodoPagamento == "Cartão" && (
+                  <PagamentoCartao>
+                    <label>CVV*</label>
+                    <Input
+                      type="number"
+                      placeholder="CVV*"
+                      name="cvv"
+                      maxLength={3}
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.cvv}</Errors>
+                    <label>Mês de Validade*</label>
+                    <Input
+                      type="number"
+                      placeholder="Mês Validade*"
+                      name="mesValidade"
+                      min={1}
+                      max={12}
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.mes}</Errors>
+                    <label>Ano de Validade*</label>
+                    <Input
+                      type="number"
+                      placeholder="Ano de Validade"
+                      name="anoValidade"
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.ano}</Errors>
+                    <label>Nome do titular*</label>
+                    <Input
+                      type="text"
+                      placeholder="Nome"
+                      name="name"
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <br />
+                    <br />
+                    <label>CPF*</label>
+                    <Input
+                      type="number"
+                      placeholder="CPF*"
+                      name="cpf"
+                      maxLength={11}
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.cpf}</Errors>
+                    <ButtonContainer>
+                      <Button onClick={salvarCartao}>SALVAR INFORMAÇÕES</Button>
+                    </ButtonContainer>
+                    <FontBold>
+                      <Errors>{formErrors.all}</Errors>
+                    </FontBold>
+                  </PagamentoCartao>
+                )}
+              </MetodoPagamento>
+            </form>
 
-        <div>
-          <InfoContainer>
-            <h5>
-              <FontBold>RESUMO</FontBold>
-            </h5>
+            <InfoContainer>
+              <h5>
+                <FontBold>RESUMO</FontBold>
+              </h5>
 
-            <Resumo />
+              <Resumo />
 
-            <ButtonContainer>
-              <Link href={"/finalizar-compra"}>
-                <Button onClick={submitHandler}>FINALIZAR A COMPRA</Button>
-              </Link>
-            </ButtonContainer>
-            <ButtonContainer>
-              <Link href={"/carrinho"}>
-                <ButtonInverted>VOLTAR PARA CARRINHO</ButtonInverted>
-              </Link>
-            </ButtonContainer>
-          </InfoContainer>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div>
-          <h5>
-            <FontBold>Seu carrinho está vazio!</FontBold>
-          </h5>
-        </div>
-      </>
-    );
-  }
+              <ButtonContainer>
+                <Link href={"/finalizar-compra"}>
+                  <Button onClick={submitHandler}>FINALIZAR A COMPRA</Button>
+                </Link>
+              </ButtonContainer>
+              <ButtonContainer>
+                <Link href={"/carrinho"}>
+                  <ButtonInverted>VOLTAR PARA CARRINHO</ButtonInverted>
+                </Link>
+              </ButtonContainer>
+            </InfoContainer>
+          </>
+        ) : (
+          <>
+            <div>
+              <h5>
+                <FontBold>Seu carrinho está vazio!</FontBold>
+              </h5>
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default Pagamento;

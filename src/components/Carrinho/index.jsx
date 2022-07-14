@@ -26,6 +26,7 @@ const Carrinho = () => {
   const [address, setAddress] = useState("");
   const fretePrice = useState(13.75);
   const [addresses, setAddresses] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   //Pegar os endereços do cliente
   useEffect(() => {
@@ -76,17 +77,17 @@ const Carrinho = () => {
     sessionStorage.setItem("Address", address);
   };
 
-  console.log(address);
-  console.log(freteOption);
-  if (carrinhoCompras.length > 0) {
+
+  if (cartItems != "") {
     return (
       <>
         <div>
+        {cartItems != "" ? (<></>):(<></>)}
           <InfoContainer>
             <h4>
               <FontBold>SELECIONE O ENDEREÇO</FontBold>
             </h4>
-            {addresses.length > 0 &&
+            {addresses != "" &&
               addresses.map((endereco, index) => {
                 return (
                   <OrderContainer key={index}>

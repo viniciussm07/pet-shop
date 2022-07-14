@@ -99,6 +99,7 @@ const SignUp = () => {
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     setFormErrors("");
+    errorsNum = 0;
   };
 
   return (
@@ -176,7 +177,7 @@ const SignUp = () => {
           <br />
           <Errors>{formErrors.senha}</Errors>
 
-          {Object.keys(formErrors).length === 0 && isSubmit ? (
+          {errorsNum === 0 && isSubmit ? (
             <div>Cadastro com sucesso!</div>
           ) : (
             <></>

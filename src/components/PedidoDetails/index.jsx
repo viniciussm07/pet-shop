@@ -7,10 +7,11 @@ import {
   OrderContainer,
   OrderTable,
   InfoContainer,
+  FontBold,
 } from "../Utils/style";
 
 export const Pedido = () => {
-  let pedido;
+  const [pedidoEncontrado, setPedidoEncontrado] = useState(false);
   const [pedidoCustomerName, setPedidoCustomerName] = useState("");
   const [pedidoNumber, setPedidoNumer] = useState("");
   const [pedidoStatus, setPedidoStatus] = useState("");
@@ -22,8 +23,6 @@ export const Pedido = () => {
   const [pedidoTotal, setPedidoTotal] = useState("");
   const [address, setAddress] = useState("");
 
-  const { query } = useRouter();
-
   //Obter os dados do cliente logado
   useEffect(() => {
     const path = window.location.pathname.substr(26, 32);
@@ -31,29 +30,34 @@ export const Pedido = () => {
     const id = getIdUser();
     const fetchOrder = async () => {
       const { data } = await api.get("/orders/one/" + path);
-      setPedidoCustomerName(data[0].customer.name);
-      setPedidoNumer(data[0].number);
-      setPedidoStatus(data[0].status);
-      setPedidoPayment(data[0].payment);
-      setPedidoAddress(data[0].address);
-      setPedidoDate(data[0].createDate);
-      setPedidoFrete(data[0].frete);
-      setPedidoItems(data[0].items);
-      setPedidoTotal(data[0].total);
+      if (data != "") {
+        setPedidoEncontrado(true);
+        setPedidoCustomerName(data[0].customer.name);
+        setPedidoNumer(data[0].number);
+        setPedidoStatus(data[0].status);
+        setPedidoPayment(data[0].payment);
+        setPedidoAddress(data[0].address);
+        setPedidoDate(data[0].createDate);
+        setPedidoFrete(data[0].frete);
+        setPedidoItems(data[0].items);
+        setPedidoTotal(data[0].total);
 
-      const response = await api.get(
-        "/customer/addresses/" + data[0].customer._id
-      );
-      //const dataAddress = response.data;
-      const dataAddress = response.data.filter((address) => address._id == data[0].address);
-      setAddress(dataAddress[0]);
-      console.log("data address:", dataAddress[0]);
-      response.data.forEach((address) => {
-        if(address._id===data[0].address){
+        const response = await api.get(
+          "/customer/addresses/" + data[0].customer._id
+        );
+        const dataAddress = response.data.filter(
+          (address) => address._id == data[0].address
+        );
+        setAddress(dataAddress[0]);
+        console.log("data address:", dataAddress[0]);
+
+        response.data.forEach((address) => {
+          if (address._id === data[0].address) {
             setAddress(address);
-        }
-      });
-    }; 
+          }
+        });
+      }
+    };
 
     fetchOrder();
   }, []);
@@ -63,7 +67,7 @@ export const Pedido = () => {
   console.log(pedidoStatus);
   console.log(pedidoPayment);
   console.log(pedidoAddress);
-  console.log("frete",pedidoFrete);
+  console.log("frete", pedidoFrete);
   console.log(pedidoItems);
   console.log(pedidoTotal);
   console.log(address);
@@ -83,91 +87,88 @@ export const Pedido = () => {
     },
   ];
 
-  const endereco = {
-    identificacao: "Endereço Principal",
-    logradouro: "Rua daqui",
-    numero: "250",
-    CEP: "1111-1111",
-    bairro: "bairro",
-    cidade: "cidade",
-    uf: "ET",
-    complemento: "",
-    referencia: "",
-  };
   return (
     <>
       <div>
-        <InfoContainer>
-          <h4>
-            <bold>DATA DO PEDIDO:</bold> {pedidoDate.substr(0,10)}
-          </h4>
-          <h4>
-            <bold>STATUS:</bold> {pedidoStatus}
-          </h4>
-          <br />
-          <h5>
-            <bold>ENTREGA</bold>
-          </h5>
-          <OrderContainer>
-            Destinatário: {pedidoCustomerName} <br />
-            Rua: {address.logradouro}, Número: {address.numero}
+        {pedidoEncontrado == true ? (
+          <InfoContainer>
+            <h4>
+              <bold>DATA DO PEDIDO:</bold> {pedidoDate.substr(0, 10)}
+            </h4>
+            <h4>
+              <bold>STATUS:</bold> {pedidoStatus}
+            </h4>
             <br />
-            CEP: {address.cep} - {address.cidade}/{address.estado}
-            <br />
-            <br />
-            Frete: {pedidoFrete.option} <br />
-            Custo: R${pedidoFrete.price}
-          </OrderContainer>
-          <h5>
-            <bold>PAGAMENTO</bold>
-          </h5>
-          <OrderContainer>{pedidoPayment}</OrderContainer>
+            <h5>
+              <bold>ENTREGA</bold>
+            </h5>
+            <OrderContainer>
+              Destinatário: {pedidoCustomerName} <br />
+              Rua: {address.logradouro}, Número: {address.numero}
+              <br />
+              CEP: {address.cep} - {address.cidade}/{address.estado}
+              <br />
+              <br />
+              Frete: {pedidoFrete.option} <br />
+              Custo: R${pedidoFrete.price}
+            </OrderContainer>
+            <h5>
+              <bold>PAGAMENTO</bold>
+            </h5>
+            <OrderContainer>{pedidoPayment}</OrderContainer>
 
-          <h5>
-            <bold>PRODUTOS</bold>
-          </h5>
-          {pedidoItems.map((produto, index) => {
-            return (
-              <OrderContainer key={index}>
-                <div>
-                  <OrderTable>
-                    <tbody>
-                      <tr>
-                        <td></td>
-                        <td>
-                          <bold>{produto.nome}</bold>
-                          <br />
-                          {produto.descricao}
-                        </td>
-                        <td>
-                          Quantidade
-                          <br />
-                          <input
-                            type="number"
-                            name="quantidade"
-                            id="quant"
-                            min={1}
-                            max={produto.estoque}
-                            disabled
-                          />
-                          <br />
-                        </td>
-                        <td>
-                          Preço
-                          <br />
-                          R${produto.preco}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </OrderTable>
-                </div>
-              </OrderContainer>
-            );
-          })}
-          <h4>
-            <bold>TOTAL DO PEDIDO:</bold> R${pedidoTotal}
-          </h4>
-        </InfoContainer>
+            <h5>
+              <bold>PRODUTOS</bold>
+            </h5>
+            {pedidoItems.map((produto, index) => {
+              return (
+                <OrderContainer key={index}>
+                  <div>
+                    <OrderTable>
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td>
+                            <bold>{produto.nome}</bold>
+                            <br />
+                            {produto.descricao}
+                          </td>
+                          <td>
+                            Quantidade
+                            <br />
+                            <input
+                              type="number"
+                              name="quantidade"
+                              id="quant"
+                              min={1}
+                              max={produto.estoque}
+                              disabled
+                            />
+                            <br />
+                          </td>
+                          <td>
+                            Preço
+                            <br />
+                            R${produto.preco}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </OrderTable>
+                  </div>
+                </OrderContainer>
+              );
+            })}
+            <h4>
+              <bold>TOTAL DO PEDIDO:</bold> R${pedidoTotal}
+            </h4>
+          </InfoContainer>
+        ) : (
+            <InfoContainer>
+            <h5>
+              <FontBold>Pedido não endontrado!</FontBold>
+            </h5>
+          </InfoContainer>
+        )}
       </div>
     </>
   );
