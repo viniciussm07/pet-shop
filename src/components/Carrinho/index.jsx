@@ -15,8 +15,6 @@ import {
   ButtonInverted,
 } from "../Utils/style";
 import {
-  EnderecoContainer,
-  EnderecoOption,
   FreteContainer,
   Radio,
 } from "./Carrinho";

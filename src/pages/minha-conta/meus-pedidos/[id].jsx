@@ -1,5 +1,5 @@
 import { useRouter } from "next/router.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Head from "next/head";
 import Navbar from "../../../components/Navbar";
@@ -15,9 +15,12 @@ import { FontBold } from "../../../components/Utils/style";
 import { getIsLoggedIn } from "../../../services/auth";
 
 export default function Home() {
+  const [numPedido, setNumPedido] = useState();
   const router = useRouter();
   let isLoggedIn;
   useEffect(() => {
+    const path = window.location.pathname.substr(26, 32);
+    setNumPedido(path);
     isLoggedIn = getIsLoggedIn();
     if (isLoggedIn != "true") {
       router.push("/login");
@@ -33,7 +36,7 @@ export default function Home() {
 
       <ContainerColumn>
         <h3>
-          <FontBold>PEDIDO #</FontBold>
+          <FontBold>PEDIDO #{numPedido}</FontBold>
         </h3>
         <InfoContainer>
           <Div90>

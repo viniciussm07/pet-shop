@@ -10,6 +10,13 @@ import {
   FontBold,
   ButtonInverted,
 } from "../Utils/style";
+import {
+  Add,
+  AddSubtractCart,
+  Row,
+  Subtract,
+} from "../Produto/ProdutoLayout/ProdutoLayoutElements";
+import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { getIdUser, getToken } from "../../services/auth";
 import api from "../../services/api";
@@ -73,7 +80,8 @@ const FinalizarCompras = () => {
         option: freteOption,
         price: fretePrice,
       },
-      items: [],
+      total: 100,
+      items: cartItems,
     };
     if (window.confirm("Deseja realizar pedido?")) {
       const response = await api.post("/orders/", data);
@@ -85,21 +93,6 @@ const FinalizarCompras = () => {
       }
     }
   };
-
-  const carrinhoCompras = [
-    {
-      nome: "raçao 1kg",
-      descricao: "ração para cachorro",
-      preco: 10.5,
-      estoque: 10,
-    },
-    {
-      nome: "brinquedo",
-      descricao: "brinquedo para cachorro",
-      preco: 35.0,
-      estoque: 10,
-    },
-  ];
 
   if (cartItems != "") {
     return (
@@ -137,36 +130,41 @@ const FinalizarCompras = () => {
             <h4>
               <FontBold>PRODUTOS</FontBold>
             </h4>
-            {carrinhoCompras.map((produto, index) => {
+            {cartItems.map((produto, index) => {
               return (
                 <OrderContainer key={index}>
                   <div>
                     <OrderTable>
                       <tbody>
                         <tr>
-                          <td></td>
                           <td>
-                            <FontBold>{produto.nome}</FontBold>
+                            <img src={produto.image} width="50px"></img>
+                          </td>
+                          <td>
+                            <a href={"/produto/" + produto.slug}>
+                              <FontBold>{produto.title}</FontBold>
+                            </a>
                             <br />
-                            {produto.descricao}
                           </td>
                           <td>
                             Quantidade
-                            <br />
-                            <input
-                              type="number"
-                              name="quantidade"
-                              id="quant"
-                              min={1}
-                              max={produto.estoque}
-                              disabled
-                            />
+                            <Row>
+                              <AddSubtractCart>
+                                <Subtract>
+                                  <HiMinusSm />
+                                </Subtract>
+                                {produto.quantity}
+                                <Add>
+                                  <HiPlusSm />
+                                </Add>
+                              </AddSubtractCart>
+                            </Row>
                             <br />
                           </td>
                           <td>
                             Preço
                             <br />
-                            R${produto.preco}
+                            R${produto.quantity * produto.price}
                           </td>
                         </tr>
                       </tbody>

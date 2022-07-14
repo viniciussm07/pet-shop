@@ -31,11 +31,8 @@ const UserPage = () => {
 
     const fetchLastOrder = async () => {
       const { data } = await api.get("/orders/last/" + id);
-      
-      if(data != ""){
-        setPedido(data[0]);
-      }
-      
+      console.log("order", data);
+      setPedido(data[0]);
     };
     fetchLastOrder();
   }, []);
@@ -63,14 +60,14 @@ const UserPage = () => {
             <h4>
               <FontBold>Meus Pedidos</FontBold>
             </h4>
-            {pedido != "" && (
+            {pedido.length > 1 && (
               <Link href="/minha-conta/meus-pedidos">
                 <Button>Ver todos</Button>
               </Link>
             )}
           </StyledDiv>
 
-          {pedido == "" ? (
+          {pedido.length < 1 ? (
             <ButtonContainer>
               <h6>
                 <FontBold>
