@@ -26,10 +26,10 @@ const Hero = () => {
                 <Produto
                   name={produto.title}
                   image={produto.image}
-                  key={produto._id}
+                  key={produto.slug}
                   id={produto._id}
                   price = {produto.price}
-                  destiny = "/"
+                  destiny = {`/${produto.slug}`}
                 />
               ))}
             </HeroWrapper>

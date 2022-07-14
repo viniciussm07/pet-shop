@@ -22,15 +22,18 @@ import {
     Add,
     Subtract
 } from "../../components/Produto/ProdutoLayout/ProdutoLayoutElements"
-import { produtos as listaProdutos } from "/src/produtos"
+import api from "../../services/api"
+
 
 // Gera uma rota dinâmica para cada produto na lista de produtos
 export async function getStaticPaths() {
-    const paths = listaProdutos.map((produto) => {
-        const {id} = produto;
+    const produtos = await api.get("/products");
+    const paths = produtos.data.map((produto) => {
+        // console.log(produto)
+        const {slug} = produto
         return {
             params: {
-                produtoId: id.toString()
+                produtoSlug: slug.toString()
             }
         }
     })
@@ -39,7 +42,8 @@ export async function getStaticPaths() {
 
 // Retorna um produto que corresponde ao id passado no path
 export async function getStaticProps ({ params = {} }) {
-    const produto = listaProdutos.find(({id}) => `${id}` === `${params.produtoId}`);
+    const produto = await api.get(`/products/${params.slug}`);
+    console.log(produto)
     return {
         props: {
             produto
