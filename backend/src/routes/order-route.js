@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', controller.get);
 router.get('/:customer', controller.getByCustomer);
+router.get('/last/:id', controller.getLastOrder);
 router.post('/', controller.post);
 
 export default router;

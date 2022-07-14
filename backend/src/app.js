@@ -19,7 +19,7 @@ const app = express();
 const router = express.Router();
 
 // Conecta ao banco de dados
-
+app.use(cors())
 mongoose.connect("mongodb+srv://erica_admin:X1jbf0uciDf6ZDFL@cluster0.x0dra.mongodb.net")
 
 // Converte os dados vindos do cliente

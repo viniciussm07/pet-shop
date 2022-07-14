@@ -26,12 +26,24 @@ controller.getByCustomer = async (req, res) => {
 }
 
 
+controller.getLastOrder = async (req, res) => {
+    try {
+        console.log(req.params);
+        const data = await Order.findOne({customer: req.params.id});
+        res.status(200).send({data});
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+
+
 controller.post = async (req, res) => {
-    if (req.body.items.length === 0){
+    /*if (req.body.items.length === 0){
         return res.status(500).send({
             message:"Quantidade de items insuficiente",
         });
-    }
+    }*/
 
     try {
         const  token = req.body.token || req.query.token || req.cookies.token || req.headers['x-access-token'];

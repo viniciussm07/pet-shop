@@ -17,6 +17,7 @@ import {
 
 const UserPage = () => {
   const [user, setUser] = useState("");
+  const [pedido, setPedido] = useState("");
 
   //Obter os dados do cliente logado
   useEffect(() => {
@@ -27,6 +28,13 @@ const UserPage = () => {
       setUser(data);
     };
     fetchCustomer();
+
+    const fetchLastOrder = async () => {
+      const { order } = await api.get("/orders/last/" + id);
+      console.log("order", order);
+      setPedido(order);
+    };
+    fetchLastOrder();
   }, []);
 
   const pedidos = [];
@@ -52,9 +60,11 @@ const UserPage = () => {
             <h4>
               <FontBold>Meus Pedidos</FontBold>
             </h4>
-            <Link href="/minha-conta/meus-pedidos">
-              <Button>Ver todos</Button>
-            </Link>
+            {pedidos.length > 1 && (
+              <Link href="/minha-conta/meus-pedidos">
+                <Button>Ver todos</Button>
+              </Link>
+            )}
           </StyledDiv>
 
           {pedidos.length < 1 && (
