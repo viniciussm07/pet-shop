@@ -62,7 +62,7 @@ controller.login = async (req, res) => {
                 res.status(200).json({status:2, error: "Senha não confere!"})
             }
             else{
-                const payload = {email};
+                const payload = {email, id:user._id};
             
                 const token = jwt.sign(payload, secret, {
                     expiresIn: '24h'

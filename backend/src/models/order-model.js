@@ -20,8 +20,8 @@ const schema = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['created', 'done'],
-        default: 'created'
+        enum: ['Criado', 'A caminho', 'Entregue'],
+        default: 'Criado'
     },
     payment:{
         type: String,
@@ -37,6 +37,10 @@ const schema = new Schema({
             type: Number,
             required: true,
             default: 1
+        },
+        price: {
+            type: Number,
+            required: true
         },
         product: {
             type: mongoose.Schema.Types.ObjectId,
