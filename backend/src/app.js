@@ -19,8 +19,10 @@ const app = express();
 const router = express.Router();
 
 // Conecta ao banco de dados
-app.use(cors())
 mongoose.connect("mongodb+srv://erica_admin:X1jbf0uciDf6ZDFL@cluster0.x0dra.mongodb.net")
+
+// Necessário para a comunicação cross origin
+app.use(cors());
 
 // Converte os dados vindos do cliente
 app.use(bodyParser.json());
@@ -30,8 +32,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
 
-app.use('/products', productRoute);
 // app.use('/products', productRoute);
+app.use('/products', productRoute);
 app.use('/customer', customerRoute);
 app.use('/orders', orderRoute);
 

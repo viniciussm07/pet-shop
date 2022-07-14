@@ -12,7 +12,6 @@ const Hero = () => {
 
   useEffect(() => {
     api.get("/products").then(({data}) => {
-      console.log(data);
       setProdutos(data);
     });
 
@@ -29,6 +28,7 @@ const Hero = () => {
                   key={produto.slug}
                   id={produto._id}
                   price = {produto.price}
+                  stock = {produto.stock}
                   destiny = {`/produto/${produto.slug}`}
                 />
               ))}

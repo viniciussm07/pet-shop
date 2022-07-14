@@ -26,16 +26,29 @@ const Carrinho = () => {
   const [address, setAddress] = useState("");
   const fretePrice = useState(13.75);
   const [addresses, setAddresses] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  //const [cartItems, setCartItems] = useState([]);
+  let cartItems = [""];
 
   //Pegar os endereços do cliente
   useEffect(() => {
     const id = getIdUser();
     const fetchAdresses = async () => {
       const { data } = await api.get("/customer/addresses/" + id);
+      console.log(data)
       setAddresses(data);
     };
     fetchAdresses();
+    const items = JSON.parse(localStorage.getItem('items'));
+    if(items != null){
+      const count = 0;
+      items.forEach(async(item) => {
+        const { data } = await api.get("/products/get/" + item.product);
+        cartItems[count]= data;
+        count++; 
+        console.log("produto:",cartItems);
+      })
+    }
+    console.log(items);
   }, []);
   const carrinhoCompras = [
     {
@@ -82,7 +95,6 @@ const Carrinho = () => {
     return (
       <>
         <div>
-        {cartItems != "" ? (<></>):(<></>)}
           <InfoContainer>
             <h4>
               <FontBold>SELECIONE O ENDEREÇO</FontBold>
