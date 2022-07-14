@@ -25,12 +25,11 @@ import {
 import api from "../../services/api"
 
 
-// Gera uma rota dinâmica para cada produto na lista de produtos
+// Gera uma rota dinâmica para cada produto na lista de produtos para gerar uma página estática de cada um
 export async function getStaticPaths() {
     const produtos = await api.get("/products");
     const paths = produtos.data.map((produto) => {
-        // console.log(produto)
-        const {slug} = produto
+        const {slug} = produto;
         return {
             params: {
                 produtoSlug: slug.toString()
@@ -41,9 +40,10 @@ export async function getStaticPaths() {
 }
 
 // Retorna um produto que corresponde ao id passado no path
-export async function getStaticProps ({ params = {} }) {
-    const produto = await api.get(`/products/${params.slug}`);
-    console.log(produto)
+export async function getStaticProps ({ params }) {
+    const resp = await api.get(`/products/${params.produtoSlug}`);
+    const produto = resp.data
+    
     return {
         props: {
             produto
@@ -74,20 +74,20 @@ export default ({ produto }, props) => {
                 <LayoutWrap bgColor = "#fff" mgTop="2.5rem">
                     <ImgWrap>
                         <Img
-                        src={produto.imageUrl}
+                        src={produto.image}
                         width="1000%"
                         height="1000%"
                         />
                     </ImgWrap>
                     <Content>
-                        <Title1>{produto.nome}</Title1>
-                        <Row>
-                            <Star color2="#FFA10A" edit={false} value={produto.avaliacao} size={30} />
+                        <Title1>{produto.title}</Title1>
+                        {/* <Row>
+                            <Star color2="#FFA10A" edit={false} value={teste.avaliacao} size={30} />
                             <Avaliacoes>(x avaliações)</Avaliacoes>
-                        </Row>
+                        </Row> */}
                         <Linha />
-                        <ProductPrice>R${formatPreco(produto.preco.toFixed(2).toString())}</ProductPrice>
-                        <Description>{produto.descricao}</Description>
+                        <ProductPrice>R${formatPreco(produto.price.toFixed(2).toString())}</ProductPrice>
+                        <Description>{produto.description}</Description>
                         <Row>
                             <AddSubtractCart>
                                 <Subtract onClick={subQuantidade}>

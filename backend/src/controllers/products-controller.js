@@ -8,7 +8,7 @@ controller.getActive = async (req, res) => {
   try {
     const data = await Product.find(
       { active: true },
-      "title price slug image _id"
+      "_id title description price slug tags image"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -20,7 +20,7 @@ controller.getBySlug = async (req, res) => {
   try {
     const data = await Product.findOne(
       { active: true, slug: req.params.slug },
-      "title description price slug tags"
+      "_id title description price slug tags image"
     );
     res.status(200).send(data);
   } catch (error) {
