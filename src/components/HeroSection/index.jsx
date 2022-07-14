@@ -12,7 +12,6 @@ const Hero = () => {
 
   useEffect(() => {
     api.get("/products").then(({data}) => {
-      console.log(data);
       setProdutos(data);
     });
 
