@@ -33,10 +33,16 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items != null) {
-      console.log(items.length);
-      setNumItems(items.length);
+    const getItems = localStorage.getItem("items");
+    console.log(getItems);
+    if (getItems == "") {
+      localStorage.removeItem("items");
+    } else {
+      const items = JSON.parse(localStorage.getItem("items"));
+      if (items != null) {
+        console.log(items.length);
+        setNumItems(items.length);
+      }
     }
     changeNav();
   }, [LOGGEDIN]);

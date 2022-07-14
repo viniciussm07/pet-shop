@@ -13,8 +13,8 @@ export const Resumo = () => {
             Total a prazo: R$ <br/>
             <OrderContainer>
                 Valor a vista: 
-                <h4><bold>&nbsp;R$</bold></h4>
-
+                <h4><bold>&nbsp;R$</bold></h4><br/>
+                (10% de desconto <br/>Pix ou Boleto)
             </OrderContainer>
         </div>
     </>

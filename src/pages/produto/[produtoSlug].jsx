@@ -76,12 +76,20 @@ export default ({ produto }, props) => {
         const quantity = quantidade;
         const price = produto.price;
         const product = produto._id;
-        const dataObj = { quantity, price, product};
+        const title = produto.title;
+        const slug = produto.slug;
+        const image=produto.image;
+        const stock=produto.stock;
 
+        
+        const dataObj = { quantity, price, product,title , slug,image, stock};
+
+        
         const items = JSON.parse(localStorage.getItem('items'));
         if ( items === null) {
             // Adicionando um array com um objeto no localstorage
             localStorage.setItem('items', JSON.stringify([dataObj]));
+            setMessage("Produto inserido no carrinho!");
         } else {
             let index = items.findIndex(items => items.product === produto._id);
             if(index === -1){
@@ -95,13 +103,13 @@ export default ({ produto }, props) => {
                 ])
                 );
                 setMessage("Produto inserido no carrinho!");
-                Router.reload();
             }
             else{
                 setMessage("Produto já está no carrinho!");
             }
-
+            
         }
+        Router.reload();
     }
 
     return (

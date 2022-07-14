@@ -28,20 +28,13 @@ const Pagamento = () => {
     cpf: "",
   });
 
-  const carrinhoCompras = [
-    {
-      nome: "raçao 1kg",
-      descricao: "ração para cachorro",
-      preco: 10.5,
-      estoque: 10,
-    },
-    {
-      nome: "brinquedo",
-      descricao: "brinquedo para cachorro",
-      preco: 35.0,
-      estoque: 10,
-    },
-  ];
+   //Pegar os items do carrinho
+   useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items != null) {
+      setCartItems(items);
+    }
+  }, []);
 
   const submitHandler = (event) => {
     if (metodoPagamento == "") {
@@ -245,9 +238,9 @@ const Pagamento = () => {
             </form>
 
             <InfoContainer>
-              <h5>
+              <h4>
                 <FontBold>RESUMO</FontBold>
-              </h5>
+              </h4>
 
               <Resumo />
 

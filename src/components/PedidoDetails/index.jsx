@@ -62,30 +62,6 @@ export const Pedido = () => {
     fetchOrder();
   }, []);
 
-  console.log("name:", pedidoCustomerName);
-  console.log(pedidoNumber);
-  console.log(pedidoStatus);
-  console.log(pedidoPayment);
-  console.log(pedidoAddress);
-  console.log("frete", pedidoFrete);
-  console.log(pedidoItems);
-  console.log(pedidoTotal);
-  console.log(address);
-
-  const carrinhoCompras = [
-    {
-      nome: "raçao 1kg",
-      descricao: "ração para cachorro",
-      preco: 10.5,
-      estoque: 10,
-    },
-    {
-      nome: "brinquedo",
-      descricao: "brinquedo para cachorro",
-      preco: 35.0,
-      estoque: 10,
-    },
-  ];
 
   return (
     <>
