@@ -10,32 +10,63 @@ import {
 } from "../Utils/style";
 
 export const Pedido = () => {
-  let pedido = useState();
+  let pedido;
+  const [pedidoCustomerName, setPedidoCustomerName] = useState("");
+  const [pedidoNumber, setPedidoNumer] = useState("");
+  const [pedidoStatus, setPedidoStatus] = useState("");
+  const [pedidoPayment, setPedidoPayment] = useState("");
+  const [pedidoDate, setPedidoDate] = useState("");
+  const [pedidoAddress, setPedidoAddress] = useState("");
+  const [pedidoItems, setPedidoItems] = useState([]);
+  const [pedidoFrete, setPedidoFrete] = useState({});
+  const [pedidoTotal, setPedidoTotal] = useState("");
   const [address, setAddress] = useState("");
 
-  const {query} = useRouter();
-  
+  const { query } = useRouter();
+
   //Obter os dados do cliente logado
   useEffect(() => {
-    const path = window.location.pathname.substr(26, 32)
-    console.log(path)
+    const path = window.location.pathname.substr(26, 32);
+    console.log(path);
     const id = getIdUser();
     const fetchOrder = async () => {
       const { data } = await api.get("/orders/one/" + path);
-      pedido = data[0];
-    };
-    fetchOrder();
+      setPedidoCustomerName(data[0].customer.name);
+      setPedidoNumer(data[0].number);
+      setPedidoStatus(data[0].status);
+      setPedidoPayment(data[0].payment);
+      setPedidoAddress(data[0].address);
+      setPedidoDate(data[0].createDate);
+      setPedidoFrete(data[0].frete);
+      setPedidoItems(data[0].items);
+      setPedidoTotal(data[0].total);
 
-    const fetchAddress = async () => {
-        const { data } = await api.get("/customer/addresses/" + pedido.customer);
-        const address = data.filter((address) => address._id === pedido.address);
-        setAddress(address[0]);
-      };
-      fetchAddress();
+      const response = await api.get(
+        "/customer/addresses/" + data[0].customer._id
+      );
+      //const dataAddress = response.data;
+      const dataAddress = response.data.filter((address) => address._id == data[0].address);
+      setAddress(dataAddress[0]);
+      console.log("data address:", dataAddress[0]);
+      response.data.forEach((address) => {
+        if(address._id===data[0].address){
+            setAddress(address);
+        }
+      });
+    }; 
+
+    fetchOrder();
   }, []);
 
-  console.log("aa",pedido);
-
+  console.log("name:", pedidoCustomerName);
+  console.log(pedidoNumber);
+  console.log(pedidoStatus);
+  console.log(pedidoPayment);
+  console.log(pedidoAddress);
+  console.log("frete",pedidoFrete);
+  console.log(pedidoItems);
+  console.log(pedidoTotal);
+  console.log(address);
 
   const carrinhoCompras = [
     {
@@ -68,34 +99,34 @@ export const Pedido = () => {
       <div>
         <InfoContainer>
           <h4>
-            <bold>DATA DO PEDIDO:</bold> XX/XX/XXXX
+            <bold>DATA DO PEDIDO:</bold> {pedidoDate.substr(0,10)}
           </h4>
           <h4>
-            <bold>STATUS:</bold> STATUS
+            <bold>STATUS:</bold> {pedidoStatus}
           </h4>
           <br />
           <h5>
             <bold>ENTREGA</bold>
           </h5>
           <OrderContainer>
-            Destinatário: {pedido.customer} <br />
-            Rua: {endereco.logradouro}, Número: {endereco.numero}
+            Destinatário: {pedidoCustomerName} <br />
+            Rua: {address.logradouro}, Número: {address.numero}
             <br />
-            CEP: {endereco.CEP} - {endereco.cidade}/{endereco.uf}
+            CEP: {address.cep} - {address.cidade}/{address.estado}
             <br />
             <br />
-            Frete - {pedido.frete} <br />
-            Custo: R$
+            Frete: {pedidoFrete.option} <br />
+            Custo: R${pedidoFrete.price}
           </OrderContainer>
           <h5>
             <bold>PAGAMENTO</bold>
           </h5>
-          <OrderContainer>{pedido.payment}</OrderContainer>
+          <OrderContainer>{pedidoPayment}</OrderContainer>
 
           <h5>
             <bold>PRODUTOS</bold>
           </h5>
-          {carrinhoCompras.map((produto, index) => {
+          {pedidoItems.map((produto, index) => {
             return (
               <OrderContainer key={index}>
                 <div>
@@ -133,9 +164,9 @@ export const Pedido = () => {
               </OrderContainer>
             );
           })}
-          <h6>
-            <bold>TOTAL DO PEDIDO:</bold> R$
-          </h6>
+          <h4>
+            <bold>TOTAL DO PEDIDO:</bold> R${pedidoTotal}
+          </h4>
         </InfoContainer>
       </div>
     </>

@@ -24,7 +24,7 @@ import { getIdUser } from "../../services/auth";
 const Carrinho = () => {
   const [freteOption, setFreteOption] = useState("");
   const [address, setAddress] = useState("");
-  const [fretePrice, setFretePrice] = useState(13.75);
+  const fretePrice = useState(13.75);
   const [addresses, setAddresses] = useState([]);
 
   //Pegar os endereços do cliente
