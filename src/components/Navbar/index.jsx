@@ -51,7 +51,7 @@ const Navbar = () => {
                     </Search>
                     <WrapButtons>
                         <LoginButton isLogged={loggedNav}href="/login">Entre ou Cadastre-se</LoginButton>
-                        <CartButton isLogged={loggedNav} href="/carrinho"><AiOutlineShoppingCart/></CartButton>
+                        <CartButton isLogged={loggedNav} href="/carrinho"><AiOutlineShoppingCart size={30} color="#FFA10A"/></CartButton>
                         <MyAccountButton isLogged={loggedNav} href="/minha-conta">Minha Conta</MyAccountButton>
                     </WrapButtons>
                 </NavbarContainer1>

@@ -137,6 +137,7 @@ export const LoginButton = styled(NavButton)`
 export const CartButton = styled(NavButton)`
     display: ${(props) => (props.isLogged ? "flex" : "none")};
     margin: 0 20px;
+    background-color: transparent;
 `
 
 export const MyAccountButton = styled(NavButton)`
