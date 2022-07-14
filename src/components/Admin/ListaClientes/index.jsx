@@ -14,6 +14,17 @@ import {
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 export default function ListaClientes() {
+
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    api.get("/customer/").then(({ data }) => {
+      setProdutos(data);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <WrapFixedButton>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   ListaContainer,
   Title,
@@ -16,11 +17,23 @@ import {
 import { FaPlus, FaTrash } from "react-icons/fa";
 import Produto1 from "../../../../images/produtos/brinquedo-1.webp";
 
-export default function ListaClientes() {
+import api from "../../../services/api";
+
+export default function ListaProdutos() {
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    api.get("/products/admin/list").then(({ data }) => {
+      setProdutos(data);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <WrapFixedButton>
-        <FixedButton>
+        <FixedButton >
           <FaPlus
             size={40}
             style={{
@@ -33,28 +46,30 @@ export default function ListaClientes() {
         <Title>Lista Produtos</Title>
         <WrapColumn>
           <ListaWrap>
-            <Row>
-              <ImgWrap>
-                <Img src={Produto1}/>
-              </ImgWrap>
-              <Column>
-                <Row height="0.5rem">Nome do Produto</Row>
-                <Row height="0.5rem">
-                  <Column>Preço: </Column>
-                  <Column>R$30,00</Column>
-                </Row>
-                <Row height="0.5rem">
-                  <Column>Estoque: </Column>
-                  <Column>50</Column>
-                </Row>
-              </Column>
-              <WrapButton>
-                <EditButton>Editar</EditButton>
-              </WrapButton>
-              <Trash>
-                <FaTrash color="red" size={20}/>
-              </Trash>
-            </Row>
+            {produtos?.map((produto) => (
+              <Row>
+                <ImgWrap>
+                  <Img src={Produto1} />
+                </ImgWrap>
+                <Column>
+                  <Row height="0.5rem">{produto.title}</Row>
+                  <Row height="0.5rem">
+                    <Column>Preço: </Column>
+                    <Column>{produto.price}</Column>
+                  </Row>
+                  <Row height="0.5rem">
+                    <Column>Estoque: </Column>
+                    <Column>{produto.stock}</Column>
+                  </Row>
+                </Column>
+                <WrapButton>
+                  <EditButton>Editar</EditButton>
+                </WrapButton>
+                <Trash>
+                  <FaTrash color="red" size={20} />
+                </Trash>
+              </Row>
+            ))}
           </ListaWrap>
         </WrapColumn>
       </ListaContainer>

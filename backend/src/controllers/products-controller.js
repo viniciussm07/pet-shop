@@ -16,6 +16,18 @@ controller.getActive = async (req, res) => {
   }
 };
 
+controller.getAll = async (req, res) => {
+  try {
+    const data = await Product.find(
+      {},
+      "_id title description price slug tags image active tags image stock"
+    );
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 controller.getBySlug = async (req, res) => {
   try {
     const data = await Product.findOne(
