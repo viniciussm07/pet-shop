@@ -17,16 +17,13 @@ import {
     WrapButtons
 } from './NavbarElements.jsx'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
-import { getIsLoggedIn } from '../../services/auth.js';
+import { getIsLoggedIn } from '../../services/auth.js'
 
 const Navbar = () => {
-
     const [loggedNav, setLoggedNav] = useState(false);
-    let isLoggedIn;
 
     const changeNav = () => {
-        isLoggedIn = getIsLoggedIn();
-        if(isLoggedIn==='true'){
+        if(getIsLoggedIn()){
             setLoggedNav(true);
         } else{
             setLoggedNav(false);
@@ -35,7 +32,7 @@ const Navbar = () => {
 
     useEffect(() => {
         changeNav()
-    }, [isLoggedIn])
+    }, [])
 
     return (
         <>
@@ -53,9 +50,9 @@ const Navbar = () => {
                         </InputWrap>
                     </Search>
                     <WrapButtons>
-                        <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
-                        {/* <CartButton href="/carrinho"><AiOutlineShoppingCart/></CartButton>
-                        <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton> */}
+                        <LoginButton isLogged={loggedNav}href="/login">Entre ou Cadastre-se</LoginButton>
+                        <CartButton isLogged={loggedNav} href="/carrinho"><AiOutlineShoppingCart/></CartButton>
+                        <MyAccountButton isLogged={loggedNav} href="/minha-conta">Minha Conta</MyAccountButton>
                     </WrapButtons>
                 </NavbarContainer1>
                 <NavbarContainer2>
