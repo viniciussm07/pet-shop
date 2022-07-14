@@ -19,7 +19,7 @@ const app = express();
 const router = express.Router();
 
 // Conecta ao banco de dados
-mongoose.connect("mongodb://localhost:27017/pet-shop")
+mongoose.connect("mongodb+srv://admin:admin@cluster0.rekfssd.mongodb.net/?retryWrites=true&w=majority")
 
 // Necessário para a comunicação cross origin
 app.use(cors());
