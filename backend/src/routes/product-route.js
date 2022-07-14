@@ -8,6 +8,8 @@ router.get('/', controller.getActive);
 
 router.get('/:slug', controller.getBySlug);
 
+router.get('/tags/:tag', controller.getByTag);
+
 router.post('/admin', controller.post);
 
 router.put('/admin/:id', controller.put);
