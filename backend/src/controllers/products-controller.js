@@ -4,7 +4,7 @@ const Product = mongoose.model('Product');
 
 const controller = {}
 
-controller.get = async (req, res) => {
+controller.getActive = async (req, res) => {
     try {
         const data = await Product.find({active: true}, 'title price slug image _id');
         res.status(200).send(data);

@@ -4,14 +4,14 @@ import controller from "../controllers/products-controller.js";
 
 const router = express.Router();
 
-router.get('/', controller.get);
+router.get('/', controller.getActive);
 
 router.get('/:slug', controller.getBySlug);
 
-router.post('/', controller.post);
+router.post('/admin', controller.post);
 
-router.put('/:id', controller.put);
+router.put('/admin/:id', controller.put);
 
-router.delete('/:id', controller.delete);
+router.delete('/admin/:id', controller.delete);
 
 export default router;

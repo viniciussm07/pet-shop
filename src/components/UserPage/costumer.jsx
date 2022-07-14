@@ -1,17 +1,27 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import api from '../../services/api'
+import {getToken, getIsLoggedIn, getIdUser } from '../../services/auth'
 
-import {FontBold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '../Utils/style'
+import {bold, Button, OrderContainer, OrderTable, InfoContainer, StyledDiv, H4, ButtonContainer, ContainerColumn} from '../Utils/style'
 
 
 const UserPage = () => {
+
+    const [user, setUser] = useState('');
+
+    //Obter os dados do cliente logado
+    useEffect(() => {
+        const id = getIdUser();
+        const fetchCustomer = async () => {
+            const { data } = await api.get('/customer/'+id);
+            console.log(data);
+            setUser(data);
+        };
+        fetchCustomer();
+    }, [])
+
     const pedidos = [
-        {
-            numero: '000000',
-            data:'27/03/2022',
-            valor: 300.50,
-            pagamento: 'boleto',
-            status: 'entregue'
-        },
 
     ]
     return (
@@ -19,22 +29,22 @@ const UserPage = () => {
         <ContainerColumn>
             <InfoContainer>
                 <StyledDiv>
-                    <h4><FontBold>Informações de Acesso</FontBold></h4>
+                    <h4><bold>Informações de Acesso</bold></h4>
                     <Link href="/minha-conta/meus-dados"><Button>Meus Dados</Button></Link>
                 </StyledDiv>
-                <span>Nome do cliente</span><br/>
-                <span>emaildocliente@gmail.com</span>
+                <span>{user.name}</span><br/>
+                <span>{user.email}</span>
             </InfoContainer>
 
             <InfoContainer> 
                 <StyledDiv>
-                    <h4><FontBold>Meus Pedidos</FontBold></h4>
+                    <h4><bold>Meus Pedidos</bold></h4>
                     <Link href="/minha-conta/meus-pedidos"><Button>Ver todos</Button></Link>
                 </StyledDiv>
 
                 {pedidos.length< 1 &&
                     <ButtonContainer>
-                        <h6><FontBold><p>Você ainda não fez nenhum pedido.</p></FontBold></h6>
+                        <h6><bold><p>Você ainda não fez nenhum pedido.</p></bold></h6>
                         <h6>Aproveite nossas ofertas!</h6>
                     </ButtonContainer>
                 }

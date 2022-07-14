@@ -10,15 +10,6 @@ import Footer from '../components/Footer'
 
 
 export default function Home() {
-  const router = useRouter();
-  let isLoggedIn;
-  useEffect(() => {
-    isLoggedIn = localStorage.getItem('isLoggedIn');
-    if(isLoggedIn=="true"){
-          router.push('/');
-    }
-  }, [])
-
   return (
     <>
       <Head>

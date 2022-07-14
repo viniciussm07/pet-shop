@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Resumo from '../ResumoPedido'
 
-import {Button, ButtonContainer, OrderContainer,  OrderTable, InfoContainer, FontBold, ButtonInverted} from '../Utils/style'
+import {Button, ButtonContainer, OrderContainer,  OrderTable, InfoContainer, bold, ButtonInverted} from '../Utils/style'
 import { useEffect } from 'react'
 
 
@@ -52,12 +52,12 @@ const FinalizarCompras = () => {
         <>
             <div>
                 <InfoContainer>
-                    <h5><FontBold>MEUS DADOS</FontBold></h5>
+                    <h5><bold>MEUS DADOS</bold></h5>
                     <OrderContainer>
                         Nome do cliente (emaildocliente@gmail)<br/>
                         CPF: 00000000000
                     </OrderContainer>
-                    <h5><FontBold>ENTREGA</FontBold></h5>
+                    <h5><bold>ENTREGA</bold></h5>
                     <OrderContainer>
                         Destinatário: Nome Sobrenome <br/>
                         Rua: {endereco.logradouro}, Número: {endereco.numero}<br/>
@@ -66,14 +66,14 @@ const FinalizarCompras = () => {
                         Frete: {frete} - de x até y dias úteis <br/>
                         Custo: R$
                     </OrderContainer>
-                    <h5><FontBold>PAGAMENTO</FontBold></h5>
+                    <h5><bold>PAGAMENTO</bold></h5>
                     <OrderContainer>
                         {metodoPagamento}
                     </OrderContainer>
                 </InfoContainer>
 
                 <InfoContainer> 
-                    <h5><FontBold>PRODUTOS</FontBold></h5>
+                    <h5><bold>PRODUTOS</bold></h5>
                     {carrinhoCompras.map((produto, index) => {
                     return(
                     <OrderContainer key = {index}> 
@@ -82,7 +82,7 @@ const FinalizarCompras = () => {
                             <tbody> 
                             <tr>
                                 <td></td>
-                                <td ><FontBold>{produto.nome}</FontBold><br/>{produto.descricao}</td>
+                                <td ><bold>{produto.nome}</bold><br/>{produto.descricao}</td>
                                 <td>Quantidade<br/>
                                 <input type="number" name="quantidade" id="quant" min={1} max={produto.estoque} disabled/><br/>
                                 </td>
@@ -101,7 +101,7 @@ const FinalizarCompras = () => {
             </div>
             <div>
             <InfoContainer>
-                    <h5><FontBold>RESUMO</FontBold></h5>
+                    <h5><bold>RESUMO</bold></h5>
                     
                         <Resumo/>
                     
@@ -123,7 +123,7 @@ const FinalizarCompras = () => {
         return (
             <>
                 <div>
-                    <h5><FontBold>Seu carrinho está vazio!</FontBold></h5>
+                    <h5><bold>Seu carrinho está vazio!</bold></h5>
                 </div>
             </>
         )

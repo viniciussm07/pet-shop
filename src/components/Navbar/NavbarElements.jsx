@@ -65,7 +65,6 @@ export const InputWrap = styled.div`
 export const Input = styled.input`
     display: block;
     padding: 0.8rem 1rem 0.8rem 1rem;
-    /* padding: 0.5rem 2.5rem 0.5rem 0.5rem; */
     width: 100%;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -132,16 +131,17 @@ const NavButton = styled.a`
 `
 
 export const LoginButton = styled(NavButton)`
-    display: ${({loggedNav}) => (loggedNav ? 'none' : 'flex')};
+     display: flex;
 `
 
 export const CartButton = styled(NavButton)`
-    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    display: flex;
     margin: 0 20px;
+    background-color: transparent;
 `
 
 export const MyAccountButton = styled(NavButton)`
-    display: ${({loggedNav}) => (!loggedNav ? 'none' : 'flex')};
+    display: flex;
     margin: 0 20px;
 `
 

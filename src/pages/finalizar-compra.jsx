@@ -8,14 +8,13 @@ import FinalizarCompras from '../components/FinalizarCompra'
 
 import  {ContainerColumn, InfoContainer} from '../components/Utils/pagesStyles'
 import { FontBold } from '../components/Utils/style'
-
-
+import {getIsLoggedIn } from '../services/auth'
 
 export default function Home() {
   const router = useRouter();
   let isLoggedIn;
   useEffect(() => {
-    isLoggedIn = localStorage.getItem('isLoggedIn');
+    isLoggedIn = getIsLoggedIn();
     if(isLoggedIn!="true"){
           router.push('/login');
     }
@@ -28,7 +27,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <ContainerColumn>
-        <h3><FontBold>FINALIZAR COMPRA</FontBold></h3>
+        <h3><bold>FINALIZAR COMPRA</bold></h3>
         <InfoContainer>
 
           <FinalizarCompras />

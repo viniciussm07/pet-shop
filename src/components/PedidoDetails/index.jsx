@@ -1,4 +1,4 @@
-import {FontBold, OrderContainer, OrderTable, InfoContainer} from '../Utils/style'
+import {bold, OrderContainer, OrderTable, InfoContainer} from '../Utils/style'
 
 export const Pedido = () => {
     const carrinhoCompras = [
@@ -34,10 +34,10 @@ export const Pedido = () => {
     <>
         <div>
         <InfoContainer>
-            <h6><FontBold>DATA DO PEDIDO:</FontBold> XX/XX/XXXX</h6>
-            <h6><FontBold>STATUS:</FontBold> STATUS</h6>
+            <h6><bold>DATA DO PEDIDO:</bold> XX/XX/XXXX</h6>
+            <h6><bold>STATUS:</bold> STATUS</h6>
             <br/>
-            <h5><FontBold>ENTREGA</FontBold></h5>
+            <h5><bold>ENTREGA</bold></h5>
                 <OrderContainer>
                     Destinatário: Nome Sobrenome <br/>
                     Rua: {endereco.logradouro}, Número: {endereco.numero}<br/>
@@ -46,12 +46,12 @@ export const Pedido = () => {
                     Frete - de x até y dias úteis <br/>
                     Custo: R$
                 </OrderContainer>
-                <h5><FontBold>PAGAMENTO</FontBold></h5>
+                <h5><bold>PAGAMENTO</bold></h5>
                 <OrderContainer>
                     [Método de Pagamento]
                 </OrderContainer>
 
-                <h5><FontBold>PRODUTOS</FontBold></h5>
+                <h5><bold>PRODUTOS</bold></h5>
                 {carrinhoCompras.map((produto, index) => {
                     return(
                     <OrderContainer key = {index}> 
@@ -60,7 +60,7 @@ export const Pedido = () => {
                             <tbody> 
                             <tr>
                                 <td></td>
-                                <td ><FontBold>{produto.nome}</FontBold><br/>{produto.descricao}</td>
+                                <td ><bold>{produto.nome}</bold><br/>{produto.descricao}</td>
                                 <td>Quantidade<br/>
                                 <input type="number" name="quantidade" id="quant" min={1} max={produto.estoque} disabled/><br/>
                                 </td>
@@ -75,7 +75,7 @@ export const Pedido = () => {
                     }
 
                 )}
-                <h6><FontBold>TOTAL DO PEDIDO:</FontBold> R$</h6>
+                <h6><bold>TOTAL DO PEDIDO:</bold> R$</h6>
         </InfoContainer>
         </div>
     </>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import Resumo from '../ResumoPedido'
 
-import {Button, ButtonContainer, InfoContainer, FontBold, ButtonInverted, Input} from '../Utils/style'
+import {Button, ButtonContainer, InfoContainer, bold, ButtonInverted, Input} from '../Utils/style'
 import {MetodoPagamento, PagamentoCartao} from './Pagamento'
 
 
@@ -137,7 +137,7 @@ const Pagamento = () => {
 
             <div>
             <InfoContainer>
-                    <h5><FontBold>RESUMO</FontBold></h5>
+                    <h5><bold>RESUMO</bold></h5>
                     
                         <Resumo/>
                     
@@ -159,7 +159,7 @@ const Pagamento = () => {
         return (
             <>
                 <div>
-                    <h5><FontBold>Seu carrinho está vazio!</FontBold></h5>
+                    <h5><bold>Seu carrinho está vazio!</bold></h5>
                 </div>
             </>
         )
