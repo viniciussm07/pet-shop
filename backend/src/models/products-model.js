@@ -35,9 +35,14 @@ const schema = new Schema({
         type: String,
         required: false,
         trim: true
+    },
+    stock: {
+        type: Number,
+        required: true
     }
 });
 
+// Método deletar por Id
 schema.statics.deleteById = function(_id) {
     return this.deleteOne({ _id: _id });
   };

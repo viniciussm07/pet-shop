@@ -7,7 +7,6 @@ import Footer from "../../components/Footer";
 import AddEndereco from "../../components/AdicionarEndereco";
 
 import { ContainerRow, Div80 } from "../../components/Utils/pagesStyles";
-import { Title } from "../../components/Utils/blankStyles";
 import { getIsLoggedIn } from "../../services/auth";
 
 export default function Home() {
@@ -23,7 +22,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <Title>Pet Shop</Title>
+        <title>Pet Shop</title>
       </Head>
       <Navbar />
       <ContainerRow>

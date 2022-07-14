@@ -10,27 +10,26 @@ import {
     Img,
     Content,
     Title1,
-    Title2,
     Row,
-    Avaliacoes,
     Linha,
     ProductPrice,
     Description,
-    Star,
     AddCart,
     AddSubtractCart,
     Add,
     Subtract
 } from "../../components/Produto/ProdutoLayout/ProdutoLayoutElements"
-import { produtos as listaProdutos } from "/src/produtos"
+import api from "../../services/api"
 
-// Gera uma rota dinâmica para cada produto na lista de produtos
+
+// Gera uma rota dinâmica para cada produto na lista de produtos para gerar uma página estática de cada um
 export async function getStaticPaths() {
-    const paths = listaProdutos.map((produto) => {
-        const {id} = produto;
+    const produtos = await api.get("/products");
+    const paths = produtos.data.map((produto) => {
+        const {slug} = produto;
         return {
             params: {
-                produtoId: id.toString()
+                produtoSlug: slug.toString()
             }
         }
     })
@@ -38,8 +37,10 @@ export async function getStaticPaths() {
 }
 
 // Retorna um produto que corresponde ao id passado no path
-export async function getStaticProps ({ params = {} }) {
-    const produto = listaProdutos.find(({id}) => `${id}` === `${params.produtoId}`);
+export async function getStaticProps ({ params }) {
+    const resp = await api.get(`/products/${params.produtoSlug}`);
+    const produto = resp.data
+    
     return {
         props: {
             produto
@@ -74,20 +75,16 @@ export default ({ produto }, props) => {
                 <LayoutWrap bgColor = "#fff" mgTop="2.5rem">
                     <ImgWrap>
                         <Img
-                        src={produto.imageUrl}
+                        src={produto.image}
                         width="1000%"
                         height="1000%"
                         />
                     </ImgWrap>
                     <Content>
-                        <Title1>{produto.nome}</Title1>
-                        <Row>
-                            <Star color2="#FFA10A" edit={false} value={produto.avaliacao} size={30} />
-                            <Avaliacoes>(x avaliações)</Avaliacoes>
-                        </Row>
+                        <Title1>{produto.title}</Title1>
                         <Linha />
-                        <ProductPrice>R${formatPreco(produto.preco.toFixed(2).toString())}</ProductPrice>
-                        <Description>{produto.descricao}</Description>
+                        <ProductPrice>R${formatPreco(produto.price.toFixed(2).toString())}</ProductPrice>
+                        <Description>{produto.description}</Description>
                         <Row>
                             <AddSubtractCart>
                                 <Subtract onClick={subQuantidade}>
@@ -101,9 +98,6 @@ export default ({ produto }, props) => {
                             <AddCart onClick={addToCart}>Adicionar ao Carrinho</AddCart>
                         </Row>
                     </Content>
-                </LayoutWrap>
-                <LayoutWrap bgColor="#F6F6F6" mgTop="1rem">
-                    <Title2>Avaliações</Title2>
                 </LayoutWrap>
             </LayoutContainer>
             <Footer />

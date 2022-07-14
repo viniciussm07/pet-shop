@@ -28,9 +28,6 @@ export const ImgWrap = styled.div`
 `
 
 export const Img = styled(Image)`
-    /* display: block;
-    object-fit: cover;
-    object-position: center; */
 `
 
 export const Description = styled.div`

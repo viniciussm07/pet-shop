@@ -13,7 +13,7 @@ const Produto = (props) => {
   return (
     <ProdutoWrap href={props.destiny}>
         <ImgWrap>
-            <Img src={props.image}/>
+            <Img src={props.image} height="200px" width="200px"/>
         </ImgWrap>
         <Description>
             <Category>{props.category}</Category>
