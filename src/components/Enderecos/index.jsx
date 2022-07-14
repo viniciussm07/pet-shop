@@ -40,7 +40,7 @@ const Enderecos = () => {
   useEffect(() => {
     const id = getIdUser();
     const fetchCustomer = async () => {
-      const { data } = await api.get("/customer/address/" + id);
+      const { data } = await api.get("/customer/addresses/" + id);
       setAddresses(data);
       setUserID(id);
     };

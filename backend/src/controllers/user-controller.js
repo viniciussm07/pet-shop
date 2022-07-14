@@ -154,10 +154,24 @@ controller.updateUser = async (req, res) => {
 };
 
 
-controller.getAddress = async (req, res) => {
+controller.getAddresses = async (req, res) => {
     try {
         const data = await User.findById(req.params.id);
         res.status(200).send(data.addresses);
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+
+controller.getOneAddress = async (req, res) => {
+    try {
+        const data = await User.findOne({_id:req.params.id});
+        console.log(req.body)
+        //data.addresses.findById()
+        res.status(200).json({
+            data:req.body.identificacao
+        });
     } catch (error) {
         res.status(400).send(error)
     }

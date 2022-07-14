@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { getIdUser } from "../../services/auth";
 
 import Resumo from "../ResumoPedido";
 
@@ -12,6 +11,7 @@ import {
   FontBold,
   ButtonInverted,
   Input,
+  Errors,
 } from "../Utils/style";
 import { MetodoPagamento, PagamentoCartao } from "./Pagamento";
 
@@ -26,23 +26,15 @@ const Pagamento = () => {
     cpf: "",
   });
 
-  const [frete, setFrete] = useState("");
-  const [userID, setUserID] = useState("");
-  const [address, setAddress] = useState("");
-
   //Pegar os dados do pedido aramzenados localmente
   useEffect(() => {
-    const id = getIdUser();
-    setUserID(id);
     const getAddress = sessionStorage.getItem("Address");
-    const getFrete = sessionStorage.getItem("Frete");
+    const getFreteOption = sessionStorage.getItem("Frete Option");
 
-    if (getAddress == null || getFrete == null) {
-      alert("Frete e Endereços inválidos!");
+    if (getAddress == null || getFreteOption == null) {
+      alert("Dados inválidos!");
       router.push("/carrinho");
-    }
-    console.log(getAddress);
-    console.log(getFrete);
+    } 
   }, []);
 
   const carrinhoCompras = [
@@ -82,22 +74,73 @@ const Pagamento = () => {
       }
     }
 
-    sessionStorage.setItem("Metodo de Pagamento", metodoPagamento);
+    sessionStorage.setItem("Payment", metodoPagamento);
   };
 
-  const onChange = (e) => {
+  const onChange = (e, payment) => {
     let metodo = e.target.value;
     setMetodoPagamento(metodo);
+    sessionStorage.setItem("Payment", payment);
+    if(payment != "Cartão"){
+        sessionStorage.removeItem("Dados Cartao")
+    }
   };
 
   const salvarInfoCartao = (e) => {
     setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
+    setFormErrors('');
+  };
+
+  const [formErrors, setFormErrors] = useState({});
+
+  let errorsNum = 0;
+
+  const salvarCartao = (event) => {
+    event.preventDefault();
+    setFormErrors(validate(infoCartao));
+    if (errorsNum === 0) {
+      addCartao();
+    }
+  };
+
+  const validate = (infoCartao) => {
+    const errors = {};
+    if (
+      infoCartao.cvv == "" ||
+      infoCartao.mesValidade == "" ||
+      infoCartao.anoValidade == "" ||
+      infoCartao.name == "" ||
+      infoCartao.cpf == ""
+    ) {
+        
+      errorsNum++;
+      errors.all = "Preencha as informações do cartão!";
+    } else {
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear();
+
+      if (Object.keys(infoCartao.cvv).length != 3) {
+        errors.cvv = "CVV inválido!";
+        errorsNum++;
+      }
+      if (infoCartao.mesValidade < 1 || infoCartao.mesValidade > 12) {
+        errors.mes = "Mês inválido!";
+        errorsNum++;
+      }
+      if (infoCartao.anoValidade < anoAtual || infoCartao.anoValidade - anoAtual > 5 ) {
+        errors.ano = "Ano inválido!";
+        errorsNum++;
+      }
+      if (Object.keys(infoCartao.cpf).length != 11) {
+        errors.cpf = "CPF inválido!";
+        errorsNum++;
+      }
+      
+    }return errors;
   };
 
   console.log(infoCartao);
-  const salvarCartao = (event) => {
-    event.preventDefault();
-
+  const addCartao = () => {
     const cvv = infoCartao.cvv;
     const mesValidade = infoCartao.mesValidade;
     const anoValidade = infoCartao.anoValidade;
@@ -106,18 +149,8 @@ const Pagamento = () => {
 
     const dataObj = { cvv, mesValidade, anoValidade, name, cpf };
 
-    if (
-      infoCartao.cvv == "" ||
-      infoCartao.mesValidade == "" ||
-      infoCartao.anoValidade == "" ||
-      infoCartao.name == "" ||
-      infoCartao.cpf == ""
-    ) {
-      event.preventDefault();
-      alert("Preencha as informações do cartão!");
-    } else {
-      sessionStorage.setItem("Dados Cartao", JSON.stringify([dataObj]));
-    }
+    sessionStorage.setItem("Dados Cartao", JSON.stringify([dataObj]));
+    alert("Informações salvas!");
   };
 
   if (carrinhoCompras.length > 0) {
@@ -131,7 +164,7 @@ const Pagamento = () => {
                 id="pix"
                 name="pagamento"
                 value="Pix"
-                onChange={onChange}
+                onChange={(event) => onChange(event, "Pix")}
               />
               <label htmlFor="pix">&nbsp;Pix</label>
             </MetodoPagamento>
@@ -141,7 +174,7 @@ const Pagamento = () => {
                 id="boleto"
                 name="pagamento"
                 value="Boleto"
-                onChange={onChange}
+                onChange={(event) => onChange(event, "Boleto")}
               />
               <label htmlFor="boleto">&nbsp;Boleto</label>
             </MetodoPagamento>
@@ -151,7 +184,7 @@ const Pagamento = () => {
                 id="cartao"
                 name="pagamento"
                 value="Cartão"
-                onChange={onChange}
+                onChange={(event) => onChange(event, "Cartão")}
               />
               <label htmlFor="cartao">&nbsp;Cartão</label>
               {metodoPagamento == "Cartão" && (
@@ -165,7 +198,7 @@ const Pagamento = () => {
                     required
                     onChange={salvarInfoCartao}
                   />
-                  <br />
+                  <Errors>{formErrors.cvv}</Errors>
                   <label>Mês de Validade*</label>
                   <Input
                     type="number"
@@ -176,18 +209,16 @@ const Pagamento = () => {
                     required
                     onChange={salvarInfoCartao}
                   />
-                  <br />
+                  <Errors>{formErrors.mes}</Errors>
                   <label>Ano de Validade*</label>
                   <Input
                     type="number"
                     placeholder="Ano de Validade"
                     name="anoValidade"
-                    min={2023}
-                    max={2036}
                     required
                     onChange={salvarInfoCartao}
                   />
-                  <br />
+                  <Errors>{formErrors.ano}</Errors>
                   <label>Nome do titular*</label>
                   <Input
                     type="text"
@@ -196,9 +227,9 @@ const Pagamento = () => {
                     required
                     onChange={salvarInfoCartao}
                   />
-                  <br />
+                  <br/>
+                  <br/>
                   <label>CPF*</label>
-                  <br />
                   <Input
                     type="number"
                     placeholder="CPF*"
@@ -207,10 +238,11 @@ const Pagamento = () => {
                     required
                     onChange={salvarInfoCartao}
                   />
-                  <br />
+                  <Errors>{formErrors.cpf}</Errors>
                   <ButtonContainer>
                     <Button onClick={salvarCartao}>SALVAR INFORMAÇÕES</Button>
                   </ButtonContainer>
+                  <FontBold><Errors>{formErrors.all}</Errors></FontBold>
                 </PagamentoCartao>
               )}
             </MetodoPagamento>

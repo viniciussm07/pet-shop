@@ -22,20 +22,19 @@ import api from "../../services/api";
 import { getIdUser } from "../../services/auth";
 
 const Carrinho = () => {
-  const [frete, setFrete] = useState("");
-  const [userID, setUserID] = useState("");
+  const [freteOption, setFreteOption] = useState("");
   const [address, setAddress] = useState("");
+  const [fretePrice, setFretePrice] = useState(13.75);
   const [addresses, setAddresses] = useState([]);
 
   //Pegar os endereços do cliente
   useEffect(() => {
     const id = getIdUser();
-    const fetchCustomer = async () => {
-      const { data } = await api.get("/customer/address/" + id);
+    const fetchAdresses = async () => {
+      const { data } = await api.get("/customer/addresses/" + id);
       setAddresses(data);
-      setUserID(id);
     };
-    fetchCustomer();
+    fetchAdresses();
   }, []);
   const carrinhoCompras = [
     {
@@ -53,7 +52,7 @@ const Carrinho = () => {
   ];
 
   const submitHandler = (event) => {
-    if (frete == "") {
+    if (freteOption == "") {
       event.preventDefault();
       alert("Escolha um frete!");
     }
@@ -65,9 +64,10 @@ const Carrinho = () => {
   };
 
   const onChange = (e) => {
-    let frete = e.target.value;
-    setFrete(frete);
-    sessionStorage.setItem("Frete", frete);
+    let freteOption = e.target.value;
+    setFreteOption(freteOption);
+    sessionStorage.setItem("Frete Option", freteOption);
+    sessionStorage.setItem("Frete Price", fretePrice);
   };
 
   const changeAdress = (e) => {
@@ -77,7 +77,7 @@ const Carrinho = () => {
   };
 
   console.log(address);
-  console.log(frete);
+  console.log(freteOption);
   if (carrinhoCompras.length > 0) {
     return (
       <>
@@ -146,7 +146,7 @@ const Carrinho = () => {
                   </label>
                 </Radio>
 
-                <div>Preço: R$13,75</div>
+                <div>Preço: R${fretePrice}</div>
               </FreteContainer>
             </OrderContainer>
           </InfoContainer>

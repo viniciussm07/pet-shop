@@ -38,9 +38,12 @@ const AddEndereco = () => {
         alert("Número máximo de endereços cadastrados!");
         router.push("/minha-conta/meus-dados");
       }
+      console.log(data);
     };
     fetchCustomer();
   }, []);
+
+  
 
   const [formErrors, setFormErrors] = useState([]);
 

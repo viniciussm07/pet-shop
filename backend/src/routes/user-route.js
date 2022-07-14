@@ -13,7 +13,7 @@ router.get('/auth/checkToken', controller.checkToken);
 router.get('/auth/destroyToken', controller.destroyToken);
 
 router.put('/:id', controller.updateUser);
-router.get('/address/:id', controller.getAddress);
+router.get('/addresses/:id', controller.getAddresses);
 router.post('/address/:id', controller.addAddress);
 router.put('/address/:id', controller.deleteAddress);
 router.put('/address/update/:id', controller.updateAddress);
