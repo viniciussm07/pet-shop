@@ -35,7 +35,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const resp = await api.get(`/products/tags/${params.tag}`);
   const produtos = resp.data;
-  console.log(produtos);
 
   return {
     props: {
