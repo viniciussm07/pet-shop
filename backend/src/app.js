@@ -32,8 +32,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
 
-app.use('/products', productRoute);
 // app.use('/products', productRoute);
+app.use('/products', productRoute);
 app.use('/customer', customerRoute);
 app.use('/orders', orderRoute);
 
