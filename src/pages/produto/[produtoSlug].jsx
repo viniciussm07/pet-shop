@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Router from "next/router";
 
 import React, { useState } from "react"
 import { HiMinusSm, HiPlusSm } from "react-icons/hi"
@@ -50,9 +51,13 @@ export async function getStaticProps ({ params }) {
 
 export default ({ produto }, props) => {
     const [quantidade, setQuantidade] = useState(1);
+    const [message, setMessage] = useState('');
 
     function addQuantidade() {
-        setQuantidade(quantidade + 1);
+        if(quantidade < produto.stock){
+            setQuantidade(quantidade + 1);
+        }
+        
     }
     function subQuantidade() {
         if (quantidade == 1) {
@@ -65,7 +70,46 @@ export default ({ produto }, props) => {
     }
 
     function addToCart(){
-    
+        console.log(produto._id);
+        console.log(quantidade);
+        // Criando objeto com dados dos inputs
+        const quantity = quantidade;
+        const price = produto.price;
+        const product = produto._id;
+        const title = produto.title;
+        const slug = produto.slug;
+        const image=produto.image;
+        const stock=produto.stock;
+
+        
+        const dataObj = { quantity, price, product,title , slug,image, stock};
+
+        
+        const items = JSON.parse(localStorage.getItem('items'));
+        if ( items === null) {
+            // Adicionando um array com um objeto no localstorage
+            localStorage.setItem('items', JSON.stringify([dataObj]));
+            setMessage("Produto inserido no carrinho!");
+        } else {
+            let index = items.findIndex(items => items.product === produto._id);
+            if(index === -1){
+                // Copiando o array existente no localstorage e adicionando o novo objeto ao final.
+                localStorage.setItem(
+                'items',
+                // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
+                JSON.stringify([
+                    ...JSON.parse(localStorage.getItem('items')),
+                    dataObj
+                ])
+                );
+                setMessage("Produto inserido no carrinho!");
+            }
+            else{
+                setMessage("Produto já está no carrinho!");
+            }
+            
+        }
+        Router.reload();
     }
 
     return (
@@ -97,6 +141,8 @@ export default ({ produto }, props) => {
                             </AddSubtractCart>
                             <AddCart onClick={addToCart}>Adicionar ao Carrinho</AddCart>
                         </Row>
+                        <br/>
+                        <p>{message}</p>
                     </Content>
                 </LayoutWrap>
             </LayoutContainer>

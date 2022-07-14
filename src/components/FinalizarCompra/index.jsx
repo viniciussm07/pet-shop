@@ -24,54 +24,54 @@ const FinalizarCompras = () => {
   let [addressId, setAddressId] = useState("");
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    const getPayment = sessionStorage.getItem("Payment")
+    const getPayment = sessionStorage.getItem("Payment");
     const getAddress = sessionStorage.getItem("Address");
     const getFreteOption = sessionStorage.getItem("Frete Option");
     const getFretePrice = sessionStorage.getItem("Frete Price");
     const addressId = sessionStorage.getItem("Address");
 
-    if (getAddress == null || getFreteOption == null || addressId == null|| getPayment == null) {
-      alert("Dados inválidos!");
-      router.push("/carrinho");
-    } else {
-      setMetodoPagamento(getPayment);
-      setFreteOption(getFreteOption);
-      setFretePrice(getFretePrice);
-      setAddressId(addressId);
+    setMetodoPagamento(getPayment);
+    setFreteOption(getFreteOption);
+    setFretePrice(getFretePrice);
+    setAddressId(addressId);
 
-      const id = getIdUser();
-      const fetchCustomer = async () => {
-        const { data } = await api.get("/customer/" + id);
-        setUser(data);
-      };
+    const id = getIdUser();
+    const fetchCustomer = async () => {
+      const { data } = await api.get("/customer/" + id);
+      setUser(data);
+    };
 
-      const fetchAddress = async () => {
-        const { data } = await api.get("/customer/addresses/" + id);
-        const address = data.filter((address) => address._id === addressId);
-        setAddress(address[0]);
-      };
-      fetchAddress();
-      fetchCustomer();
+    const fetchAddress = async () => {
+      const { data } = await api.get("/customer/addresses/" + id);
+      const address = data.filter((address) => address._id === addressId);
+      setAddress(address[0]);
+    };
+    fetchAddress();
+    fetchCustomer();
+
+    //Pegar os items do carrinho
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items != null) {
+      setCartItems(items);
     }
   }, []);
 
-  
-
-  const confirmarPedido = async () =>{
+  const confirmarPedido = async () => {
     console.log("pagmento:", metodoPagamento);
     console.log("freteOption:", freteOption);
     console.log("fretePrice:", fretePrice);
     console.log("addressId:", address._id);
     const token = getToken();
     const data = {
-      token:token,
+      token: token,
       payment: metodoPagamento,
       address: address._id,
-      frete:{
+      frete: {
         option: freteOption,
-        price: fretePrice
+        price: fretePrice,
       },
       items: [],
     };
@@ -84,7 +84,7 @@ const FinalizarCompras = () => {
         alert("Erro ao processar pedido!");
       }
     }
-  }
+  };
 
   const carrinhoCompras = [
     {
@@ -101,22 +101,22 @@ const FinalizarCompras = () => {
     },
   ];
 
-  if (carrinhoCompras.length > 0) {
+  if (cartItems != "") {
     return (
       <>
         <div>
           <InfoContainer>
-            <h5>
+            <h4>
               <FontBold>MEUS DADOS</FontBold>
-            </h5>
+            </h4>
             <OrderContainer>
               {user.name} ({user.email})
               <br />
               CPF: {user.cpf}
             </OrderContainer>
-            <h5>
+            <h4>
               <FontBold>ENTREGA</FontBold>
-            </h5>
+            </h4>
             <OrderContainer>
               Destinatário: {user.name} <br />
               Rua: {address.logradouro}, Número: {address.numero}
@@ -127,16 +127,16 @@ const FinalizarCompras = () => {
               Frete: {freteOption} <br />
               Custo: R${fretePrice}
             </OrderContainer>
-            <h5>
+            <h4>
               <FontBold>PAGAMENTO</FontBold>
-            </h5>
+            </h4>
             <OrderContainer>{metodoPagamento}</OrderContainer>
           </InfoContainer>
 
           <InfoContainer>
-            <h5>
+            <h4>
               <FontBold>PRODUTOS</FontBold>
-            </h5>
+            </h4>
             {carrinhoCompras.map((produto, index) => {
               return (
                 <OrderContainer key={index}>
@@ -179,14 +179,14 @@ const FinalizarCompras = () => {
         </div>
         <div>
           <InfoContainer>
-            <h5>
+            <h4>
               <FontBold>RESUMO</FontBold>
-            </h5>
+            </h4>
 
             <Resumo />
 
             <ButtonContainer>
-                <Button onClick={confirmarPedido}>CONFIRMAR PEDIDO</Button>
+              <Button onClick={confirmarPedido}>CONFIRMAR PEDIDO</Button>
             </ButtonContainer>
             <ButtonContainer>
               <Link href={"/pagamento"}>

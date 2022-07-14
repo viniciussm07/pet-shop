@@ -8,11 +8,13 @@ import SignUp from "../components/Registrar";
 import { ContainerRow, Div80 } from "../components/Utils/pagesStyles";
 import Footer from "../components/Footer";
 
+import { getIsLoggedIn } from "../services/auth";
+
 export default function Home() {
   const router = useRouter();
   let isLoggedIn;
   useEffect(() => {
-    isLoggedIn = localStorage.getItem("isLoggedIn");
+    isLoggedIn = getIsLoggedIn();
     if (isLoggedIn == "true") {
       router.push("/");
     }
