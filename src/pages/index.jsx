@@ -1,11 +1,9 @@
-import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import HeroSection from '../components/HeroSection'
-import Footer from '../components/Footer'
+import Head from "next/head";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import Footer from "../components/Footer";
 
 export default function Home() {
-
-
   return (
     <>
       <Head>
@@ -13,7 +11,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <HeroSection />
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }

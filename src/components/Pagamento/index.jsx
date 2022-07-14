@@ -1,169 +1,287 @@
-import Link from 'next/link'
-import { useState } from 'react'
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
-import Resumo from '../ResumoPedido'
+import Resumo from "../ResumoPedido";
 
-import {Button, ButtonContainer, InfoContainer, bold, ButtonInverted, Input} from '../Utils/style'
-import {MetodoPagamento, PagamentoCartao} from './Pagamento'
-
-
+import {
+  Button,
+  ButtonContainer,
+  InfoContainer,
+  FontBold,
+  ButtonInverted,
+  Input,
+  Errors,
+} from "../Utils/style";
+import { MetodoPagamento, PagamentoCartao } from "./Pagamento";
 
 const Pagamento = () => {
-    const [metodoPagamento, setMetodoPagamento] = useState('');
-    const[infoCartao, setInfoCartao] = useState({
-        cvv: "",
-        mesValidade: "",
-        anoValidade: "",
-        name: "",
-        cpf: "",
-    })
+  const router = useRouter();
+  const [metodoPagamento, setMetodoPagamento] = useState("");
+  const [infoCartao, setInfoCartao] = useState({
+    cvv: "",
+    mesValidade: "",
+    anoValidade: "",
+    name: "",
+    cpf: "",
+  });
 
-    const carrinhoCompras = [
-        {
-            nome: 'raçao 1kg',
-            descricao:'ração para cachorro',
-            preco: 10.50,
-            estoque: 10,
-        },
-        {
-            nome: 'brinquedo',
-            descricao:'brinquedo para cachorro',
-            preco: 35.00,
-            estoque: 10,
-        },
+  //Pegar os dados do pedido aramzenados localmente
+  useEffect(() => {
+    const getAddress = sessionStorage.getItem("Address");
+    const getFreteOption = sessionStorage.getItem("Frete Option");
 
-    ]
+    if (getAddress == null || getFreteOption == null) {
+      alert("Dados inválidos!");
+      router.push("/carrinho");
+    } 
+  }, []);
 
-    const submitHandler = (event) => {
-        if(metodoPagamento == ''){
-            event.preventDefault();
-            alert('Escolha um metodo de pagamento!');
-        }
-        else if(metodoPagamento == "Cartão"){
-                if(infoCartao.cvv==''||
-                    infoCartao.mesValidade==''||
-                    infoCartao.anoValidade==''||
-                    infoCartao.name==''||
-                    infoCartao.cpf==''){
-                    event.preventDefault();
-                    alert('Preencha as informações do cartão!');
-                }
-                else{
-                    if (localStorage.getItem('Dados Cartao') == null){
-                        event.preventDefault();
-                        alert('Salve as informações do cartão!');
-                    }
-                }
-        }
+  const carrinhoCompras = [
+    {
+      nome: "raçao 1kg",
+      descricao: "ração para cachorro",
+      preco: 10.5,
+      estoque: 10,
+    },
+    {
+      nome: "brinquedo",
+      descricao: "brinquedo para cachorro",
+      preco: 35.0,
+      estoque: 10,
+    },
+  ];
 
-        localStorage.setItem('Metodo de Pagamento', metodoPagamento);
-    };
-
-
-    const onChange = (e) => {
-        let metodo = e.target.value;
-        setMetodoPagamento(metodo);
-    };
-
-
-    const salvarInfoCartao = (e) =>{
-        setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
-       
-    }
-    console.log(infoCartao);
-    const salvarCartao = (event) => {
+  const submitHandler = (event) => {
+    if (metodoPagamento == "") {
+      event.preventDefault();
+      alert("Escolha um metodo de pagamento!");
+    } else if (metodoPagamento == "Cartão") {
+      if (
+        infoCartao.cvv == "" ||
+        infoCartao.mesValidade == "" ||
+        infoCartao.anoValidade == "" ||
+        infoCartao.name == "" ||
+        infoCartao.cpf == ""
+      ) {
         event.preventDefault();
-
-        const cvv = infoCartao.cvv;
-        const mesValidade = infoCartao.mesValidade;
-        const anoValidade = infoCartao.anoValidade;
-        const name = infoCartao.name;
-        const cpf = infoCartao.cpf;
-
-        const dataObj = { cvv, mesValidade, anoValidade, name, cpf};
-
-        if(infoCartao.cvv==''||
-            infoCartao.mesValidade==''||
-            infoCartao.anoValidade==''||
-            infoCartao.name==''||
-            infoCartao.cpf==''){
-            event.preventDefault();
-            alert('Preencha as informações do cartão!');
+        alert("Preencha as informações do cartão!");
+      } else {
+        if (localStorage.getItem("Dados Cartao") == null) {
+          event.preventDefault();
+          alert("Salve as informações do cartão!");
         }
-        else{
-            localStorage.setItem('Dados Cartao', JSON.stringify([dataObj]));
-        }
+      }
+    }
+
+    sessionStorage.setItem("Payment", metodoPagamento);
+  };
+
+  const onChange = (e, payment) => {
+    let metodo = e.target.value;
+    setMetodoPagamento(metodo);
+    sessionStorage.setItem("Payment", payment);
+    if(payment != "Cartão"){
+        sessionStorage.removeItem("Dados Cartao")
+    }
+  };
+
+  const salvarInfoCartao = (e) => {
+    setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
+    setFormErrors('');
+  };
+
+  const [formErrors, setFormErrors] = useState({});
+
+  let errorsNum = 0;
+
+  const salvarCartao = (event) => {
+    event.preventDefault();
+    setFormErrors(validate(infoCartao));
+    if (errorsNum === 0) {
+      addCartao();
+    }
+  };
+
+  const validate = (infoCartao) => {
+    const errors = {};
+    if (
+      infoCartao.cvv == "" ||
+      infoCartao.mesValidade == "" ||
+      infoCartao.anoValidade == "" ||
+      infoCartao.name == "" ||
+      infoCartao.cpf == ""
+    ) {
         
-        
-    };
-   
-    if(carrinhoCompras.length > 0){
+      errorsNum++;
+      errors.all = "Preencha as informações do cartão!";
+    } else {
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear();
+
+      if (Object.keys(infoCartao.cvv).length != 3) {
+        errors.cvv = "CVV inválido!";
+        errorsNum++;
+      }
+      if (infoCartao.mesValidade < 1 || infoCartao.mesValidade > 12) {
+        errors.mes = "Mês inválido!";
+        errorsNum++;
+      }
+      if (infoCartao.anoValidade < anoAtual || infoCartao.anoValidade - anoAtual > 5 ) {
+        errors.ano = "Ano inválido!";
+        errorsNum++;
+      }
+      if (Object.keys(infoCartao.cpf).length != 11) {
+        errors.cpf = "CPF inválido!";
+        errorsNum++;
+      }
+      
+    }return errors;
+  };
+
+  console.log(infoCartao);
+  const addCartao = () => {
+    const cvv = infoCartao.cvv;
+    const mesValidade = infoCartao.mesValidade;
+    const anoValidade = infoCartao.anoValidade;
+    const name = infoCartao.name;
+    const cpf = infoCartao.cpf;
+
+    const dataObj = { cvv, mesValidade, anoValidade, name, cpf };
+
+    sessionStorage.setItem("Dados Cartao", JSON.stringify([dataObj]));
+    alert("Informações salvas!");
+  };
+
+  if (carrinhoCompras.length > 0) {
     return (
-        <>
-            <div>
-                <form>
-                    <MetodoPagamento>
-                        <input type="radio" id="pix" name="pagamento" value="Pix" onChange={onChange}/>
-                        <label htmlFor ="pix">&nbsp;Pix</label>
-                    </MetodoPagamento>
-                    <MetodoPagamento>
-                        <input type="radio" id="boleto" name="pagamento" value="Boleto" onChange={onChange}/>
-                        <label htmlFor ="boleto">&nbsp;Boleto</label>
-                    </MetodoPagamento>
-                    <MetodoPagamento>
-                        <input type="radio" id="cartao" name="pagamento" value="Cartão" onChange={onChange}/>
-                        <label htmlFor ="cartao">&nbsp;Cartão</label>
-                        {metodoPagamento == "Cartão" && (
-                            <PagamentoCartao>
-                                    <label>CVV*</label>
-                                    <Input type="number" placeholder="CVV*" name="cvv" maxLength={3} required onChange={salvarInfoCartao}/><br/>
-                                    <label>Mês de Validade*</label>
-                                    <Input type="number" placeholder="Mês Validade*" name="mesValidade" min={1} max={12} required onChange={salvarInfoCartao}/><br/>
-                                    <label>Ano de Validade*</label>
-                                    <Input type="number" placeholder="Ano de Validade" name="anoValidade" min={2023} max={2036} required onChange={salvarInfoCartao}/><br/>
-                                    <label>Nome do titular*</label>
-                                    <Input type="text" placeholder="Nome" name="name" required onChange={salvarInfoCartao}/><br/>
-                                    <label>CPF*</label><br/>
-                                    <Input type="number" placeholder="CPF*" name="cpf" maxLength={11} required onChange={salvarInfoCartao}/><br/>
-                                    <ButtonContainer >
-                                        <Button onClick={salvarCartao}>SALVAR INFORMAÇÕES</Button>
-                                    </ButtonContainer>
-                            </PagamentoCartao>
-                        )}
-                    </MetodoPagamento>
-                </form>
-                
-            </div>
+      <>
+        <div>
+          <form>
+            <MetodoPagamento>
+              <input
+                type="radio"
+                id="pix"
+                name="pagamento"
+                value="Pix"
+                onChange={(event) => onChange(event, "Pix")}
+              />
+              <label htmlFor="pix">&nbsp;Pix</label>
+            </MetodoPagamento>
+            <MetodoPagamento>
+              <input
+                type="radio"
+                id="boleto"
+                name="pagamento"
+                value="Boleto"
+                onChange={(event) => onChange(event, "Boleto")}
+              />
+              <label htmlFor="boleto">&nbsp;Boleto</label>
+            </MetodoPagamento>
+            <MetodoPagamento>
+              <input
+                type="radio"
+                id="cartao"
+                name="pagamento"
+                value="Cartão"
+                onChange={(event) => onChange(event, "Cartão")}
+              />
+              <label htmlFor="cartao">&nbsp;Cartão</label>
+              {metodoPagamento == "Cartão" && (
+                <PagamentoCartao>
+                  <label>CVV*</label>
+                  <Input
+                    type="number"
+                    placeholder="CVV*"
+                    name="cvv"
+                    maxLength={3}
+                    required
+                    onChange={salvarInfoCartao}
+                  />
+                  <Errors>{formErrors.cvv}</Errors>
+                  <label>Mês de Validade*</label>
+                  <Input
+                    type="number"
+                    placeholder="Mês Validade*"
+                    name="mesValidade"
+                    min={1}
+                    max={12}
+                    required
+                    onChange={salvarInfoCartao}
+                  />
+                  <Errors>{formErrors.mes}</Errors>
+                  <label>Ano de Validade*</label>
+                  <Input
+                    type="number"
+                    placeholder="Ano de Validade"
+                    name="anoValidade"
+                    required
+                    onChange={salvarInfoCartao}
+                  />
+                  <Errors>{formErrors.ano}</Errors>
+                  <label>Nome do titular*</label>
+                  <Input
+                    type="text"
+                    placeholder="Nome"
+                    name="name"
+                    required
+                    onChange={salvarInfoCartao}
+                  />
+                  <br/>
+                  <br/>
+                  <label>CPF*</label>
+                  <Input
+                    type="number"
+                    placeholder="CPF*"
+                    name="cpf"
+                    maxLength={11}
+                    required
+                    onChange={salvarInfoCartao}
+                  />
+                  <Errors>{formErrors.cpf}</Errors>
+                  <ButtonContainer>
+                    <Button onClick={salvarCartao}>SALVAR INFORMAÇÕES</Button>
+                  </ButtonContainer>
+                  <FontBold><Errors>{formErrors.all}</Errors></FontBold>
+                </PagamentoCartao>
+              )}
+            </MetodoPagamento>
+          </form>
+        </div>
 
-            <div>
-            <InfoContainer>
-                    <h5><bold>RESUMO</bold></h5>
-                    
-                        <Resumo/>
-                    
-                    
-                    <ButtonContainer >
-                        <Link href={'/finalizar-compra'}><Button onClick={submitHandler}>FINALIZAR A COMPRA</Button></Link>
-                    </ButtonContainer>
-                    <ButtonContainer >
-                        <Link href={'/carrinho'}><ButtonInverted>VOLTAR PARA CARRINHO</ButtonInverted></Link>
-                    </ButtonContainer>
-                </InfoContainer>
+        <div>
+          <InfoContainer>
+            <h5>
+              <FontBold>RESUMO</FontBold>
+            </h5>
 
-            </div>
-        </>
-            
-        )
-    }
-    else{
-        return (
-            <>
-                <div>
-                    <h5><bold>Seu carrinho está vazio!</bold></h5>
-                </div>
-            </>
-        )
-    }
-}
+            <Resumo />
+
+            <ButtonContainer>
+              <Link href={"/finalizar-compra"}>
+                <Button onClick={submitHandler}>FINALIZAR A COMPRA</Button>
+              </Link>
+            </ButtonContainer>
+            <ButtonContainer>
+              <Link href={"/carrinho"}>
+                <ButtonInverted>VOLTAR PARA CARRINHO</ButtonInverted>
+              </Link>
+            </ButtonContainer>
+          </InfoContainer>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div>
+          <h5>
+            <FontBold>Seu carrinho está vazio!</FontBold>
+          </h5>
+        </div>
+      </>
+    );
+  }
+};
 
 export default Pagamento;

@@ -30,7 +30,7 @@ export default function Home() {
       <Navbar />
       <ContainerColumn>
         <h3>
-          <bold>CARRINHO DE COMPRAS</bold>
+          <FontBold>CARRINHO DE COMPRAS</FontBold>
         </h3>
         <InfoContainer>
           <Carrinho />

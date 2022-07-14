@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import {
     Nav,
     NavbarContainer1,
@@ -68,4 +68,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

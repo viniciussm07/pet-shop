@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 import Resumo from "../ResumoPedido";
@@ -9,18 +9,33 @@ import {
   OrderContainer,
   OrderTable,
   InfoContainer,
+  FontBold,
   ButtonInverted,
 } from "../Utils/style";
 import {
   EnderecoContainer,
   EnderecoOption,
   FreteContainer,
-  Frete,
+  Radio,
 } from "./Carrinho";
+import api from "../../services/api";
+import { getIdUser } from "../../services/auth";
 
 const Carrinho = () => {
-  const [frete, setFrete] = useState("");
+  const [freteOption, setFreteOption] = useState("");
+  const [address, setAddress] = useState("");
+  const [fretePrice, setFretePrice] = useState(13.75);
+  const [addresses, setAddresses] = useState([]);
 
+  //Pegar os endereços do cliente
+  useEffect(() => {
+    const id = getIdUser();
+    const fetchAdresses = async () => {
+      const { data } = await api.get("/customer/addresses/" + id);
+      setAddresses(data);
+    };
+    fetchAdresses();
+  }, []);
   const carrinhoCompras = [
     {
       nome: "raçao 1kg",
@@ -36,88 +51,110 @@ const Carrinho = () => {
     },
   ];
 
-  const endereco = {
-    identificacao: "Endereço Principal",
-    logradouro: "Rua daqui",
-    numero: "250",
-    CEP: "1111-1111",
-    bairro: "bairro",
-    cidade: "cidade",
-    uf: "ET",
-    complemento: "",
-    referencia: "",
-  };
-
   const submitHandler = (event) => {
-    if (frete == "") {
+    if (freteOption == "") {
       event.preventDefault();
-      alert("Escolha um frete");
+      alert("Escolha um frete!");
     }
-    localStorage.setItem("Frete", frete);
+    if (address == "") {
+        event.preventDefault();
+        alert("Escolha um endereço!");
+      }
+    
   };
 
   const onChange = (e) => {
-    let frete = e.target.value;
-    setFrete(frete);
+    let freteOption = e.target.value;
+    setFreteOption(freteOption);
+    sessionStorage.setItem("Frete Option", freteOption);
+    sessionStorage.setItem("Frete Price", fretePrice);
   };
 
+  const changeAdress = (e) => {
+    let address= e.target.value;
+    setAddress(address);
+    sessionStorage.setItem("Address", address);
+  };
+
+  console.log(address);
+  console.log(freteOption);
   if (carrinhoCompras.length > 0) {
     return (
       <>
         <div>
           <InfoContainer>
-            <h5>
-              <bold>SELECIONE O ENDEREÇO</bold>
-            </h5>
-            <OrderContainer>
-              <EnderecoContainer>
-                <div>
-                  <p>
-                    <bold>{endereco.identificacao}</bold>
-                  </p>
-                  {endereco.logradouro}
-                  <br />
-                  Número: {endereco.numero}, {endereco.complemento}
-                  <br />
-                  CEP: {endereco.CEP} - {endereco.cidade}, {endereco.uf}
-                  <br />
-                </div>
-                <EnderecoOption>
-                  <a href="#">Selecionar outro </a>
-                </EnderecoOption>
-              </EnderecoContainer>
-            </OrderContainer>
+            <h4>
+              <FontBold>SELECIONE O ENDEREÇO</FontBold>
+            </h4>
+            {addresses.length > 0 &&
+              addresses.map((endereco, index) => {
+                return (
+                  <OrderContainer key={index}>
+                    <Radio>
+                      <input
+                        type="radio"
+                        id={endereco.identificacao}
+                        name="endereco"
+                        value={endereco._id}
+                        required
+                        onChange={changeAdress}
+                      />
+                      <label htmlFor={endereco.identificacao}>
+                        &nbsp;<FontBold>{endereco.identificacao}</FontBold>
+                      </label>
+                      {address == `${endereco._id }` &&
+                        <div>
+                          <br />
+                          {endereco.logradouro}
+                          <br />
+                          Número: {endereco.numero}, {endereco.complemento}
+                          <br />
+                          CEP: {endereco.cep} - {endereco.cidade},{" "}
+                          {endereco.estado}
+                          <br />
+                        </div>
+                      }
+                    </Radio>
+                  </OrderContainer>
+                );
+              })}
+
+            <ButtonContainer>
+              <Link href={"/minha-conta/adicionar-endereco"}>
+                <Button>Adicionar Endereço</Button>
+              </Link>
+            </ButtonContainer>
           </InfoContainer>
 
           <InfoContainer>
-            <h5>
-              <bold>FRETE</bold>
-            </h5>
+            <h4>
+              <FontBold>FRETE</FontBold>
+            </h4>
             <OrderContainer>
               <FreteContainer>
-                <Frete>
+                <Radio>
                   <input
                     type="radio"
                     id="correio"
                     name="frete"
-                    value="Correios"
+                    value="Correios - 7 a 10 dias úteis"
                     required
                     onChange={onChange}
                   />
                   <label htmlFor="correio">
-                    &nbsp;Correios - x a y dias úteis
+                    &nbsp;Correios - 7 a 10 dias úteis
                   </label>
-                </Frete>
+                </Radio>
 
-                <div>Preço: R$</div>
+                <div>Preço: R${fretePrice}</div>
               </FreteContainer>
             </OrderContainer>
           </InfoContainer>
 
           <InfoContainer>
-            <h5>
-              <bold>PRODUTOS</bold>
-            </h5>
+            <h4>
+              <FontBold>PRODUTOS</FontBold>
+            </h4>
             {carrinhoCompras.map((produto, index) => {
               return (
                 <OrderContainer key={index}>
@@ -127,7 +164,7 @@ const Carrinho = () => {
                         <tr>
                           <td></td>
                           <td>
-                            <bold>{produto.nome}</bold>
+                            <FontBold>{produto.nome}</FontBold>
                             <br />
                             {produto.descricao}
                           </td>
@@ -162,7 +199,7 @@ const Carrinho = () => {
         <div>
           <InfoContainer>
             <h5>
-              <bold>RESUMO</bold>
+              <FontBold>RESUMO</FontBold>
             </h5>
 
             <Resumo />
@@ -188,7 +225,7 @@ const Carrinho = () => {
       <>
         <div>
           <h5>
-            <bold>Seu carrinho está vazio!</bold>
+            <FontBold>Seu carrinho está vazio!</FontBold>
           </h5>
         </div>
       </>
