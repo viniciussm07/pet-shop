@@ -27,10 +27,16 @@ controller.getByCustomer = async (req, res) => {
 
 
 controller.post = async (req, res) => {
+    if (req.body.items.length === 0){
+        return res.status(500).send({
+            message:"Quantidade de items insuficiente",
+        });
+    }
+
     try {
         const  token = req.body.token || req.query.token || req.cookies.token || req.headers['x-access-token'];
         const tokenData = jwt.verify(token, "mySecret");
-
+        
         const data = {
             customer: tokenData.id,
             number: guid.raw().substring(0, 6),

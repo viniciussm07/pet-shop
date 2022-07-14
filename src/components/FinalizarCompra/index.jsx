@@ -11,31 +11,35 @@ import {
   ButtonInverted,
 } from "../Utils/style";
 import { useEffect, useState } from "react";
-import { getIdUser } from "../../services/auth";
+import { getIdUser, getToken } from "../../services/auth";
 import api from "../../services/api";
 import { useRouter } from "next/router";
 
 const FinalizarCompras = () => {
   const router = useRouter();
 
-  const [metodoPagamento, setMetodoPagamento] = useState("");
-  const [freteOption, setFreteOption] = useState("");
-  const [fretePrice, setFretePrice] = useState("");
+  let [metodoPagamento, setMetodoPagamento] = useState("");
+  let [freteOption, setFreteOption] = useState("");
+  let [fretePrice, setFretePrice] = useState("");
+  let [addressId, setAddressId] = useState("");
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
 
   useEffect(() => {
+    const getPayment = sessionStorage.getItem("Payment")
     const getAddress = sessionStorage.getItem("Address");
     const getFreteOption = sessionStorage.getItem("Frete Option");
+    const getFretePrice = sessionStorage.getItem("Frete Price");
     const addressId = sessionStorage.getItem("Address");
 
-    if (getAddress == null || getFreteOption == null || addressId == null) {
+    if (getAddress == null || getFreteOption == null || addressId == null|| getPayment == null) {
       alert("Dados inválidos!");
       router.push("/carrinho");
     } else {
-      setMetodoPagamento(sessionStorage.getItem("Payment"));
-      setFreteOption(sessionStorage.getItem("Frete Option"));
-      setFretePrice(sessionStorage.getItem("Frete Price"));
+      setMetodoPagamento(getPayment);
+      setFreteOption(getFreteOption);
+      setFretePrice(getFretePrice);
+      setAddressId(addressId);
 
       const id = getIdUser();
       const fetchCustomer = async () => {
@@ -52,6 +56,31 @@ const FinalizarCompras = () => {
       fetchCustomer();
     }
   }, []);
+
+  
+
+  const confirmarPedido = async () =>{
+    console.log("pagmento:", metodoPagamento);
+    console.log("freteOption:", freteOption);
+    console.log("fretePrice:", fretePrice);
+    console.log("addressId:", address._id);
+    const token = getToken();
+    const data = {
+      token:token,
+      payment: metodoPagamento,
+      address: address._id,
+      items: [],
+    };
+    if (window.confirm("Deseja realizar pedido?")) {
+      const response = await api.post("/orders/", data);
+      console.log(response);
+      if (response.status === 201) {
+        alert("Pedido Realizado");
+      } else {
+        alert("Erro ao processar pedido!");
+      }
+    }
+  }
 
   const carrinhoCompras = [
     {
@@ -153,9 +182,7 @@ const FinalizarCompras = () => {
             <Resumo />
 
             <ButtonContainer>
-              <Link href={"#"}>
-                <Button>CONFIRMAR PEDIDO</Button>
-              </Link>
+                <Button onClick={confirmarPedido}>CONFIRMAR PEDIDO</Button>
             </ButtonContainer>
             <ButtonContainer>
               <Link href={"/pagamento"}>
