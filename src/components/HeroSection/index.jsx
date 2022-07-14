@@ -29,7 +29,7 @@ const Hero = () => {
                   key={produto.slug}
                   id={produto._id}
                   price = {produto.price}
-                  destiny = {`/${produto.slug}`}
+                  destiny = {`/produto/${produto.slug}`}
                 />
               ))}
             </HeroWrapper>
