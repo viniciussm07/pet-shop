@@ -5,7 +5,6 @@ import controller from "../controllers/user-controller.js";
 const router = express.Router();
 
 router.get('/', controller.get);
-
 router.get('/:id', controller.getById);
 
 router.post('/auth/register', controller.register);
