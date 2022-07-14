@@ -40,6 +40,18 @@ controller.getByTag = async (req, res) => {
   }
 };
 
+controller.getAllTags = async (req, res) => {
+  try {
+    const data = await Product.find(
+      { active: true, tags: req.params.tag },
+      "_id title description price slug tags image"
+    );
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+}
+
 // 30:56
 controller.post = async (req, res) => {
   const product = new Product(req.body);
