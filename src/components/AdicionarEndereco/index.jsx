@@ -64,7 +64,7 @@ const AddEndereco = () => {
 
     if (response.status === 201) {
       alert("Endereço Adicionado!");
-      router.push("/minha-conta/meus-dados");
+      window.history.back();
     } else if (response.status === 200) {
       //Verificar se houve erros ao adicionar endereço
       const errors = {};
@@ -79,6 +79,10 @@ const AddEndereco = () => {
       alert("Erro ao adicionar endereço!");
     }
   };
+
+  const voltarPagina = () =>{
+    window.history.back();
+  }
 
   return (
     <>
@@ -190,9 +194,7 @@ const AddEndereco = () => {
         </Div>
       </Form>
       <ButtonContainer>
-        <Link href={"/minha-conta/meus-dados"}>
-          <ButtonInverted>Voltar</ButtonInverted>
-        </Link>
+          <ButtonInverted onClick={voltarPagina}>Voltar</ButtonInverted>
       </ButtonContainer>
     </>
   );

@@ -63,6 +63,10 @@ export default ({ produto }, props) => {
         return s.replace('.',',')
     }
 
+    function addToCart(){
+    
+    }
+
     return (
         <>
             <Navbar />
@@ -94,7 +98,7 @@ export default ({ produto }, props) => {
                                     <HiPlusSm />
                                 </Add>
                             </AddSubtractCart>
-                            <AddCart>Adicionar ao Carrinho</AddCart>
+                            <AddCart onClick={addToCart}>Adicionar ao Carrinho</AddCart>
                         </Row>
                     </Content>
                 </LayoutWrap>
