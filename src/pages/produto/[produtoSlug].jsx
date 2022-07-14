@@ -10,13 +10,10 @@ import {
     Img,
     Content,
     Title1,
-    Title2,
     Row,
-    Avaliacoes,
     Linha,
     ProductPrice,
     Description,
-    Star,
     AddCart,
     AddSubtractCart,
     Add,
@@ -81,10 +78,6 @@ export default ({ produto }, props) => {
                     </ImgWrap>
                     <Content>
                         <Title1>{produto.title}</Title1>
-                        {/* <Row>
-                            <Star color2="#FFA10A" edit={false} value={teste.avaliacao} size={30} />
-                            <Avaliacoes>(x avaliações)</Avaliacoes>
-                        </Row> */}
                         <Linha />
                         <ProductPrice>R${formatPreco(produto.price.toFixed(2).toString())}</ProductPrice>
                         <Description>{produto.description}</Description>
@@ -101,9 +94,6 @@ export default ({ produto }, props) => {
                             <AddCart>Adicionar ao Carrinho</AddCart>
                         </Row>
                     </Content>
-                </LayoutWrap>
-                <LayoutWrap bgColor="#F6F6F6" mgTop="1rem">
-                    <Title2>Avaliações</Title2>
                 </LayoutWrap>
             </LayoutContainer>
             <Footer />
