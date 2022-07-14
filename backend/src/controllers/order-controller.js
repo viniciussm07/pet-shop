@@ -15,6 +15,16 @@ controller.get = async (req, res) => {
     }
 }
 
+controller.getByNumber = async (req, res) => {
+    try {
+        const data = await Order.find({number: req.params.number})
+        .populate('customer', 'name');
+        console.log(data)
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
 
 controller.getByCustomer = async (req, res) => {
     try {
@@ -28,9 +38,13 @@ controller.getByCustomer = async (req, res) => {
 
 controller.getLastOrder = async (req, res) => {
     try {
-        console.log(req.params);
-        const data = await Order.findOne({customer: req.params.id});
-        res.status(200).send({data});
+        const data = await Order.find({customer: req.params.customer})
+        .sort({'_id':-1})
+        .limit(1)
+        .populate();
+
+        console.log(data)
+        res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error)
     }
@@ -54,7 +68,9 @@ controller.post = async (req, res) => {
             number: guid.raw().substring(0, 6),
             payment: req.body.payment,
             address: req.body.address,
+            frete: req.body.frete,
             items: req.body.items,
+            total: 0
         }
 
         var order = new Order(data);

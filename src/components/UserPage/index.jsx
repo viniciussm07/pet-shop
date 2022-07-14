@@ -30,14 +30,14 @@ const UserPage = () => {
     fetchCustomer();
 
     const fetchLastOrder = async () => {
-      const { order } = await api.get("/orders/last/" + id);
-      console.log("order", order);
-      setPedido(order);
+      const { data } = await api.get("/orders/last/" + id);
+      console.log("order", data);
+      setPedido(data[0]);
     };
     fetchLastOrder();
   }, []);
 
-  const pedidos = [];
+
   return (
     <>
       <ContainerColumn>
@@ -60,14 +60,14 @@ const UserPage = () => {
             <h4>
               <FontBold>Meus Pedidos</FontBold>
             </h4>
-            {pedidos.length > 1 && (
+            {pedido.length > 1 && (
               <Link href="/minha-conta/meus-pedidos">
                 <Button>Ver todos</Button>
               </Link>
             )}
           </StyledDiv>
 
-          {pedidos.length < 1 && (
+          {pedido.length < 1 ? (
             <ButtonContainer>
               <h6>
                 <FontBold>
@@ -76,38 +76,31 @@ const UserPage = () => {
               </h6>
               <h6>Aproveite nossas ofertas!</h6>
             </ButtonContainer>
+          ) : (
+            <OrderContainer>
+              <OrderTable>
+                <tbody>
+                  <tr>
+                    <th>NUMERO</th>
+                    <th>DATA</th>
+                    <th>VALOR</th>
+                    <th>PAGAMENTO</th>
+                    <th>STATUS</th>
+                  </tr>
+                  <tr>
+                    <td>#{pedido.number}</td>
+                    <td>{pedido.createDate.substr(0, 10)}</td>
+                    <td>{pedido.total}</td>
+                    <td>{pedido.payment}</td>
+                    <td>{pedido.status}</td>
+                  </tr>
+                </tbody>
+              </OrderTable>
+              <Link href={"/minha-conta/meus-pedidos/" + pedido.number}>
+                <Button>Detalhes</Button>
+              </Link>
+            </OrderContainer>
           )}
-
-          {pedidos.map((pedido, index) => {
-            return (
-              <OrderContainer key={index}>
-                <div>
-                  <OrderTable>
-                    <tbody>
-                      <tr>
-                        <th>NUMERO</th>
-                        <th>DATA</th>
-                        <th>VALOR</th>
-                        <th>PAGAMENTO</th>
-                        <th>STATUS</th>
-                      </tr>
-                      <tr>
-                        <td>#{pedido.numero}</td>
-                        <td>{pedido.data}</td>
-                        <td>{pedido.valor}</td>
-                        <td>{pedido.pagamento}</td>
-                        <td>{pedido.status}</td>
-                      </tr>
-                    </tbody>
-                  </OrderTable>
-                </div>
-
-                <Link href={"/minha-conta/meus-pedidos/" + pedido.numero}>
-                  <Button>Detalhes</Button>
-                </Link>
-              </OrderContainer>
-            );
-          })}
         </InfoContainer>
       </ContainerColumn>
     </>

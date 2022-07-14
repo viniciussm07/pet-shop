@@ -69,6 +69,10 @@ const FinalizarCompras = () => {
       token:token,
       payment: metodoPagamento,
       address: address._id,
+      frete:{
+        option: freteOption,
+        price: fretePrice
+      },
       items: [],
     };
     if (window.confirm("Deseja realizar pedido?")) {

@@ -164,20 +164,6 @@ controller.getAddresses = async (req, res) => {
 }
 
 
-controller.getOneAddress = async (req, res) => {
-    try {
-        const data = await User.findOne({_id:req.params.id});
-        console.log(req.body)
-        //data.addresses.findById()
-        res.status(200).json({
-            data:req.body.identificacao
-        });
-    } catch (error) {
-        res.status(400).send(error)
-    }
-}
-
-
 controller.addAddress = async (req, res) => {
     const cepExists = await User.findOne({'addresses.cep': req.body.cep});
     const idExists = await User.findOne({'addresses.identificacao': req.body.identificacao});

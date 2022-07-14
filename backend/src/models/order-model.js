@@ -32,6 +32,16 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    frete: {
+        option: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+    },
     items: [{
         quantity: {
             type: Number,
@@ -47,6 +57,11 @@ const schema = new Schema({
             ref: 'Product'
         }
     }],
+    total: {
+        type: Number,
+        required: true,
+        default:0
+    },
 });
 
 export default  mongoose.model('Order', schema);
