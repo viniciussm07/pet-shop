@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import MinhaConta from "../../components/UserPage";
+import UserPage from "../../components/UserPage"
 import {
   ContainerColumn,
   InfoContainer,
@@ -47,7 +47,7 @@ export default function Home() {
         </h3>
         <Button onClick={confirmarSair}>Sair</Button>
         <InfoContainer>
-          <MinhaConta />
+          <UserPage />
         </InfoContainer>
       </ContainerColumn>
       <Footer />

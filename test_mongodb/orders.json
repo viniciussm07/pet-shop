@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "62d006720cdd668bd2a288de"
+  },
+  "number": "8b23f3",
+  "status": "Criado",
+  "payment": "Pix",
+  "address": "62cfdc7ea1bfe73adc0e46ca",
+  "frete": {
+    "option": "Correios - 7 a 10 dias úteis",
+    "price": 13.75
+  },
+  "items": [],
+  "total": 0,
+  "createDate": {
+    "$date": {
+      "$numberLong": "1657800306283"
+    }
+  },
+  "__v": 0
+}]
