@@ -12,9 +12,9 @@ const Hero = () => {
 
   useEffect(() => {
     api.get("/").then(({data}) => {
+      console.log(data);
       setProdutos(data);
     });
-    console.log(produtos);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

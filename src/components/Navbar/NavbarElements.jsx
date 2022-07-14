@@ -131,17 +131,17 @@ const NavButton = styled.a`
 `
 
 export const LoginButton = styled(NavButton)`
-     display: ${(props) => (props.isLogged ? "none" : "flex")};
+     display: flex;
 `
 
 export const CartButton = styled(NavButton)`
-    display: ${(props) => (props.isLogged ? "flex" : "none")};
+    display: flex;
     margin: 0 20px;
     background-color: transparent;
 `
 
 export const MyAccountButton = styled(NavButton)`
-    display: ${(props) => (props.isLogged ? "flex" : "none")};
+    display: flex;
     margin: 0 20px;
 `
 
