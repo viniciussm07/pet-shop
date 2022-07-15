@@ -40,6 +40,22 @@ controller.getById = async (req, res) => {
   }
 };
 
+controller.updateById = async (req, res) => {
+  try {
+    console.log(req.body)
+    const data = await Product.findById(req.params.id);
+    const newStock = data.stock - req.body.stock
+    await Product.findOneAndUpdate({_id:req.params.id},{
+      $set: {
+        stock:newStock
+      },
+    });
+    res.status(200).send({data:newStock});
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 controller.getByTag = async (req, res) => {
   try {
     const data = await Product.find(

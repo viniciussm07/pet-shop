@@ -18,7 +18,8 @@ controller.get = async (req, res) => {
 controller.getByNumber = async (req, res) => {
     try {
         const data = await Order.find({number: req.params.number})
-        .populate('customer', 'name');
+        .populate('customer', 'name')
+        .populate('items.product')
         console.log(data)
         res.status(200).send(data);
     } catch (error) {
@@ -42,8 +43,6 @@ controller.getLastOrder = async (req, res) => {
         .sort({'_id':-1})
         .limit(1)
         .populate();
-
-        console.log(data)
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error)

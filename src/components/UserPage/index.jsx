@@ -60,14 +60,14 @@ const UserPage = () => {
             <h4>
               <FontBold>Meus Pedidos</FontBold>
             </h4>
-            {pedido.length > 1 && (
+            {pedido != "" && (
               <Link href="/minha-conta/meus-pedidos">
                 <Button>Ver todos</Button>
               </Link>
             )}
           </StyledDiv>
 
-          {pedido.length < 1 ? (
+          {pedido == "" ? (
             <ButtonContainer>
               <h6>
                 <FontBold>

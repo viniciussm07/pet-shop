@@ -74,11 +74,12 @@ const FinalizarCompras = () => {
     }
   }, []);
 
+  let total = 0;
   const confirmarPedido = async () => {
     if (metodoPagamento != "Cartão") {
-      setValorTotal(totalDiscount);
+      total = totalDiscount;
     } else {
-      setValorTotal(totalOrder);
+      total = totalOrder;
     }
 
     const token = getToken();
@@ -90,7 +91,7 @@ const FinalizarCompras = () => {
         option: freteOption,
         price: fretePrice,
       },
-      total: valorTotal,
+      total: total,
       items: cartItems,
     };
     if (window.confirm("Deseja realizar pedido?")) {
@@ -109,6 +110,17 @@ const FinalizarCompras = () => {
       } else {
         alert("Erro ao processar pedido!");
       }
+
+      cartItems.map(async (item) => {
+        const id = item.product;
+        const data = {
+          stock: item.quantity
+        }
+        console.log(data)
+        const response = await api.put("/products/update/" + id, data)
+        console.log(response);
+        
+      })
       Router.reload();
     }
   };
@@ -181,7 +193,7 @@ const FinalizarCompras = () => {
                             <br />
                           </td>
                           <td>
-                            Preço
+                            <p>Preço</p>
                             <br />
                             R${produto.quantity * produto.price}
                           </td>

@@ -14,6 +14,7 @@ router.get('/tags/:tag', controller.getByTag);
 router.post('/admin', controller.post);
 
 router.put('/admin/:id', controller.put);
+router.put('/update/:id', controller.updateById);
 
 router.delete('/admin/:id', controller.delete);
 

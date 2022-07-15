@@ -110,6 +110,11 @@ export const OrderTable = styled.table`
   border-spacing: 15px 0px;
 `;
 
+export const OrderTableMaior = styled.table`
+  border-collapse: separate;
+  border-spacing: 50px 0px;
+`;
+
 export const Input = styled.input`
   margin: 5px 0px;
   border-radius: 10px;

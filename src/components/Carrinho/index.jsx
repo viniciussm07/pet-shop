@@ -33,7 +33,6 @@ const Carrinho = () => {
   const fretePrice = 13.75;
   const [addresses, setAddresses] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [totalProducts, setTotalProducts] = useState([]);
 
   //Pegar os endereços do cliente
   useEffect(() => {
@@ -63,6 +62,11 @@ const Carrinho = () => {
       total =
         cartItems[0].price * cartItems[0].quantity;
     }
+    else{
+      cartItems.forEach(item=>{
+        total = total + (item.price * item.quantity);
+      })
+    }
 
     console.log("total aqui:", total);
     sessionStorage.setItem("TotalProducts", total);
@@ -84,16 +88,7 @@ const Carrinho = () => {
 
     sessionStorage.setItem("FreteOption", freteOption);
     sessionStorage.setItem("FretePrice", fretePrice);
-    const totalProducts = 0;
-    /*cartItems.reduce(
-      (previousValue, currentValue) =>
-        previousValue.price * previousValue.quantity +
-        currentValue.price * currentValue.quantity,
-      totalProducts
-    );
-    console.log(cartItems);*/
-
-    
+   
   };
 
   const onChange = (e) => {
