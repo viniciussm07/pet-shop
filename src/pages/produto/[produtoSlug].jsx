@@ -79,8 +79,10 @@ export default ({ produto }, props) => {
         const title = produto.title;
         const slug = produto.slug;
         const image=produto.image;
+        const stock=produto.stock;
+
         
-        const dataObj = { quantity, price, product,title , slug,image};
+        const dataObj = { quantity, price, product,title , slug,image, stock};
 
         
         const items = JSON.parse(localStorage.getItem('items'));
