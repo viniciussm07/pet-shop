@@ -7,6 +7,13 @@ export const Title = styled.h2`
   margin-bottom: 3rem;
 `;
 
+export const Title2 = styled.h3`
+  /* text-align: center; */
+  margin: 0;
+  padding: 0;
+  /* display: flex; */
+`
+
 export const ListaContainer = styled.div`
   width: 100%;
   margin-top: 1rem;
@@ -91,10 +98,11 @@ export const Trash = styled.div`
 
 export const ImgWrap = styled.div`
   width: 30%;
-  padding-right: 1rem;
+  /* padding-right: 1rem; */
+  display: flex;
 `;
 
 export const Img = styled(Image)`
-  height: 200px;
+  height: 100px;
   width: 100px;
 `;
