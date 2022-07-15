@@ -14,10 +14,7 @@ import {
   FontBold,
   ButtonInverted,
 } from "../Utils/style";
-import {
-  FreteContainer,
-  Radio,
-} from "./Carrinho";
+import { FreteContainer, Radio } from "./Carrinho";
 import {
   Add,
   AddSubtractCart,
@@ -43,38 +40,33 @@ const Carrinho = () => {
     };
     fetchAdresses();
 
-    
     const items = JSON.parse(localStorage.getItem("items"));
     if (items != null) {
       setCartItems(items);
-    } 
+    }
 
-    sessionStorage.setItem("FretePrice",0);
-    sessionStorage.setItem("TotalProducts",0);
-    sessionStorage.setItem("TotalOrder",0);
-    sessionStorage.setItem("TotalDiscount",0);
-    
+    sessionStorage.setItem("FretePrice", 0);
+    sessionStorage.setItem("TotalProducts", 0);
+    sessionStorage.setItem("TotalOrder", 0);
+    sessionStorage.setItem("TotalDiscount", 0);
   }, []);
 
-  const definirValores = () =>{
+  const definirValores = () => {
     const total = 0;
     if (cartItems.length === 1) {
-      total =
-        cartItems[0].price * cartItems[0].quantity;
-    }
-    else{
-      cartItems.forEach(item=>{
-        total = total + (item.price * item.quantity);
-      })
+      total = cartItems[0].price * cartItems[0].quantity;
+    } else {
+      cartItems.forEach((item) => {
+        total = total + item.price * item.quantity;
+      });
     }
 
-    console.log("total aqui:", total);
+
     sessionStorage.setItem("TotalProducts", total);
     const totalOrder = total + fretePrice;
     sessionStorage.setItem("TotalOrder", totalOrder);
-    sessionStorage.setItem("TotalDiscount", totalOrder*0.9);
-
-  }
+    sessionStorage.setItem("TotalDiscount", totalOrder * 0.9);
+  };
 
   const submitHandler = (event) => {
     if (freteOption == "") {
@@ -88,7 +80,6 @@ const Carrinho = () => {
 
     sessionStorage.setItem("FreteOption", freteOption);
     sessionStorage.setItem("FretePrice", fretePrice);
-   
   };
 
   const onChange = (e) => {
@@ -96,7 +87,6 @@ const Carrinho = () => {
     setFreteOption(freteOption);
     sessionStorage.setItem("FreteOption", freteOption);
     sessionStorage.setItem("FretePrice", fretePrice);
-
   };
 
   const changeAdress = (e) => {
@@ -107,21 +97,14 @@ const Carrinho = () => {
 
   const removerItem = (e, param) => {
     e.preventDefault();
-    console.log("a ser removido:", cartItems[param]);
-    //cartItems.splice(param, 1);
-    console.log("removido:", cartItems);
 
     if (cartItems[1] == undefined) {
       localStorage.removeItem("items");
-      Router.reload();
     } else if (cartItems[2] == undefined) {
-      console.log("só tem dois elementos");
       cartItems.splice(param, 1);
-      console.log("sobrou:", cartItems[0]);
 
       console.log(cartItems[0]);
       localStorage.setItem("items", JSON.stringify([cartItems[0]]));
-      Router.reload();
     } else {
       cartItems.splice(param, 1);
       localStorage.removeItem("items");
@@ -136,28 +119,26 @@ const Carrinho = () => {
           JSON.stringify([...JSON.parse(localStorage.getItem("items")), item])
         );
       });
-      Router.reload();
     }
-    //localStorage.setItem("items",  JSON.stringify(cartItems));
+    Router.reload();
   };
 
   function addQuantidade(e, param) {
     const quantidade = cartItems[param].quantity + 1;
-    console.log("quantidade", quantidade);
     if (quantidade <= cartItems[param].stock) {
       cartItems[param].quantity = quantidade;
+      setCartItems(cartItems);
+      atualizarQuant();
     }
-    setCartItems(cartItems);
-    atualizarQuant();
   }
 
   function subQuantidade(e, param) {
     const quantidade = cartItems[param].quantity - 1;
     if (quantidade >= 1) {
       cartItems[param].quantity = quantidade;
+      setCartItems(cartItems);
+      atualizarQuant();
     }
-    setCartItems(cartItems);
-    atualizarQuant();
   }
 
   const atualizarQuant = () => {

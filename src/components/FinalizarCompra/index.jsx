@@ -121,7 +121,7 @@ const FinalizarCompras = () => {
         console.log(response);
         
       })
-      Router.reload();
+      router.push("/minha-conta/meus-pedidos");
     }
   };
 
