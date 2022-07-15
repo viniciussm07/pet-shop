@@ -33,6 +33,7 @@ const Carrinho = () => {
   const fretePrice = 13.75;
   const [addresses, setAddresses] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [totalProducts, setTotalProducts] = useState([]);
 
   //Pegar os endereços do cliente
   useEffect(() => {
@@ -43,11 +44,33 @@ const Carrinho = () => {
     };
     fetchAdresses();
 
+    
     const items = JSON.parse(localStorage.getItem("items"));
     if (items != null) {
       setCartItems(items);
-    }
+    } 
+
+    sessionStorage.setItem("FretePrice",0);
+    sessionStorage.setItem("TotalProducts",0);
+    sessionStorage.setItem("TotalOrder",0);
+    sessionStorage.setItem("TotalDiscount",0);
+    
   }, []);
+
+  const definirValores = () =>{
+    const total = 0;
+    if (cartItems.length === 1) {
+      total =
+        cartItems[0].price * cartItems[0].quantity;
+    }
+
+    console.log("total aqui:", total);
+    sessionStorage.setItem("TotalProducts", total);
+    const totalOrder = total + fretePrice;
+    sessionStorage.setItem("TotalOrder", totalOrder);
+    sessionStorage.setItem("TotalDiscount", totalOrder*0.9);
+
+  }
 
   const submitHandler = (event) => {
     if (freteOption == "") {
@@ -58,13 +81,27 @@ const Carrinho = () => {
       event.preventDefault();
       alert("Escolha um endereço!");
     }
+
+    sessionStorage.setItem("FreteOption", freteOption);
+    sessionStorage.setItem("FretePrice", fretePrice);
+    const totalProducts = 0;
+    /*cartItems.reduce(
+      (previousValue, currentValue) =>
+        previousValue.price * previousValue.quantity +
+        currentValue.price * currentValue.quantity,
+      totalProducts
+    );
+    console.log(cartItems);*/
+
+    
   };
 
   const onChange = (e) => {
     let freteOption = e.target.value;
     setFreteOption(freteOption);
-    sessionStorage.setItem("Frete Option", freteOption);
-    sessionStorage.setItem("Frete Price", fretePrice);
+    sessionStorage.setItem("FreteOption", freteOption);
+    sessionStorage.setItem("FretePrice", fretePrice);
+
   };
 
   const changeAdress = (e) => {
@@ -141,6 +178,7 @@ const Carrinho = () => {
         JSON.stringify([...JSON.parse(localStorage.getItem("items")), item])
       );
     });
+    definirValores();
     Router.reload();
   };
 
@@ -155,7 +193,7 @@ const Carrinho = () => {
   if (cartItems != "") {
     return (
       <>
-        <div>
+        <div onLoad={definirValores}>
           <InfoContainer>
             <h4>
               <FontBold>SELECIONE O ENDEREÇO</FontBold>

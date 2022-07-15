@@ -28,7 +28,7 @@ const Pagamento = () => {
     cpf: "",
   });
 
-   //Pegar os items do carrinho
+   //Pegar os items do cliente
    useEffect(() => {
     const items = JSON.parse(localStorage.getItem("items"));
     if (items != null) {

@@ -1,36 +1,41 @@
+import Router from "next/router";
 import { useEffect, useState } from "react";
 import { OrderContainer, bold } from "../Utils/style";
 
 
 
 export const Resumo = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [fretePrice, setFretePrice] = useState(0);
+  let [fretePrice, setFretePrice] = useState(0);
+  let [totalProducts, setTotalProducts] = useState(0);
+  let [totalOrder, setTotalOrder] = useState(0);
+  let [totalDiscount, setTotalDiscount] = useState(0);
 
   //Pegar os endereços do cliente
   useEffect(() => {
-    const frete = sessionStorage.getItem("Frete Price");
+    const frete = sessionStorage.getItem("FretePrice");
+    const totalProducts = sessionStorage.getItem("TotalProducts");
+    const totalOrder = sessionStorage.getItem("TotalOrder");
+    const totalDiscount = sessionStorage.getItem("TotalDiscount");
     setFretePrice(frete);
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items != null) {
-      setCartItems(items);
-    }
+    setTotalProducts(parseFloat(totalProducts));
+    setTotalOrder(parseFloat(totalOrder));
+    setTotalDiscount(parseFloat(totalDiscount));
+
+    
   }, []);
-
-  console.log("itens:",cartItems)
-
+  
   return (
     <>
-      <div>
+      <div onLoad={()=>{Router.reload()}}>
         <br />
-        Valor dos produtos: R$ <br />
+        Valor dos produtos: R${totalProducts} <br />
         Frete: R${fretePrice}<br />
         <hr />
-        Total a prazo: R$ <br />
+        Total a prazo: R$ {totalOrder}<br />
         <OrderContainer>
           Valor a vista:
           <h4>
-            <bold>&nbsp;R$</bold>
+            <bold>&nbsp;R${totalDiscount.toFixed(2)}</bold>
           </h4>
           <br />
           (10% de desconto <br />

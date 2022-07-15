@@ -70,7 +70,7 @@ controller.post = async (req, res) => {
             address: req.body.address,
             frete: req.body.frete,
             items: req.body.items,
-            total: 0
+            total: req.body.total
         }
 
         var order = new Order(data);

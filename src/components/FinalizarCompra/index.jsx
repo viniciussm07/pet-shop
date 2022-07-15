@@ -20,15 +20,18 @@ import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { getIdUser, getToken } from "../../services/auth";
 import api from "../../services/api";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 const FinalizarCompras = () => {
   const router = useRouter();
 
-  let [metodoPagamento, setMetodoPagamento] = useState("");
-  let [freteOption, setFreteOption] = useState("");
-  let [fretePrice, setFretePrice] = useState("");
-  let [addressId, setAddressId] = useState("");
+  const [metodoPagamento, setMetodoPagamento] = useState("");
+  const [freteOption, setFreteOption] = useState("");
+  const [fretePrice, setFretePrice] = useState("");
+  const [addressId, setAddressId] = useState("");
+  const [totalOrder, setTotalOrder] = useState("");
+  const [totalDiscount, setTotalDiscount] = useState("");
+  const [valorTotal, setValorTotal] = useState("");
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
   const [cartItems, setCartItems] = useState([]);
@@ -36,13 +39,18 @@ const FinalizarCompras = () => {
   useEffect(() => {
     const getPayment = sessionStorage.getItem("Payment");
     const getAddress = sessionStorage.getItem("Address");
-    const getFreteOption = sessionStorage.getItem("Frete Option");
-    const getFretePrice = sessionStorage.getItem("Frete Price");
+    const getFreteOption = sessionStorage.getItem("FreteOption");
+    const getFretePrice = sessionStorage.getItem("FretePrice");
+    const getTotalOrder = sessionStorage.getItem("TotalOrder");
+    const getTotalDiscount = sessionStorage.getItem("TotalDiscount");
+
     const addressId = sessionStorage.getItem("Address");
 
     setMetodoPagamento(getPayment);
     setFreteOption(getFreteOption);
     setFretePrice(getFretePrice);
+    setTotalOrder(getTotalOrder);
+    setTotalDiscount(getTotalDiscount);
     setAddressId(addressId);
 
     const id = getIdUser();
@@ -67,10 +75,12 @@ const FinalizarCompras = () => {
   }, []);
 
   const confirmarPedido = async () => {
-    console.log("pagmento:", metodoPagamento);
-    console.log("freteOption:", freteOption);
-    console.log("fretePrice:", fretePrice);
-    console.log("addressId:", address._id);
+    if (metodoPagamento != "Cartão") {
+      setValorTotal(totalDiscount);
+    } else {
+      setValorTotal(totalOrder);
+    }
+
     const token = getToken();
     const data = {
       token: token,
@@ -80,7 +90,7 @@ const FinalizarCompras = () => {
         option: freteOption,
         price: fretePrice,
       },
-      total: 100,
+      total: valorTotal,
       items: cartItems,
     };
     if (window.confirm("Deseja realizar pedido?")) {
@@ -88,9 +98,18 @@ const FinalizarCompras = () => {
       console.log(response);
       if (response.status === 201) {
         alert("Pedido Realizado");
+        sessionStorage.removeItem("Payment");
+        sessionStorage.removeItem("Address");
+        sessionStorage.removeItem("FreteOption");
+        sessionStorage.removeItem("FretePrice");
+        sessionStorage.removeItem("TotalOrder");
+        sessionStorage.removeItem("TotalDiscount");
+        sessionStorage.removeItem("TotalProducts");
+        localStorage.removeItem("items");
       } else {
         alert("Erro ao processar pedido!");
       }
+      Router.reload();
     }
   };
 
