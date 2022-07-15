@@ -55,15 +55,15 @@ controller.post = async (req, res) => {
   const product = new Product(req.body);
   try {
     await product.save();
+    res.status(201).send({
+      message: "Produto cadastrado.",
+    });
   } catch (error) {
     res.status(400).send({
       message: "Falha no cadastro.",
       data: error,
     });
   }
-  res.status(201).send({
-    message: "Produto cadastrado.",
-  });
 };
 
 controller.put = async (req, res) => {
