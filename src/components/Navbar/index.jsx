@@ -1,71 +1,88 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import {
-    Nav,
-    NavbarContainer1,
-    NavbarContainer2,
-    NavLogoWrap,
-    Logo,
-    Search,
-    Label,
-    InputWrap,
-    Input,
-    NavMenu,
-    MenuButton,
-    LoginButton,
-    CartButton,
-    MyAccountButton,
-    WrapButtons
-} from './NavbarElements.jsx'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
-import { getIsLoggedIn } from '../../services/auth.js'
-import { LOGGEDIN } from '../../services/auth.js'
+  Nav,
+  NavbarContainer1,
+  NavbarContainer2,
+  NavLogoWrap,
+  Logo,
+  Search,
+  Label,
+  InputWrap,
+  Input,
+  NavMenu,
+  MenuButton,
+  LoginButton,
+  CartButton,
+  MyAccountButton,
+  WrapButtons,
+} from "./NavbarElements.jsx";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { getIsLoggedIn } from "../../services/auth.js";
+import { LOGGEDIN } from "../../services/auth.js";
 
 const Navbar = () => {
-    const [loggedNav, setLoggedNav] = useState(false);
+  const [loggedNav, setLoggedNav] = useState(false);
+  const [numItems, setNumItems] = useState("");
 
-    const changeNav = () => {
-        if(getIsLoggedIn() == 'true'){
-            setLoggedNav(true);
-        } else{
-            setLoggedNav(false);
-        }
+  const changeNav = () => {
+    if (getIsLoggedIn() == "true") {
+      setLoggedNav(true);
+    } else {
+      setLoggedNav(false);
     }
+  };
 
-    useEffect(() => {
-        changeNav();
-    }, [LOGGEDIN])
+  useEffect(() => {
+    const getItems = localStorage.getItem("items");
+    console.log(getItems);
+    if (getItems == "") {
+      localStorage.removeItem("items");
+    } else {
+      const items = JSON.parse(localStorage.getItem("items"));
+      if (items != null) {
+        console.log(items.length);
+        setNumItems(items.length);
+      }
+    }
+    changeNav();
+  }, [LOGGEDIN]);
 
-    return (
-        <>
-            <Nav>
-                <NavbarContainer1>
-                    <NavLogoWrap href="/">
-                        <Logo>
-                            Pet Shop
-                        </Logo>
-                    </NavLogoWrap>
-                    <Search>
-                        <Label/>
-                        <InputWrap>
-                            <Input placeholder='Pesquisar'/>
-                        </InputWrap>
-                    </Search>
-                    <WrapButtons>
-                        { loggedNav ? null : <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>}
-                        {loggedNav ? <CartButton href="/carrinho"><AiOutlineShoppingCart size={30} color="#FFA10A"/></CartButton> : null}
-                        {loggedNav ? <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton> : null}
-                    </WrapButtons>
-                </NavbarContainer1>
-                <NavbarContainer2>
-                    <NavMenu>
-                        <MenuButton href="/animal/cachorro">Cachorro</MenuButton>
-                        <MenuButton href="/animal/gato">Gato</MenuButton>
-                        <MenuButton href="/animal/passaro">Pássaro</MenuButton>
-                    </NavMenu>
-                </NavbarContainer2>
-            </Nav>
-        </>
-    )
-}
+  return (
+    <>
+      <Nav>
+        <NavbarContainer1>
+          <NavLogoWrap href="/">
+            <Logo>Pet Shop</Logo>
+          </NavLogoWrap>
+          <Search>
+            <Label />
+            <InputWrap>
+              <Input placeholder="Pesquisar" />
+            </InputWrap>
+          </Search>
+          <WrapButtons>
+            {loggedNav ? null : (
+              <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
+            )}
+            <CartButton href="/carrinho">
+              <AiOutlineShoppingCart size={30} color="#FFA10A" />
+              {numItems}
+            </CartButton>
+            {loggedNav ? (
+              <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton>
+            ) : null}
+          </WrapButtons>
+        </NavbarContainer1>
+        <NavbarContainer2>
+          <NavMenu>
+            <MenuButton href="/animal/cachorro">Cachorro</MenuButton>
+            <MenuButton href="/animal/gato">Gato</MenuButton>
+            <MenuButton href="/animal/passaro">Pássaro</MenuButton>
+          </NavMenu>
+        </NavbarContainer2>
+      </Nav>
+    </>
+  );
+};
 
-export default Navbar
+export default Navbar;

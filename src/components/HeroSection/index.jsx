@@ -28,6 +28,7 @@ const Hero = () => {
                   key={produto.slug}
                   id={produto._id}
                   price = {produto.price}
+                  stock = {produto.stock}
                   destiny = {`/produto/${produto.slug}`}
                 />
               ))}

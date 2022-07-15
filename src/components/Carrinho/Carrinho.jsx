@@ -17,6 +17,6 @@ export const FreteContainer = styled.div`
   width: 100%;
 `;
 
-export const Frete = styled.div`
+export const Radio = styled.div`
   width: 70%;
 `;

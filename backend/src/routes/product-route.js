@@ -7,10 +7,9 @@ const router = express.Router();
 router.get('/', controller.getActive);
 
 router.get('/:slug', controller.getBySlug);
+router.get('/get/:id', controller.getById);
 
 router.get('/tags/:tag', controller.getByTag);
-
-// router.get('/tags', controller.getAllTags);
 
 router.post('/admin', controller.post);
 

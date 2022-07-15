@@ -107,7 +107,7 @@ export const OrderContainer = styled.div`
 
 export const OrderTable = styled.table`
   border-collapse: separate;
-  border-spacing: 25px 0;
+  border-spacing: 15px 0px;
 `;
 
 export const Input = styled.input`

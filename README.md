@@ -6,17 +6,17 @@ Vinicius Soares Martins - 11794907
 
 Érica Ribeiro Filgueira dos Santos - 11836351
 
-## Para ver o site em produção clique [aqui](https://pet-shop-olive.vercel.app/)
-
 ## Quick Start
 
-After downloading the project open a terminal and type
+### 1. Clone the project
 
-`yarn install or npm -i`
+### 2. Install mongodb in your machine or use a cloud solution based in mongodb and set his URI in `/backend/src/app.js` 
+  
+  obs.: jsons to populate the database are in /test_mongodb
 
-`yarn dev or npm run dev`
+### 3. Run the backend `yarn install or npm -i` and `yarn dev or npm run dev` in `/backend`
 
-
+### 4. Run the frontend `yarn install or npm -i` and `yarn dev or npm run dev` in root
 
 ## Navigation Diagram
 
@@ -82,7 +82,7 @@ Product/services records include, at least: name, id, photo, description, price,
 ### Project Description
 
 - O projeto consiste no desenvolvimento de uma loja online para um pet shop.
-Nessa loja, o cliente é levado primeiramente a uma homepage que mostra alguns produtos disponíveis para compra, e de onde ele pode ser levado às páginas de produtos para cachorro, gato ou pássaros; além disso, ao escolher um brinquedo para comprar, o cliente pode ouvir os barulhos que ele faz para saber como o seu pet irá reagir a ele.
+Nessa loja, o cliente é levado primeiramente a uma homepage que mostra alguns produtos disponíveis para compra, e de onde ele pode ser levado às páginas de produtos para cachorro, gato ou pássaros;
 
 
 ### Test Plan

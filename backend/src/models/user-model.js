@@ -79,4 +79,4 @@ const schema = new Schema({
     }
 });
 
-export default mongoose.model('Customer', schema);
+export default mongoose.model('User', schema);

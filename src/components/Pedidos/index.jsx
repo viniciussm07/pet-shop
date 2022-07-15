@@ -1,85 +1,77 @@
-import Link from 'next/link'
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { getIdUser } from "../../services/auth";
 
-import {Button, OrderContainer, OrderTable, InfoContainer, bold} from '../Utils/style'
-
+import {
+  Button,
+  OrderContainer,
+  OrderTable,
+  InfoContainer,
+  bold,
+} from "../Utils/style";
 
 export const Pedidos = () => {
-    const pedidos = [
-        {
-            numero: '000000',
-            data:'27/03/2022',
-            valor: 300.50,
-            pagamento: 'boleto',
-            status: 'entregue'
-        },
-        {
-            numero: '111111',
-            data:'26/03/2022',
-            valor: 30.50,
-            pagamento: 'boleto',
-            status: 'enviado'
-        },
-        {
-            numero: '222222',
-            data:'26/08/2022',
-            valor: 350.00,
-            pagamento: 'boleto',
-            status: 'enviado'
-        }
+  const [meusPedidos, setMeusPedidos] = useState([]);
+  useEffect(() => {
+    const id = getIdUser();
+    const fetchCustomer = async () => {
+      const { data } = await api.get("/orders/" + id);
+      console.log(data);
+      setMeusPedidos(data);
+    };
+    fetchCustomer();
+  }, []);
 
-    ]
-    if(pedidos.length > 0){
-        return (
-            <>
-                <div>
-                    <InfoContainer> 
-                        {pedidos.map((pedido, index) => {
-                        return(
-                        <OrderContainer key = {index}> 
-                            <div>
-                            <OrderTable >
-                                <tbody>
-                                <tr>
-                                    <th>NUMERO</th>
-                                    <th>DATA</th>
-                                    <th>VALOR</th>
-                                    <th>PAGAMENTO</th>
-                                    <th>STATUS</th>
-                                </tr>  
-                                <tr>
-                                    <td>#{pedido.numero}</td>
-                                    <td>{pedido.data}</td>
-                                    <td>{pedido.valor}</td>
-                                    <td>{pedido.pagamento}</td>
-                                    <td>{pedido.status}</td>
-                                </tr>
-                                </tbody>
-                            </OrderTable> 
-                            </div>
-                            
-                            <Link href={"/minha-conta/meus-pedidos/"+pedido.numero}><Button >Detalhes</Button></Link>
-                        </OrderContainer>
-                        );
-                        }
-        
-                        )}
-                    </InfoContainer>
-                </div>
-            </>
-                
-        )
-    }
-    else{
-        return (
-            <>
-                <div>
-                    <h5><bold><p>Você ainda não fez nenhum pedido.</p></bold></h5>
-                    <h5>Aproveite nossas ofertas!</h5>
-                </div>
-            </>
-        )
-    }
-    
-}
+  return (
+    <>
+      <div>
+        {meusPedidos != "" ? (
+          <InfoContainer>
+            {meusPedidos.map((pedido, index) => {
+              return (
+                <OrderContainer key={index}>
+                  <div>
+                    <OrderTable>
+                      <tbody>
+                        <tr>
+                          <th>NUMERO</th>
+                          <th>DATA</th>
+                          <th>VALOR</th>
+                          <th>PAGAMENTO</th>
+                          <th>STATUS</th>
+                        </tr>
+                        <tr>
+                          <td>#{pedido.number}</td>
+                          <td>{pedido.createDate.substr(0, 10)}</td>
+                          <td>{pedido.total}</td>
+                          <td>{pedido.payment}</td>
+                          <td>{pedido.status}</td>
+                        </tr>
+                      </tbody>
+                    </OrderTable>
+                  </div>
+
+                  <Link href={"/minha-conta/meus-pedidos/" + pedido.number}>
+                    <Button>Detalhes</Button>
+                  </Link>
+                </OrderContainer>
+              );
+            })}
+          </InfoContainer>
+        ) : (
+          <div>
+            <h5>
+              <bold>
+                <p>Você ainda não fez nenhum pedido.</p>
+              </bold>
+            </h5>
+            <h5>Aproveite nossas ofertas!</h5>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
 
 export default Pedidos;

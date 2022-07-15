@@ -1,5 +1,7 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import api from "../../services/api";
+import { getIdUser } from "../../services/auth";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import Resumo from "../ResumoPedido";
 
@@ -9,146 +11,277 @@ import {
   OrderContainer,
   OrderTable,
   InfoContainer,
+  FontBold,
   ButtonInverted,
 } from "../Utils/style";
 import {
   EnderecoContainer,
   EnderecoOption,
   FreteContainer,
-  Frete,
+  Radio,
 } from "./Carrinho";
+import {
+  Add,
+  AddSubtractCart,
+  Row,
+  Subtract,
+} from "../Produto/ProdutoLayout/ProdutoLayoutElements";
+import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 
 const Carrinho = () => {
-  const [frete, setFrete] = useState("");
+  const router = useRouter();
+  const [freteOption, setFreteOption] = useState("");
+  const [address, setAddress] = useState("");
+  const fretePrice = 13.75;
+  const [addresses, setAddresses] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
-  const carrinhoCompras = [
-    {
-      nome: "raçao 1kg",
-      descricao: "ração para cachorro",
-      preco: 10.5,
-      estoque: 10,
-    },
-    {
-      nome: "brinquedo",
-      descricao: "brinquedo para cachorro",
-      preco: 35.0,
-      estoque: 10,
-    },
-  ];
+  //Pegar os endereços do cliente
+  useEffect(() => {
+    const id = getIdUser();
+    const fetchAdresses = async () => {
+      const { data } = await api.get("/customer/addresses/" + id);
+      setAddresses(data);
+    };
+    fetchAdresses();
 
-  const endereco = {
-    identificacao: "Endereço Principal",
-    logradouro: "Rua daqui",
-    numero: "250",
-    CEP: "1111-1111",
-    bairro: "bairro",
-    cidade: "cidade",
-    uf: "ET",
-    complemento: "",
-    referencia: "",
-  };
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items != null) {
+      setCartItems(items);
+    }
+  }, []);
 
   const submitHandler = (event) => {
-    if (frete == "") {
+    if (freteOption == "") {
       event.preventDefault();
-      alert("Escolha um frete");
+      alert("Escolha um frete!");
     }
-    localStorage.setItem("Frete", frete);
+    if (address == "") {
+      event.preventDefault();
+      alert("Escolha um endereço!");
+    }
   };
 
   const onChange = (e) => {
-    let frete = e.target.value;
-    setFrete(frete);
+    let freteOption = e.target.value;
+    setFreteOption(freteOption);
+    sessionStorage.setItem("Frete Option", freteOption);
+    sessionStorage.setItem("Frete Price", fretePrice);
   };
 
-  if (carrinhoCompras.length > 0) {
+  const changeAdress = (e) => {
+    let address = e.target.value;
+    setAddress(address);
+    sessionStorage.setItem("Address", address);
+  };
+
+  const removerItem = (e, param) => {
+    e.preventDefault();
+    console.log("a ser removido:", cartItems[param]);
+    //cartItems.splice(param, 1);
+    console.log("removido:", cartItems);
+
+    if (cartItems[1] == undefined) {
+      localStorage.removeItem("items");
+      Router.reload();
+    } else if (cartItems[2] == undefined) {
+      console.log("só tem dois elementos");
+      cartItems.splice(param, 1);
+      console.log("sobrou:", cartItems[0]);
+
+      console.log(cartItems[0]);
+      localStorage.setItem("items", JSON.stringify([cartItems[0]]));
+      Router.reload();
+    } else {
+      cartItems.splice(param, 1);
+      localStorage.removeItem("items");
+      localStorage.setItem("items", JSON.stringify([cartItems[0]]));
+      cartItems.splice(0, 1);
+
+      cartItems.map((item) => {
+        // Copiando o array existente no localstorage e readicionando os objetos.
+        localStorage.setItem(
+          "items",
+          // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
+          JSON.stringify([...JSON.parse(localStorage.getItem("items")), item])
+        );
+      });
+      Router.reload();
+    }
+    //localStorage.setItem("items",  JSON.stringify(cartItems));
+  };
+
+  function addQuantidade(e, param) {
+    const quantidade = cartItems[param].quantity + 1;
+    console.log("quantidade", quantidade);
+    if (quantidade <= cartItems[param].stock) {
+      cartItems[param].quantity = quantidade;
+    }
+    setCartItems(cartItems);
+    atualizarQuant();
+  }
+
+  function subQuantidade(e, param) {
+    const quantidade = cartItems[param].quantity - 1;
+    if (quantidade >= 1) {
+      cartItems[param].quantity = quantidade;
+    }
+    setCartItems(cartItems);
+    atualizarQuant();
+  }
+
+  const atualizarQuant = () => {
+    localStorage.removeItem("items");
+    localStorage.setItem("items", JSON.stringify([cartItems[0]]));
+    cartItems.splice(0, 1);
+
+    cartItems.map((item) => {
+      // Copiando o array existente no localstorage e readicionando os objetos.
+      localStorage.setItem(
+        "items",
+        // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
+        JSON.stringify([...JSON.parse(localStorage.getItem("items")), item])
+      );
+    });
+    Router.reload();
+  };
+
+  const style = {
+    cursor: "default",
+    color: "transparent",
+    textShadow: "0px 0px black",
+  };
+
+  console.log(cartItems);
+
+  if (cartItems != "") {
     return (
       <>
         <div>
           <InfoContainer>
-            <h5>
-              <bold>SELECIONE O ENDEREÇO</bold>
-            </h5>
-            <OrderContainer>
-              <EnderecoContainer>
-                <div>
-                  <p>
-                    <bold>{endereco.identificacao}</bold>
-                  </p>
-                  {endereco.logradouro}
-                  <br />
-                  Número: {endereco.numero}, {endereco.complemento}
-                  <br />
-                  CEP: {endereco.CEP} - {endereco.cidade}, {endereco.uf}
-                  <br />
-                </div>
-                <EnderecoOption>
-                  <a href="#">Selecionar outro </a>
-                </EnderecoOption>
-              </EnderecoContainer>
-            </OrderContainer>
+            <h4>
+              <FontBold>SELECIONE O ENDEREÇO</FontBold>
+            </h4>
+            {addresses != "" &&
+              addresses.map((endereco, index) => {
+                return (
+                  <OrderContainer key={index}>
+                    <Radio>
+                      <input
+                        type="radio"
+                        id={endereco.identificacao}
+                        name="endereco"
+                        value={endereco._id}
+                        required
+                        onChange={changeAdress}
+                      />
+                      <label htmlFor={endereco.identificacao}>
+                        &nbsp;<FontBold>{endereco.identificacao}</FontBold>
+                      </label>
+                      {address == `${endereco._id}` && (
+                        <div>
+                          <br />
+                          {endereco.logradouro}
+                          <br />
+                          Número: {endereco.numero}, {endereco.complemento}
+                          <br />
+                          CEP: {endereco.cep} - {endereco.cidade},{" "}
+                          {endereco.estado}
+                          <br />
+                        </div>
+                      )}
+                    </Radio>
+                  </OrderContainer>
+                );
+              })}
+
+            <ButtonContainer>
+              <Link href={"/minha-conta/adicionar-endereco"}>
+                <Button>Adicionar Endereço</Button>
+              </Link>
+            </ButtonContainer>
           </InfoContainer>
 
           <InfoContainer>
-            <h5>
-              <bold>FRETE</bold>
-            </h5>
+            <h4>
+              <FontBold>FRETE</FontBold>
+            </h4>
             <OrderContainer>
               <FreteContainer>
-                <Frete>
+                <Radio>
                   <input
                     type="radio"
                     id="correio"
                     name="frete"
-                    value="Correios"
+                    value="Correios - 7 a 10 dias úteis"
                     required
                     onChange={onChange}
                   />
                   <label htmlFor="correio">
-                    &nbsp;Correios - x a y dias úteis
+                    &nbsp;Correios - 7 a 10 dias úteis
                   </label>
-                </Frete>
+                </Radio>
 
-                <div>Preço: R$</div>
+                <div>Preço: R${fretePrice}</div>
               </FreteContainer>
             </OrderContainer>
           </InfoContainer>
 
           <InfoContainer>
-            <h5>
-              <bold>PRODUTOS</bold>
-            </h5>
-            {carrinhoCompras.map((produto, index) => {
+            <h4>
+              <FontBold>PRODUTOS</FontBold>
+            </h4>
+            {cartItems.map((produto, index) => {
               return (
                 <OrderContainer key={index}>
                   <div>
                     <OrderTable>
                       <tbody>
                         <tr>
-                          <td></td>
                           <td>
-                            <bold>{produto.nome}</bold>
+                            <img src={produto.image} width="50px"></img>
+                          </td>
+                          <td>
+                            <a href={"/produto/" + produto.slug}>
+                              <FontBold>{produto.title}</FontBold>
+                            </a>
                             <br />
-                            {produto.descricao}
                           </td>
                           <td>
                             Quantidade
+                            <Row>
+                              <AddSubtractCart>
+                                <Subtract
+                                  onClick={(event) => {
+                                    subQuantidade(event, index);
+                                  }}
+                                >
+                                  <HiMinusSm />
+                                </Subtract>
+                                {produto.quantity}
+                                <Add
+                                  onClick={(event) => {
+                                    addQuantidade(event, index);
+                                  }}
+                                >
+                                  <HiPlusSm />
+                                </Add>
+                              </AddSubtractCart>
+                            </Row>
                             <br />
-                            <input
-                              type="number"
-                              name="quantidade"
-                              id="quant"
-                              placeholder={1}
-                              min={1}
-                              max={produto.estoque}
-                            />
-                            <br />
-                            <a href="#">Remover</a>
+                            <a
+                              href=""
+                              onClick={(event) => {
+                                removerItem(event, index);
+                              }}
+                            >
+                              Remover
+                            </a>
                           </td>
                           <td>
                             Preço
                             <br />
-                            R${produto.preco}
+                            R${produto.quantity * produto.price}
                           </td>
                         </tr>
                       </tbody>
@@ -161,9 +294,9 @@ const Carrinho = () => {
         </div>
         <div>
           <InfoContainer>
-            <h5>
-              <bold>RESUMO</bold>
-            </h5>
+            <h4>
+              <FontBold>RESUMO</FontBold>
+            </h4>
 
             <Resumo />
 
@@ -188,7 +321,7 @@ const Carrinho = () => {
       <>
         <div>
           <h5>
-            <bold>Seu carrinho está vazio!</bold>
+            <FontBold>Seu carrinho está vazio!</FontBold>
           </h5>
         </div>
       </>
