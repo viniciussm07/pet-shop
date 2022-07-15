@@ -31,13 +31,13 @@ export default function EditarProdutos() {
         <Title>Editar Produto</Title>
         <WrapColumn>
           <ListaWrap>
-            <Row>
+            <Row height="auto" padding="0 0 4rem 0">
               <Column align="center">
-                <ImgWrap>
+                <ImgWrap width="50%">
                   <Img
                     src={"/images/produtos/brinquedo-1.webp"}
-                    height={100}
-                    width={100}
+                    height={200}
+                    width={200}
                   />
                 </ImgWrap>
                 <Title2>Teste</Title2>
@@ -56,6 +56,11 @@ export default function EditarProdutos() {
                   </Form>
                 </FormContent>
               </Column>
+            </Row>
+            <Row height="auto">
+                <Column align="center">
+                    <EditButton>Salvar</EditButton>
+                </Column>
             </Row>
           </ListaWrap>
         </WrapColumn>

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import Link from 'next/link'
 
 export const Container = styled.div`
     min-height:692px;
@@ -57,7 +56,6 @@ export const FormLabel = styled.label`
 
 export const FormInput = styled.input`
     padding:6px 6px;
-    margin-bottom:32px;
     border:none;
     border-radius: 4px;
     background-color: #b6decf;

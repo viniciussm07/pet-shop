@@ -32,7 +32,7 @@ export const ListaWrap = styled.div`
   align-items: center;
   border-radius: 1rem;
   padding-top: 2.5rem;
-  min-height: 500px;
+  /* min-height: 400px; */
 `;
 
 export const Content = styled.div`
@@ -48,6 +48,7 @@ export const Row = styled.div`
   width: ${(props) => (props.width ? props.width : "80%")};
   align-items: center;
   height: ${(props) => (props.height ? props.height : "6rem")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 export const Column = styled.div`
@@ -97,7 +98,7 @@ export const Trash = styled.div`
 `;
 
 export const ImgWrap = styled.div`
-  width: 30%;
+  width: ${(props) => (props.width ? props.width : "30%")};
   /* padding-right: 1rem; */
   display: flex;
 `;

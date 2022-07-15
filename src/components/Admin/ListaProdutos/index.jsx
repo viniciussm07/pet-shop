@@ -47,7 +47,7 @@ export default function ListaProdutos() {
         <WrapColumn>
           <ListaWrap>
             {produtos?.map((produto) => (
-              <Row>
+              <Row padding="3rem">
                 <ImgWrap>
                   <Img src={Produto1} />
                 </ImgWrap>
