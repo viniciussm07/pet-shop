@@ -149,7 +149,7 @@ export const Pedido = () => {
               );
             })}
             <h4>
-              <bold>TOTAL DO PEDIDO:</bold> R${(pedidoTotal).toFixed(2)}
+              <bold>TOTAL DO PEDIDO:</bold> R${parseFloat(pedidoTotal).toFixed(2)}
             </h4>
           </InfoContainer>
         ) : (

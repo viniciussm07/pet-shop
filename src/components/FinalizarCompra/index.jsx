@@ -195,7 +195,7 @@ const FinalizarCompras = () => {
                           <td>
                             <p>Preço</p>
                             <br />
-                            R${produto.quantity * produto.price}
+                            R${(produto.quantity * produto.price).toFixed(2)}
                           </td>
                         </tr>
                       </tbody>

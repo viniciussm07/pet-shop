@@ -45,12 +45,19 @@ controller.updateById = async (req, res) => {
     console.log(req.body)
     const data = await Product.findById(req.params.id);
     const newStock = data.stock - req.body.stock
-    await Product.findOneAndUpdate({_id:req.params.id},{
+    await Product.findByIdAndUpdate(req.params.id,{
       $set: {
         stock:newStock
       },
     });
-    res.status(200).send({data:newStock});
+    if(newStock ===0){
+      await Product.findByIdAndUpdate(req.params.id,{
+        $set: {
+          active:false
+        },
+      });
+    }
+    res.status(200).send(data);
   } catch (error) {
     res.status(400).send(error);
   }
