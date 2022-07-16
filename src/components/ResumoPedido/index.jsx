@@ -1,6 +1,6 @@
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import { OrderContainer, bold } from "../Utils/style";
+import { OrderContainer, FontBold } from "../Utils/style";
 
 
 
@@ -35,7 +35,7 @@ export const Resumo = () => {
         <OrderContainer>
           Valor a vista:
           <h4>
-            <bold>&nbsp;R${totalDiscount.toFixed(2)}</bold>
+            <FontBold>&nbsp;R${totalDiscount.toFixed(2)}</FontBold>
           </h4>
           <br />
           (10% de desconto <br />

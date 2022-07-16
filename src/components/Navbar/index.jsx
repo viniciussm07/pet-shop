@@ -34,7 +34,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const getItems = localStorage.getItem("items");
-    console.log(getItems);
+    console.log("items", getItems);
     if (getItems == "") {
       localStorage.removeItem("items");
     } else {

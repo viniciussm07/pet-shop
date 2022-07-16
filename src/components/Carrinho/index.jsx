@@ -30,6 +30,10 @@ const Carrinho = () => {
   const fretePrice = 13.75;
   const [addresses, setAddresses] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [quantidade, setQuantidade] = useState([]);
+  const [stock, setStock] = useState([]);
+  var quantidadeAux = [];
+  var stockAux = [];
 
   //Pegar os endereços do cliente
   useEffect(() => {
@@ -41,22 +45,43 @@ const Carrinho = () => {
     fetchAdresses();
 
     const items = JSON.parse(localStorage.getItem("items"));
-    if (items != null) {
+    
+    if (items != null && items[0] != null) {
       setCartItems(items);
     }
 
-    sessionStorage.setItem("FretePrice", 0);
+    sessionStorage.setItem("FretePrice", fretePrice);
     sessionStorage.setItem("TotalProducts", 0);
     sessionStorage.setItem("TotalOrder", 0);
     sessionStorage.setItem("TotalDiscount", 0);
   }, []);
+
+  useEffect(() => {
+    cartItems.map((item, index )=>{
+      quantidadeAux[index] = item.quantity;
+      stockAux[index] = item.stock;
+    })
+    setQuantidade(quantidadeAux);
+    setStock(stockAux);
+    definirValores();
+  }, [cartItems]);
+
+  useEffect(() => {
+    cartItems.map((item, index)=>{
+      item.quantity = quantidade[index];
+    })  
+    atualizarQuant();
+    definirValores();
+
+  }, [quantidadeAux]);
+
 
   const definirValores = () => {
     const total = 0;
     if (cartItems.length === 1) {
       total = cartItems[0].price * cartItems[0].quantity;
     } else {
-      cartItems.forEach((item) => {
+      cartItems.map((item) => {
         total = total + item.price * item.quantity;
       });
     }
@@ -69,28 +94,16 @@ const Carrinho = () => {
   };
 
   const submitHandler = (event) => {
-    if (freteOption == "") {
+    if (freteOption == "" || address == "") {
       event.preventDefault();
-      alert("Escolha um frete!");
+      alert("Preencha as informações!");
     }
-    if (address == "") {
-      event.preventDefault();
-      alert("Escolha um endereço!");
-    }
-
-    sessionStorage.setItem("FreteOption", freteOption);
-    sessionStorage.setItem("FretePrice", fretePrice);
+      sessionStorage.setItem("FreteOption", freteOption);
+      sessionStorage.setItem("FretePrice", fretePrice);
   };
 
-  const onChange = (e) => {
-    let freteOption = e.target.value;
-    setFreteOption(freteOption);
-    sessionStorage.setItem("FreteOption", freteOption);
-    sessionStorage.setItem("FretePrice", fretePrice);
-  };
 
-  const changeAdress = (e) => {
-    let address = e.target.value;
+  const changeAdress = (address) => {
     setAddress(address);
     sessionStorage.setItem("Address", address);
   };
@@ -123,48 +136,39 @@ const Carrinho = () => {
     Router.reload();
   };
 
-  function addQuantidade(e, param) {
-    const quantidade = cartItems[param].quantity + 1;
-    if (quantidade <= cartItems[param].stock) {
-      cartItems[param].quantity = quantidade;
-      setCartItems(cartItems);
-      atualizarQuant();
-    }
-  }
-
-  function subQuantidade(e, param) {
-    const quantidade = cartItems[param].quantity - 1;
-    if (quantidade >= 1) {
-      cartItems[param].quantity = quantidade;
-      setCartItems(cartItems);
-      atualizarQuant();
-    }
-  }
-
   const atualizarQuant = () => {
-    localStorage.removeItem("items");
-    localStorage.setItem("items", JSON.stringify([cartItems[0]]));
-    cartItems.splice(0, 1);
-
-    cartItems.map((item) => {
-      // Copiando o array existente no localstorage e readicionando os objetos.
+    cartItems.map((item, index) => {
+      if (index == 0){
+        localStorage.setItem("items", JSON.stringify([cartItems[0]]));
+      }
+      else{
+        // Copiando o array existente no localstorage e readicionando os objetos.
       localStorage.setItem(
         "items",
         // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
         JSON.stringify([...JSON.parse(localStorage.getItem("items")), item])
       );
+      }
+      
     });
-    definirValores();
-    Router.reload();
   };
 
-  const style = {
-    cursor: "default",
-    color: "transparent",
-    textShadow: "0px 0px black",
-  };
+  const definirQuantidades = (e, param) =>{
+      if(e.target.value < 1){
+        e.target.value = 1
+      }
+      if(e.target.value > stock[param]){
+        e.target.value = stock[param]
+      }
+      let quantidadeInicial = [];
+      quantidade.map((quant, index) =>{
+        quantidadeInicial[index] = quant;
+      })
 
-  console.log(cartItems);
+      quantidadeInicial[param] = parseInt(e.target.value);
+      setQuantidade(quantidadeInicial);
+      console.log(cartItems);
+  }
 
   if (cartItems != "") {
     return (
@@ -185,7 +189,7 @@ const Carrinho = () => {
                         name="endereco"
                         value={endereco._id}
                         required
-                        onChange={changeAdress}
+                        onChange={e => changeAdress(e.target.value)}
                       />
                       <label htmlFor={endereco.identificacao}>
                         &nbsp;<FontBold>{endereco.identificacao}</FontBold>
@@ -227,7 +231,7 @@ const Carrinho = () => {
                     name="frete"
                     value="Correios - 7 a 10 dias úteis"
                     required
-                    onChange={onChange}
+                    onChange={e => setFreteOption(e.target.value)}
                   />
                   <label htmlFor="correio">
                     &nbsp;Correios - 7 a 10 dias úteis
@@ -261,25 +265,17 @@ const Carrinho = () => {
                           </td>
                           <td>
                             Quantidade
-                            <Row>
-                              <AddSubtractCart>
-                                <Subtract
-                                  onClick={(event) => {
-                                    subQuantidade(event, index);
-                                  }}
-                                >
-                                  <HiMinusSm />
-                                </Subtract>
-                                {produto.quantity}
-                                <Add
-                                  onClick={(event) => {
-                                    addQuantidade(event, index);
-                                  }}
-                                >
-                                  <HiPlusSm />
-                                </Add>
-                              </AddSubtractCart>
-                            </Row>
+                            <br />
+                            <input
+                              type="number"
+                              name="quantidade"
+                              id="quant"
+                              placeholder={quantidade[index]}
+                              min={1}
+                              max={produto.stock}
+                              defaultValue = {quantidade[index]}
+                              onChange={(e) => definirQuantidades(e, index)}
+                            />
                             <br />
                             <a
                               href=""
@@ -293,7 +289,7 @@ const Carrinho = () => {
                           <td>
                             Preço
                             <br />
-                            R${produto.quantity * produto.price}
+                            R${quantidade[index] * produto.price}
                           </td>
                         </tr>
                       </tbody>
@@ -313,11 +309,11 @@ const Carrinho = () => {
             <Resumo />
 
             <ButtonContainer>
-              <Link href={"/pagamento"}>
+            <Link href={"/pagamento"}>
                 <Button type="submit" onClick={submitHandler}>
                   IR PARA O PAGAMENTO
                 </Button>
-              </Link>
+                </Link>
             </ButtonContainer>
             <ButtonContainer>
               <Link href={"/"}>
