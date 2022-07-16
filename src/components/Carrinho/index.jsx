@@ -153,20 +153,28 @@ const Carrinho = () => {
     });
   };
 
-  const definirQuantidades = (e, param) =>{
-      if(e.target.value < 1){
-        e.target.value = 1
-      }
-      if(e.target.value > stock[param]){
-        e.target.value = stock[param]
-      }
-      let quantidadeInicial = [];
+  const addQuantidade = (param) =>{
+    if (quantidade[param] < stock[param]){
+      const attQuant = quantidade[param] + 1;
+      definirQuantidades(param, attQuant);
+    }
+  }
+
+  const subQuantidade = (param) =>{
+    if (quantidade[param] > 1){
+      const attQuant = quantidade[param] - 1;
+      definirQuantidades(param, attQuant);
+    }
+  }
+
+  const definirQuantidades = (param, attQuant) =>{
+      let newQuant = [];
       quantidade.map((quant, index) =>{
-        quantidadeInicial[index] = quant;
+        newQuant[index] = quant;
       })
 
-      quantidadeInicial[param] = parseInt(e.target.value);
-      setQuantidade(quantidadeInicial);
+      newQuant[param] = parseInt(attQuant);
+      setQuantidade(newQuant);
       console.log(cartItems);
   }
 
@@ -265,17 +273,17 @@ const Carrinho = () => {
                           </td>
                           <td>
                             Quantidade
-                            <br />
-                            <input
-                              type="number"
-                              name="quantidade"
-                              id="quant"
-                              placeholder={quantidade[index]}
-                              min={1}
-                              max={produto.stock}
-                              defaultValue = {quantidade[index]}
-                              onChange={(e) => definirQuantidades(e, index)}
-                            />
+                            <Row>
+                            <AddSubtractCart>
+                                <Subtract onClick={() => subQuantidade(index)}>
+                                    <HiMinusSm />
+                                </Subtract>
+                                {quantidade[index]}
+                                <Add onClick={() => addQuantidade(index)}>
+                                    <HiPlusSm />
+                                </Add>
+                            </AddSubtractCart>
+                            </Row>
                             <br />
                             <a
                               href=""
