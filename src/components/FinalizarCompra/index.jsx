@@ -76,7 +76,7 @@ const FinalizarCompras = () => {
 
   let total = 0;
   const confirmarPedido = async () => {
-    if (metodoPagamento != "Cartão") {
+    if (metodoPagamento != "Card") {
       total = totalDiscount;
     } else {
       total = totalOrder;
@@ -107,6 +107,9 @@ const FinalizarCompras = () => {
         sessionStorage.removeItem("TotalDiscount");
         sessionStorage.removeItem("TotalProducts");
         localStorage.removeItem("items");
+        if(metodoPagamento == "Card"){
+          sessionStorage.removeItem("Dados Cartao");
+        }
       } else {
         alert("Erro ao processar pedido!");
       }

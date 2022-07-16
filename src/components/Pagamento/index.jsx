@@ -40,7 +40,7 @@ const Pagamento = () => {
     if (metodoPagamento == "") {
       event.preventDefault();
       alert("Escolha um metodo de pagamento!");
-    } else if (metodoPagamento == "Cartão") {
+    } else if (metodoPagamento == "Card") {
       if (
         infoCartao.cvv == "" ||
         infoCartao.mesValidade == "" ||
@@ -51,7 +51,7 @@ const Pagamento = () => {
         event.preventDefault();
         alert("Preencha as informações do cartão!");
       } else {
-        if (localStorage.getItem("Dados Cartao") == null) {
+        if (sessionStorage.getItem("Dados Cartao") == null) {
           event.preventDefault();
           alert("Salve as informações do cartão!");
         }
@@ -65,7 +65,7 @@ const Pagamento = () => {
     let metodo = e.target.value;
     setMetodoPagamento(metodo);
     sessionStorage.setItem("Payment", payment);
-    if (payment != "Cartão") {
+    if (payment != "Card") {
       sessionStorage.removeItem("Dados Cartao");
     }
   };
@@ -73,6 +73,7 @@ const Pagamento = () => {
   const salvarInfoCartao = (e) => {
     setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
     setFormErrors("");
+    errorsNum = 0;
   };
 
   const [formErrors, setFormErrors] = useState({});
@@ -170,11 +171,11 @@ const Pagamento = () => {
                   type="radio"
                   id="cartao"
                   name="pagamento"
-                  value="Cartão"
-                  onChange={(event) => onChange(event, "Cartão")}
+                  value="Card"
+                  onChange={(event) => onChange(event, "Card")}
                 />
                 <label htmlFor="cartao">&nbsp;Cartão</label>
-                {metodoPagamento == "Cartão" && (
+                {metodoPagamento == "Card" && (
                   <PagamentoCartao>
                     <label>CVV*</label>
                     <Input
