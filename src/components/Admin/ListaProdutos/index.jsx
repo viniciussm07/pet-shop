@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   ListaContainer,
   Title,
@@ -50,7 +51,7 @@ export default function ListaProdutos() {
             {produtos?.map((produto) => (
               <Row padding="3rem">
                 <ImgWrap>
-                  <Img src={Produto1} />
+                  <Img src={produto.image} width="100px" height="100px"/>
                 </ImgWrap>
                 <Column width="40%">
                   <Row height="0.5rem"><Title2>{produto.title}</Title2></Row>
@@ -64,7 +65,9 @@ export default function ListaProdutos() {
                   </Row>
                 </Column>
                 <WrapButton>
-                  <EditButton  >Editar</EditButton>
+                  <Link href={`/admin/lista-produtos/${produto._id}`}>
+                    <EditButton >Editar</EditButton>
+                  </Link>
                 </WrapButton>
                 <Trash>
                   <FaTrash color="red" size={20} />

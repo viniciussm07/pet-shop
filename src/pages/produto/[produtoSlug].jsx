@@ -37,7 +37,7 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-// Retorna um produto que corresponde ao id passado no path
+// Retorna um produto que corresponde ao slug passado no path
 export async function getStaticProps ({ params }) {
     const resp = await api.get(`/products/${params.produtoSlug}`);
     const produto = resp.data

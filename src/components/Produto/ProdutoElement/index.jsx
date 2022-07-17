@@ -18,7 +18,7 @@ const Produto = (props) => {
         <Description>
             <Category>{props.category}</Category>
             <ProductName>{props.name}</ProductName>
-            <ProductPrice>${props.price}</ProductPrice>
+            <ProductPrice>${props.price.toFixed(2).toString()}</ProductPrice>
         </Description>
     </ProdutoWrap>
   )
