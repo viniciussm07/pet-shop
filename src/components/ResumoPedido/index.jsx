@@ -26,7 +26,7 @@ export const Resumo = () => {
   
   return (
     <>
-      <div onLoad={()=>{Router.reload()}}>
+      <div>
         <br />
         Valor dos produtos: R${totalProducts} <br />
         Frete: R${fretePrice}<br />
