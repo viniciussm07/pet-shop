@@ -8,6 +8,7 @@ import {
   OrderTableMaior,
   InfoContainer,
   FontBold,
+  SmallContainer,
 } from "../Utils/style";
 import {
   Add,
@@ -119,18 +120,8 @@ export const Pedido = () => {
                           </td>
                           <td>
                             Quantidade
+                            <SmallContainer>{produto.quantity}</SmallContainer>
                             
-                            <Row>
-                              <AddSubtractCart>
-                                <Subtract>
-                                  <HiMinusSm />
-                                </Subtract>
-                                {produto.quantity}
-                                <Add>
-                                  <HiPlusSm />
-                                </Add>
-                              </AddSubtractCart>
-                            </Row>
                             <br />
                           </td>
                           <td>

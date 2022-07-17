@@ -21,6 +21,7 @@ const Pagamento = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const [infoCartao, setInfoCartao] = useState({
+    numero:"",
     cvv: "",
     mesValidade: "",
     anoValidade: "",
@@ -42,6 +43,7 @@ const Pagamento = () => {
       alert("Escolha um metodo de pagamento!");
     } else if (metodoPagamento == "Card") {
       if (
+        infoCartao.numero == "" ||
         infoCartao.cvv == "" ||
         infoCartao.mesValidade == "" ||
         infoCartao.anoValidade == "" ||
@@ -91,6 +93,7 @@ const Pagamento = () => {
   const validate = (infoCartao) => {
     const errors = {};
     if (
+      infoCartao.numero == "" ||
       infoCartao.cvv == "" ||
       infoCartao.mesValidade == "" ||
       infoCartao.anoValidade == "" ||
@@ -102,6 +105,11 @@ const Pagamento = () => {
     } else {
       const dataAtual = new Date();
       const anoAtual = dataAtual.getFullYear();
+
+      if (Object.keys(infoCartao.numero).length != 15) {
+        errors.numero = "Número inválido!";
+        errorsNum++;
+      }
 
       if (Object.keys(infoCartao.cvv).length != 3) {
         errors.cvv = "CVV inválido!";
@@ -128,13 +136,14 @@ const Pagamento = () => {
 
   console.log(infoCartao);
   const addCartao = () => {
+    const numero = infoCartao.numero;
     const cvv = infoCartao.cvv;
     const mesValidade = infoCartao.mesValidade;
     const anoValidade = infoCartao.anoValidade;
     const name = infoCartao.name;
     const cpf = infoCartao.cpf;
 
-    const dataObj = { cvv, mesValidade, anoValidade, name, cpf };
+    const dataObj = { numero, cvv, mesValidade, anoValidade, name, cpf };
 
     sessionStorage.setItem("Dados Cartao", JSON.stringify([dataObj]));
     alert("Informações salvas!");
@@ -177,6 +186,16 @@ const Pagamento = () => {
                 <label htmlFor="cartao">&nbsp;Cartão</label>
                 {metodoPagamento == "Card" && (
                   <PagamentoCartao>
+                    <label>Numero*</label>
+                    <Input
+                      type="number"
+                      placeholder="Numero*"
+                      name="numero"
+                      maxLength={15}
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.numero}</Errors>
                     <label>CVV*</label>
                     <Input
                       type="number"

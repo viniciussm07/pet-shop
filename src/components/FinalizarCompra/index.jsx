@@ -9,6 +9,7 @@ import {
   InfoContainer,
   FontBold,
   ButtonInverted,
+  SmallContainer,
 } from "../Utils/style";
 import {
   Add,
@@ -182,17 +183,7 @@ const FinalizarCompras = () => {
                           </td>
                           <td>
                             Quantidade
-                            <Row>
-                              <AddSubtractCart>
-                                <Subtract>
-                                  <HiMinusSm />
-                                </Subtract>
-                                {produto.quantity}
-                                <Add>
-                                  <HiPlusSm />
-                                </Add>
-                              </AddSubtractCart>
-                            </Row>
+                            <SmallContainer>{produto.quantity}</SmallContainer>
                             <br />
                           </td>
                           <td>

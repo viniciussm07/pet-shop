@@ -88,6 +88,13 @@ export const InfoContainer = styled.div`
   padding: 25px;
 `;
 
+export const SmallContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align:center;
+`;
+
 export const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
