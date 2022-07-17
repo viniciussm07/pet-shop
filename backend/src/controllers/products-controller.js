@@ -20,7 +20,7 @@ controller.getAll = async (req, res) => {
   try {
     const data = await Product.find(
       {},
-      "_id title description price slug tags image active tags image stock"
+      "title price slug image active image stock"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -44,7 +44,7 @@ controller.getById = async (req, res) => {
   try {
     const data = await Product.findById(
       req.params.id,
-      "title price slug image "
+      "_id title slug price stock description image active tags"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -86,6 +86,8 @@ controller.put = async (req, res) => {
         description: req.body.description,
         price: req.body.price,
         slug: req.body.slug,
+        stock: req.body.stock,
+        
       },
     });
     res.status(201).send({

@@ -35,12 +35,14 @@ export default function EditarProdutos() {
               <Column align="center">
                 <ImgWrap width="50%">
                   <Img
-                    src={"/images/produtos/brinquedo-1.webp"}
+                    src={"/images/produtos/caes/brinquedo-1.webp"}
                     height={200}
                     width={200}
                   />
                 </ImgWrap>
-                <Title2>Teste</Title2>
+                <EditButton margin="2.5rem 0 0 0">
+                  Alterar foto
+                </EditButton>
               </Column>
               <Column>
                 <FormContent>

@@ -12,6 +12,8 @@ import {
   Trash,
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import api from "../../../services/api"
 
 export default function ListaClientes() {
 

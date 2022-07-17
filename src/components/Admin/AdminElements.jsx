@@ -7,10 +7,11 @@ export const Title = styled.h2`
   margin-bottom: 3rem;
 `;
 
-export const Title2 = styled.h3`
+export const Title2 = styled.p`
   /* text-align: center; */
   margin: 0;
   padding: 0;
+  font-weight: bold;
   /* display: flex; */
 `
 
@@ -32,6 +33,7 @@ export const ListaWrap = styled.div`
   align-items: center;
   border-radius: 1rem;
   padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
   /* min-height: 400px; */
 `;
 
@@ -54,7 +56,7 @@ export const Row = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : "100%")};
   align-items: ${(props) => (props.align ? props.align : "flex-start")};
 `;
 
@@ -86,7 +88,8 @@ export const WrapButton = styled.div`
 `;
 
 export const EditButton = styled(Button)`
-  margin: 0;
+  margin: ${(props) => (props.margin ? props.margin : "0 0 0 0")};
+  align-self: center;
 `;
 
 export const Trash = styled.div`
@@ -98,8 +101,8 @@ export const Trash = styled.div`
 `;
 
 export const ImgWrap = styled.div`
-  width: ${(props) => (props.width ? props.width : "30%")};
-  /* padding-right: 1rem; */
+  width: ${(props) => (props.width ? props.width : "25%")};
+  margin-right: 1rem;
   display: flex;
 `;
 

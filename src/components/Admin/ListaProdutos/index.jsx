@@ -13,9 +13,10 @@ import {
   Trash,
   ImgWrap,
   Img,
+  Title2
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
-import Produto1 from "../../../../images/produtos/brinquedo-1.webp";
+import Produto1 from "../../../../images/produtos/caes/brinquedo-1.webp";
 
 import api from "../../../services/api";
 
@@ -51,8 +52,8 @@ export default function ListaProdutos() {
                 <ImgWrap>
                   <Img src={Produto1} />
                 </ImgWrap>
-                <Column>
-                  <Row height="0.5rem">{produto.title}</Row>
+                <Column width="40%">
+                  <Row height="0.5rem"><Title2>{produto.title}</Title2></Row>
                   <Row height="0.5rem">
                     <Column>Preço: </Column>
                     <Column>{produto.price}</Column>
@@ -63,7 +64,7 @@ export default function ListaProdutos() {
                   </Row>
                 </Column>
                 <WrapButton>
-                  <EditButton>Editar</EditButton>
+                  <EditButton  >Editar</EditButton>
                 </WrapButton>
                 <Trash>
                   <FaTrash color="red" size={20} />
