@@ -84,6 +84,40 @@ Product/services records include, at least: name, id, photo, description, price,
 - O projeto consiste no desenvolvimento de uma loja online para um pet shop.
 Nessa loja, o cliente é levado primeiramente a uma homepage que mostra alguns produtos disponíveis para compra, e de onde ele pode ser levado às páginas de produtos para cachorro, gato ou pássaros;
 
+### Informações armazenaadas no servidor
+
+**Contas:**
+- Nome
+- Email
+- Senha
+- CPF
+- Data de nascimento
+- Telefone 
+- Celular
+- ÉAdmin?
+
+**Endereços:**
+- CEP
+- Identificação
+- Logradouro
+- Número
+- Bairro
+- Cidade
+- Estado
+- Complemento
+- Referencia
+
+**Produtos:**
+
+- Nome
+- Slug
+- Descrição
+- Preço
+- Foto
+- Tags
+- Quantidade em estoque
+- Ativo?
+
 
 ### Test Plan
 
