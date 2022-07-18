@@ -10,13 +10,13 @@ Vinicius Soares Martins - 11794907
 
 ### 1. Clone the project
 
-### 2. Install mongodb in your machine or use a cloud solution based in mongodb and set his URI in `/backend/src/app.js` 
-  
-  obs.: jsons to populate the database are in /test_mongodb
+### 2. Run the backend
 
-### 3. Run the backend `yarn install or npm -i` and `yarn dev or npm run dev` in `/backend`
+`yarn install or npm -i` and `yarn dev or npm run dev` in `/backend`
 
-### 4. Run the frontend `yarn install or npm -i` and `yarn dev or npm run dev` in root
+### 3. Run the frontend
+
+`yarn install or npm -i` and `yarn dev or npm run dev` in root
 
 ## Navigation Diagram
 
