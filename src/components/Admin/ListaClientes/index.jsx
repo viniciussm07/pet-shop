@@ -13,19 +13,30 @@ import {
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import api from "../../../services/api"
+import Link from "next/link";
+import api from "../../../services/api";
 
 export default function ListaClientes() {
-
-  const [produtos, setProdutos] = useState([]);
+  const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
     api.get("/customer/").then(({ data }) => {
-      setProdutos(data);
+      setClientes(data);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const deleteCliente = async (id) => {
+    if (confirm("Tem certeza que você deseja excluir esse cliente?")) {
+      const response = await api.delete("customer/" + id);
+      if (response.status === 200) {
+        alert("Cliente excluído com sucesso");
+      } else {
+        alert("erro ao excluir cliente");
+      }
+    }
+  };
 
   return (
     <>
@@ -43,21 +54,25 @@ export default function ListaClientes() {
         <Title>Lista Clientes</Title>
         <WrapColumn>
           <ListaWrap>
-            <Row>
+            {clientes?.map((cliente) => (
+              <Row>
               <Column>
-                <Row height="0.5rem">Nome do Cliente</Row>
+                <Row height="0.5rem">{cliente.name}</Row>
                 <Row height="0.5rem">
                   <Column>Id: </Column>
-                  <Column>123456789</Column>
+                  <Column>{cliente._id}</Column>
                 </Row>
               </Column>
               <WrapButton>
-                <EditButton>Editar</EditButton>
+                <Link href={`/admin/lista-clientes/${cliente._id}`}>
+                  <EditButton>Editar</EditButton>
+                </Link>
               </WrapButton>
-              <Trash>
-                <FaTrash color="red" size={20}/>
+              <Trash onClick={() => deleteCliente(cliente_id)}>
+                <FaTrash color="red" size={20} />
               </Trash>
             </Row>
+            ))}
           </ListaWrap>
         </WrapColumn>
       </ListaContainer>

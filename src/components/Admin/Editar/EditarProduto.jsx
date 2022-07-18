@@ -7,11 +7,7 @@ import {
   Column,
   Row,
   ListaWrap,
-  FixedButton,
-  WrapFixedButton,
   EditButton,
-  WrapButton,
-  Trash,
   ImgWrap,
   Img,
 } from "../AdminElements";

@@ -1,6 +1,6 @@
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
-import Editar from "../../../components/Admin/Editar";
+import Editar from "../../../components/Admin/Editar/EditarProduto";
 import api from "../../../services/api"
 
 // Gera uma rota dinâmica para cada produto na lista de produtos para gerar uma página estática de cada um

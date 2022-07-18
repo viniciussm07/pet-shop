@@ -63,7 +63,13 @@ export default function ListaProdutos() {
             {produtos?.map((produto) => (
               <Row padding="4rem 0 4rem 0">
                 <ImgWrap>
-                  <Img src={produto.image ? produto.image : "/images/wthout-image.png"} width="100px" height="100px" />
+                  <Img
+                    src={
+                      produto.image ? produto.image : "/images/wthout-image.png"
+                    }
+                    width="100px"
+                    height="100px"
+                  />
                 </ImgWrap>
                 <Column width="35%">
                   <Row height="2.5rem">
