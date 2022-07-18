@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   ListaContainer,
   Title,
@@ -12,6 +13,8 @@ import { FormContent, FormInput, FormLabel, Form } from "../AdminForm";
 import api from "../../../services/api";
 
 export default function AddProduto() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,10 +25,23 @@ export default function AddProduto() {
 
   const addHandler = async (event) => {
     event.preventDefault();
-    const response = await api.post("/customer/auth/register");
+    const data = {
+      name: name,
+      cpf: cpf,
+      birthday: birthday,
+      telefone: telefone,
+      celular: celular,
+      email: email,
+      password: password,
+    };
+
+    const response = await api.post("/customer/auth/register", data);
 
     if (response.status === 201) {
       alert("Cliente adicionado!");
+      setTimeout(() => {
+        router.push("/admin/lista-clientes");
+      }, 1000);
     } else {
       alert("Erro ao adicionar cliente");
     }

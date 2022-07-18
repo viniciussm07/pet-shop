@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import {
   ListaContainer,
   Title,
@@ -12,21 +12,35 @@ import {
 } from "../AdminElements";
 import { FormContent, FormInput, FormLabel, Form } from "../AdminForm";
 import api from "../../../services/api";
+import { useRouter } from "next/router";
 
 export default function AddProduto() {
+
+  const router = useRouter()
 
   const [title, setTitle] = useState("");
   const [stock, setStock] = useState("");
   const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  
 
   const addHandler = async (event) => {
     event.preventDefault();
-    const response = await api.post("products/admin");
+    const data = {
+      title: title,
+      stock: stock,
+      slug: slug,
+      price: price,
+      description: description,
+    };
+    const response = await api.post("products/admin", data);
 
     if (response.status === 201) {
       alert("Produto adicionado!");
+      setTimeout(() => {
+        router.push("/admin/lista-produtos");
+      }, 1000);
     } else {
       alert("erro ao adicionar produto");
     }

@@ -4,17 +4,14 @@ import {
   Title,
   WrapColumn,
   Column,
-  ListaWrap,
-  EditButton
+  ListaWrap
 } from "./AdminElements";
-import { logout, getToken, getIsLoggedIn } from "../../services/auth";
-import api from "../../services/api";
 
 function HomeAdmin() {
   return (
     <>
       <ListaContainer>
-        <Title margin="0 0 0 0">Minha Conta</Title>
+        <Title>Meus Dados</Title>
         <WrapColumn>
           <ListaWrap>
               <Column align="center">

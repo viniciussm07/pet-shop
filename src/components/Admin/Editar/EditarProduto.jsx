@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   ListaContainer,
   Title,
@@ -46,6 +47,9 @@ export default function EditarProdutos(props) {
 
     if (response.status === 201) {
       alert("Dados atualizados");
+      setTimeout(() => {
+        router.push("/admin/lista-produtos");
+      }, 1000);
     } else {
       alert("erro ao atualizar os dados");
     }
