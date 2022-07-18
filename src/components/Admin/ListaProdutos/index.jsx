@@ -45,14 +45,16 @@ export default function ListaProdutos() {
   return (
     <>
       <WrapFixedButton>
-        <FixedButton>
-          <FaPlus
-            size={40}
-            style={{
-              padding: "0 0 0 0",
-            }}
-          />
-        </FixedButton>
+        <Link href="/admin/add-produto">
+          <FixedButton>
+            <FaPlus
+              size={40}
+              style={{
+                padding: "0 0 0 0",
+              }}
+            />
+          </FixedButton>
+        </Link>
       </WrapFixedButton>
       <ListaContainer>
         <Title>Lista Produtos</Title>
