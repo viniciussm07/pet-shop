@@ -7,19 +7,19 @@ import { useEffect } from "react";
 
 export default function EditarClientes() {
   const router = useRouter();
-  // let isLoggedIn;
-  // useEffect(() => {
-  //   isLoggedIn = getIsLoggedIn();
-  //   if (isLoggedIn != "true") {
-  //     router.push("/login");
-  //   }
-  //   else{
-  //     const userType = getUserType();
-  //     if(userType === "2"){
-  //       router.push("/");
-  //     }
-  //   }
-  // }, []);
+  let isLoggedIn;
+  useEffect(() => {
+    isLoggedIn = getIsLoggedIn();
+    if (isLoggedIn != "true") {
+      router.push("/login");
+    }
+    else{
+      const userType = getUserType();
+      if(userType === "2"){
+        router.push("/");
+      }
+    }
+  }, []);
   return (
     <>
       <Navbar />

@@ -79,4 +79,9 @@ const schema = new Schema({
     }
 });
 
+// Método deletar por Id
+schema.statics.deleteById = function(_id) {
+    return this.deleteOne({ _id: _id });
+  };
+
 export default mongoose.model('User', schema);
