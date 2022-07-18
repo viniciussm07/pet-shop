@@ -21,12 +21,6 @@ export default function Home() {
     if (isLoggedIn != "true") {
       router.push("/login");
     }
-    else{
-      const userType = getUserType();
-      if(userType === "1"){
-        router.push("/admin");
-      }
-    }
   }, []);
 
  
