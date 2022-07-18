@@ -11,7 +11,7 @@ import {
 } from "../../components/Utils/pagesStyles";
 import { Button, FontBold } from "../../components/Utils/style";
 import api from "../../services/api";
-import { logout, getToken, getIsLoggedIn } from "../../services/auth";
+import { logout, getToken, getIsLoggedIn, getUserType } from "../../services/auth";
 
 export default function Home() {
   const router = useRouter();
@@ -20,6 +20,12 @@ export default function Home() {
     isLoggedIn = getIsLoggedIn();
     if (isLoggedIn != "true") {
       router.push("/login");
+    }
+    else{
+      const userType = getUserType();
+      if(userType === "1"){
+        router.push("/admin");
+      }
     }
   }, []);
 
