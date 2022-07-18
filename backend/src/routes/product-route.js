@@ -12,6 +12,8 @@ router.post('/admin', controller.post);
 router.get('/admin/list', controller.getAll)
 router.get('/admin/:id', controller.getById);
 router.put('/admin/:id', controller.put);
+router.put('/update/:id', controller.updateById);
+
 router.delete('/admin/:id', controller.delete);
 
 export default router;

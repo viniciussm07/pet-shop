@@ -9,19 +9,30 @@ import {
   InfoContainer,
   FontBold,
   ButtonInverted,
+  SmallContainer,
 } from "../Utils/style";
+import {
+  Add,
+  AddSubtractCart,
+  Row,
+  Subtract,
+} from "../Produto/ProdutoLayout/ProdutoLayoutElements";
+import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { getIdUser, getToken } from "../../services/auth";
 import api from "../../services/api";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 const FinalizarCompras = () => {
   const router = useRouter();
 
-  let [metodoPagamento, setMetodoPagamento] = useState("");
-  let [freteOption, setFreteOption] = useState("");
-  let [fretePrice, setFretePrice] = useState("");
-  let [addressId, setAddressId] = useState("");
+  const [metodoPagamento, setMetodoPagamento] = useState("");
+  const [freteOption, setFreteOption] = useState("");
+  const [fretePrice, setFretePrice] = useState("");
+  const [addressId, setAddressId] = useState("");
+  const [totalOrder, setTotalOrder] = useState("");
+  const [totalDiscount, setTotalDiscount] = useState("");
+  const [valorTotal, setValorTotal] = useState("");
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
   const [cartItems, setCartItems] = useState([]);
@@ -29,13 +40,18 @@ const FinalizarCompras = () => {
   useEffect(() => {
     const getPayment = sessionStorage.getItem("Payment");
     const getAddress = sessionStorage.getItem("Address");
-    const getFreteOption = sessionStorage.getItem("Frete Option");
-    const getFretePrice = sessionStorage.getItem("Frete Price");
+    const getFreteOption = sessionStorage.getItem("FreteOption");
+    const getFretePrice = sessionStorage.getItem("FretePrice");
+    const getTotalOrder = sessionStorage.getItem("TotalOrder");
+    const getTotalDiscount = sessionStorage.getItem("TotalDiscount");
+
     const addressId = sessionStorage.getItem("Address");
 
     setMetodoPagamento(getPayment);
     setFreteOption(getFreteOption);
     setFretePrice(getFretePrice);
+    setTotalOrder(getTotalOrder);
+    setTotalDiscount(getTotalDiscount);
     setAddressId(addressId);
 
     const id = getIdUser();
@@ -59,11 +75,14 @@ const FinalizarCompras = () => {
     }
   }, []);
 
+  let total = 0;
   const confirmarPedido = async () => {
-    console.log("pagmento:", metodoPagamento);
-    console.log("freteOption:", freteOption);
-    console.log("fretePrice:", fretePrice);
-    console.log("addressId:", address._id);
+    if (metodoPagamento != "Card") {
+      total = totalDiscount;
+    } else {
+      total = totalOrder;
+    }
+
     const token = getToken();
     const data = {
       token: token,
@@ -73,33 +92,42 @@ const FinalizarCompras = () => {
         option: freteOption,
         price: fretePrice,
       },
-      items: [],
+      total: total,
+      items: cartItems,
     };
     if (window.confirm("Deseja realizar pedido?")) {
       const response = await api.post("/orders/", data);
       console.log(response);
       if (response.status === 201) {
         alert("Pedido Realizado");
+        sessionStorage.removeItem("Payment");
+        sessionStorage.removeItem("Address");
+        sessionStorage.removeItem("FreteOption");
+        sessionStorage.removeItem("FretePrice");
+        sessionStorage.removeItem("TotalOrder");
+        sessionStorage.removeItem("TotalDiscount");
+        sessionStorage.removeItem("TotalProducts");
+        localStorage.removeItem("items");
+        if(metodoPagamento == "Card"){
+          sessionStorage.removeItem("Dados Cartao");
+        }
       } else {
         alert("Erro ao processar pedido!");
       }
+
+      cartItems.map(async (item) => {
+        const id = item.product;
+        const data = {
+          stock: item.quantity
+        }
+        console.log(data)
+        const response = await api.put("/products/update/" + id, data)
+        console.log(response);
+        
+      })
+      router.push("/minha-conta/meus-pedidos");
     }
   };
-
-  const carrinhoCompras = [
-    {
-      nome: "raçao 1kg",
-      descricao: "ração para cachorro",
-      preco: 10.5,
-      estoque: 10,
-    },
-    {
-      nome: "brinquedo",
-      descricao: "brinquedo para cachorro",
-      preco: 35.0,
-      estoque: 10,
-    },
-  ];
 
   if (cartItems != "") {
     return (
@@ -137,36 +165,31 @@ const FinalizarCompras = () => {
             <h4>
               <FontBold>PRODUTOS</FontBold>
             </h4>
-            {carrinhoCompras.map((produto, index) => {
+            {cartItems.map((produto, index) => {
               return (
                 <OrderContainer key={index}>
                   <div>
                     <OrderTable>
                       <tbody>
                         <tr>
-                          <td></td>
                           <td>
-                            <FontBold>{produto.nome}</FontBold>
+                            <img src={produto.image} width="50px"></img>
+                          </td>
+                          <td>
+                            <a href={"/produto/" + produto.slug}>
+                              <FontBold>{produto.title}</FontBold>
+                            </a>
                             <br />
-                            {produto.descricao}
                           </td>
                           <td>
                             Quantidade
-                            <br />
-                            <input
-                              type="number"
-                              name="quantidade"
-                              id="quant"
-                              min={1}
-                              max={produto.estoque}
-                              disabled
-                            />
+                            <SmallContainer>{produto.quantity}</SmallContainer>
                             <br />
                           </td>
                           <td>
-                            Preço
+                            <p>Preço</p>
                             <br />
-                            R${produto.preco}
+                            R${(produto.quantity * produto.price).toFixed(2)}
                           </td>
                         </tr>
                       </tbody>

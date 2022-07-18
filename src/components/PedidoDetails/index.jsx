@@ -5,10 +5,18 @@ import { getIdUser } from "../../services/auth";
 import {
   bold,
   OrderContainer,
-  OrderTable,
+  OrderTableMaior,
   InfoContainer,
   FontBold,
+  SmallContainer,
 } from "../Utils/style";
+import {
+  Add,
+  AddSubtractCart,
+  Row,
+  Subtract,
+} from "../Produto/ProdutoLayout/ProdutoLayoutElements";
+import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 
 export const Pedido = () => {
   const [pedidoEncontrado, setPedidoEncontrado] = useState(false);
@@ -62,7 +70,7 @@ export const Pedido = () => {
     fetchOrder();
   }, []);
 
-
+  console.log(pedidoItems);
   return (
     <>
       <div>
@@ -100,46 +108,43 @@ export const Pedido = () => {
               return (
                 <OrderContainer key={index}>
                   <div>
-                    <OrderTable>
+                    <OrderTableMaior>
                       <tbody>
                         <tr>
-                          <td></td>
                           <td>
-                            <bold>{produto.nome}</bold>
+                            <img src={produto.product.image} width="75px"></img>
+                          </td>
+                          <td>
+                            <FontBold>{produto.product.title}</FontBold>
                             <br />
-                            {produto.descricao}
                           </td>
                           <td>
                             Quantidade
-                            <br />
-                            <input
-                              type="number"
-                              name="quantidade"
-                              id="quant"
-                              min={1}
-                              max={produto.estoque}
-                              disabled
-                            />
+                            <SmallContainer>{produto.quantity}</SmallContainer>
+                            
                             <br />
                           </td>
                           <td>
-                            Preço
+                            <p>Preço</p>
+
                             <br />
-                            R${produto.preco}
+                            <FontBold>
+                              R${(produto.quantity * produto.price).toFixed(2)}
+                            </FontBold>
                           </td>
                         </tr>
                       </tbody>
-                    </OrderTable>
+                    </OrderTableMaior>
                   </div>
                 </OrderContainer>
               );
             })}
             <h4>
-              <bold>TOTAL DO PEDIDO:</bold> R${pedidoTotal}
+              <bold>TOTAL DO PEDIDO:</bold> R${parseFloat(pedidoTotal).toFixed(2)}
             </h4>
           </InfoContainer>
         ) : (
-            <InfoContainer>
+          <InfoContainer>
             <h5>
               <FontBold>Pedido não endontrado!</FontBold>
             </h5>

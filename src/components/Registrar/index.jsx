@@ -85,6 +85,10 @@ const SignUp = () => {
       errors.email = "Formato de email inválido!";
       errorsNum++;
     }
+    if (Object.keys(values.psw).length != 8) {
+      errors.senha = "Senha muito curta!";
+      errorsNum++;
+    }
     if (values.pswRepeat != values.psw) {
       errors.senha = "Senhas não correspondem!";
       errorsNum++;

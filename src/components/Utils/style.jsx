@@ -88,6 +88,13 @@ export const InfoContainer = styled.div`
   padding: 25px;
 `;
 
+export const SmallContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align:center;
+`;
+
 export const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -108,6 +115,11 @@ export const OrderContainer = styled.div`
 export const OrderTable = styled.table`
   border-collapse: separate;
   border-spacing: 15px 0px;
+`;
+
+export const OrderTableMaior = styled.table`
+  border-collapse: separate;
+  border-spacing: 50px 0px;
 `;
 
 export const Input = styled.input`
