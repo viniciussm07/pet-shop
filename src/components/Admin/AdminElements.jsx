@@ -8,7 +8,7 @@ export const Title = styled.h2`
 
 export const Title2 = styled.p`
   /* text-align: center; */
-  margin: 0;
+  margin: 0 0 0.25rem 0;
   padding: 0;
   font-weight: bold;
   /* display: flex; */
@@ -26,7 +26,7 @@ export const ListaContainer = styled.div`
 
 export const ListaWrap = styled.div`
   background-color: white;
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +45,7 @@ export const Content = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 1rem 1rem;
+  margin: ${(props) => (props.margin ? props.margin : "1rem 1rem")};
   width: ${(props) => (props.width ? props.width : "80%")};
   align-items: center;
   height: ${(props) => (props.height ? props.height : "6rem")};

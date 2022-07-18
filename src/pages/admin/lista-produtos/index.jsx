@@ -12,10 +12,9 @@ export default function EditarClientes() {
     isLoggedIn = getIsLoggedIn();
     if (isLoggedIn != "true") {
       router.push("/login");
-    }
-    else{
+    } else {
       const userType = getUserType();
-      if(userType === "2"){
+      if (userType === "2") {
         router.push("/");
       }
     }
@@ -23,7 +22,7 @@ export default function EditarClientes() {
   return (
     <>
       <Navbar />
-      <ListaProdutos/>
+      <ListaProdutos />
       <Footer />
     </>
   );

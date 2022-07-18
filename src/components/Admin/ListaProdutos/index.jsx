@@ -14,7 +14,7 @@ import {
   Trash,
   ImgWrap,
   Img,
-  Title2
+  Title2,
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
@@ -31,10 +31,21 @@ export default function ListaProdutos() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deleteProduct = async (id) => {
+    if (confirm("Tem certeza que você deseja excluir esse produto?")) {
+      const response = await api.delete("products/admin/" + id);
+      if (response.status === 200) {
+        alert("Dados atualizados");
+      } else {
+        alert("erro ao atualizar os dados");
+      }
+    }
+  };
+
   return (
     <>
       <WrapFixedButton>
-        <FixedButton >
+        <FixedButton>
           <FaPlus
             size={40}
             style={{
@@ -48,27 +59,29 @@ export default function ListaProdutos() {
         <WrapColumn>
           <ListaWrap>
             {produtos?.map((produto) => (
-              <Row padding="3rem">
+              <Row padding="4rem 0 4rem 0">
                 <ImgWrap>
-                  <Img src={produto.image} width="100px" height="100px"/>
+                  <Img src={produto.image} width="100px" height="100px" />
                 </ImgWrap>
-                <Column width="40%">
-                  <Row height="0.5rem"><Title2>{produto.title}</Title2></Row>
-                  <Row height="0.5rem">
-                    <Column>Preço: </Column>
-                    <Column>{produto.price}</Column>
+                <Column width="35%">
+                  <Row height="2.5rem">
+                    <Title2>{produto.title}</Title2>
                   </Row>
-                  <Row height="0.5rem">
+                  <Row height="0.25rem" margin="10px 10px">
+                    <Column>Preço: </Column>
+                    <Column>R$ {produto.price}</Column>
+                  </Row>
+                  <Row height="0.25rem" margin="10px 10px">
                     <Column>Estoque: </Column>
                     <Column>{produto.stock}</Column>
                   </Row>
                 </Column>
                 <WrapButton>
                   <Link href={`/admin/lista-produtos/${produto._id}`}>
-                    <EditButton >Editar</EditButton>
+                    <EditButton>Editar</EditButton>
                   </Link>
                 </WrapButton>
-                <Trash>
+                <Trash onClick={() => deleteProduct(produto._id)}>
                   <FaTrash color="red" size={20} />
                 </Trash>
               </Row>
