@@ -17,7 +17,6 @@ import {
   Title2
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
-import Produto1 from "../../../../images/produtos/caes/brinquedo-1.webp";
 
 import api from "../../../services/api";
 

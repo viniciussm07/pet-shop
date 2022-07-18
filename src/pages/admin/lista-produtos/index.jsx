@@ -3,7 +3,7 @@ import Footer from "../../../components/Footer";
 import ListaProdutos from "../../../components/Admin/ListaProdutos";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-// import { getIsLoggedIn, getUserType } from "../../services/auth";
+import { getIsLoggedIn, getUserType } from "../../../services/auth";
 
 export default function EditarClientes() {
   const router = useRouter();
