@@ -17,17 +17,25 @@ import {
   WrapButtons,
 } from "./NavbarElements.jsx";
 import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
-import { getIsLoggedIn, getToken, logout } from "../../services/auth.js";
+import { getIsLoggedIn, getToken, getUserType, logout } from "../../services/auth.js";
 import { LOGGEDIN } from "../../services/auth.js";
 import api from "../../services/api.js";
 
 const Navbar = () => {
   const [loggedNav, setLoggedNav] = useState(false);
+  const [meusDados, setMeusDados] = useState("");
   const [numItems, setNumItems] = useState("");
 
   const changeNav = () => {
     if (getIsLoggedIn() == "true") {
       setLoggedNav(true);
+      const userType = getUserType();
+      if(userType === "1"){
+        setMeusDados("/admin");
+      }
+      else if (userType ==="2"){
+        setMeusDados("/minha-conta");
+      }
     } else {
       setLoggedNav(false);
     }
@@ -83,7 +91,7 @@ const Navbar = () => {
             </CartButton>
             {loggedNav ? (
               <>
-              <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton>
+              <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
               <LoginButton onClick={confirmarSair}><AiOutlineLogout size={25}/> &nbsp; Sair </LoginButton>
               </>
             ) : null}
