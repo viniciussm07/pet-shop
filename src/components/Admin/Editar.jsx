@@ -33,13 +33,13 @@ export default function EditarProdutos(props) {
           <ListaWrap>
             <Row height="auto" padding="0 0 4rem 0">
               <Column align="center">
-                {/* <ImgWrap width="50%">
+                <ImgWrap width="50%">
                   <Img
                     src={props.image}
                     height={200}
                     width={200}
                   />
-                </ImgWrap> */}
+                </ImgWrap>
                 <EditButton margin="2.5rem 0 0 0">
                   Alterar foto
                 </EditButton>
@@ -49,13 +49,13 @@ export default function EditarProdutos(props) {
                   <p>Id: {props.id}</p>
                   <Form method="post">
                     <FormLabel htmlFor="for">Nome</FormLabel>
-                    <FormInput name="name" type="text" value={props.title} />
+                    <FormInput name="name" type="text" value={props.name} />
                     <FormLabel htmlFor="for">Estoque</FormLabel>
                     <FormInput name="stock" type="number" value={props.stock} />
                     <FormLabel htmlFor="for">Slug</FormLabel>
                     <FormInput name="slug" type="text" value={props.slug} />
                     <FormLabel htmlFor="for">Preço</FormLabel>
-                    <FormInput name="price" type="number" value={props.preco} />
+                    <FormInput name="price" type="number" value={props.price} />
                     <FormLabel htmlFor="for">Descrição</FormLabel>
                     <FormInput name="description" type="text" value={props.description} />
                     {/* <FormLabel htmlFor="for">Tags</FormLabel>

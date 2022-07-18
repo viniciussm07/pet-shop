@@ -4,6 +4,11 @@ const Product = mongoose.model("Product");
 
 const controller = {};
 
+function verificaStock(num) {
+  if (num > 0) return true 
+  else return false 
+}
+
 controller.getActive = async (req, res) => {
   try {
     const data = await Product.find(
@@ -87,7 +92,8 @@ controller.put = async (req, res) => {
         price: req.body.price,
         slug: req.body.slug,
         stock: req.body.stock,
-        
+        image: req.body.image,
+        active: req.body.active
       },
     });
     res.status(201).send({

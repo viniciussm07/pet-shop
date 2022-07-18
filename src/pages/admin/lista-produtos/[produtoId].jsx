@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const resp = await api.get(`/products/admin/${params.produtoId}`);
   const produto = resp.data;
-  // console.log("Produto static props: " + produto)
+  console.log(produto)
 
   return {
     props: {
