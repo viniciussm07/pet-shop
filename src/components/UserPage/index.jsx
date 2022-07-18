@@ -32,7 +32,9 @@ const UserPage = () => {
     const fetchLastOrder = async () => {
       const { data } = await api.get("/orders/last/" + id);
       console.log("order", data);
-      setPedido(data[0]);
+      if(data.length > 0){
+        setPedido(data[0]);
+      }
     };
     fetchLastOrder();
   }, []);
