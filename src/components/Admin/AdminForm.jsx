@@ -28,10 +28,11 @@ export const FormContent = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
+    width: 80%;
 
-    @media screen and (max-width:480px){
+    /* @media screen and (max-width:480px){
         padding:10px;
-    }
+    } */
 `;
 
 export const Form = styled.form`

@@ -9,13 +9,14 @@ import {
   Row,
   ListaWrap,
   EditButton,
-  ImgWrap,
-  Img,
 } from "../AdminElements";
 import { FormContent, FormInput, FormLabel, Form } from "../AdminForm";
 import api from "../../../services/api";
 
 export default function EditarProdutos(props) {
+
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [birthday, setBirthday] = useState("");
