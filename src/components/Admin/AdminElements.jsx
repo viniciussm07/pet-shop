@@ -3,8 +3,7 @@ import Image from "next/image";
 import { Button } from "../Utils/style";
 
 export const Title = styled.h2`
-  margin-left: 4rem;
-  margin-bottom: 3rem;
+  margin: ${(props) => (props.margin ? props.margin : "0 0 3rem 3rem")};
 `;
 
 export const Title2 = styled.p`
@@ -89,7 +88,7 @@ export const WrapButton = styled.div`
 
 export const EditButton = styled(Button)`
   margin: ${(props) => (props.margin ? props.margin : "0 0 0 0")};
-  align-self: center;
+  align-self: ${(props) => (props.align ? props.align : "center")};
 `;
 
 export const Trash = styled.div`

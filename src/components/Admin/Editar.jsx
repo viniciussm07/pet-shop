@@ -47,7 +47,7 @@ export default function EditarProdutos(props) {
               <Column>
                 <FormContent>
                   <p>Id: {props.id}</p>
-                  <Form method="post">
+                  <Form method="POST">
                     <FormLabel htmlFor="for">Nome</FormLabel>
                     <FormInput name="name" type="text" value={props.name} />
                     <FormLabel htmlFor="for">Estoque</FormLabel>
@@ -60,8 +60,6 @@ export default function EditarProdutos(props) {
                     <FormInput name="description" type="text" value={props.description} />
                     {/* <FormLabel htmlFor="for">Tags</FormLabel>
                     <FormInput name="tags" type="text" value={props.tags}/> */}
-                    <FormLabel htmlFor="for">Active</FormLabel>
-                    <FormInput name="active" type="checkbox" value={props.active}/>
                   </Form>
                 </FormContent>
               </Column>

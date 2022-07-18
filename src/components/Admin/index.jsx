@@ -4,14 +4,29 @@ import {
   Title,
   WrapColumn,
   Column,
-  ListaWrap
+  ListaWrap,
+  EditButton
 } from "./AdminElements";
+import { logout, getToken, getIsLoggedIn } from "../../services/auth";
+import api from "../../services/api";
 
 function HomeAdmin() {
+  const confirmarSair = async () => {
+    if (window.confirm("Deseja realmente sair?")) {
+      const response = await api.get("/customer/auth/destroyToken", {
+        headers: { token: getToken() },
+      });
+      if (response.status === 200) {
+        logout();
+        window.location.href = "/";
+      }
+    }
+  };
   return (
     <>
       <ListaContainer>
-        <Title>Meus Dados</Title>
+        <Title margin="0 0 0 0">Minha Conta</Title>
+        <EditButton align="flex-start" onClick={confirmarSair}>Logout</EditButton>
         <WrapColumn>
           <ListaWrap>
               <Column align="center">
