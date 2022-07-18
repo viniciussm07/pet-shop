@@ -57,7 +57,7 @@ export default function ListaClientes() {
         <WrapColumn>
           <ListaWrap>
             {clientes?.map((cliente) => (
-              <Row>
+              <Row shadow="0px 0px 5px black">
               <Column>
                 <Row height="0.5rem">{cliente.name}</Row>
                 <Row height="0.5rem">

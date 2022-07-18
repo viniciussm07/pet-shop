@@ -50,6 +50,8 @@ export const Row = styled.div`
   align-items: center;
   height: ${(props) => (props.height ? props.height : "6rem")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
+  box-shadow: ${(props) => (props.shadow ? props.shadow : "0 0 0 0")};
+  border-radius: 10px;
 `;
 
 export const Column = styled.div`
@@ -57,6 +59,7 @@ export const Column = styled.div`
   flex-direction: column;
   width: ${(props) => (props.width ? props.width : "100%")};
   align-items: ${(props) => (props.align ? props.align : "flex-start")};
+  padding-bottom: 20px;
 `;
 
 export const WrapColumn = styled.div`
@@ -97,12 +100,14 @@ export const Trash = styled.div`
   width: 10%;
   align-items: flex-end;
   cursor: pointer;
+  padding-right: 30px;
 `;
 
 export const ImgWrap = styled.div`
   width: ${(props) => (props.width ? props.width : "25%")};
   margin-right: 1rem;
   display: flex;
+  padding-left: 30px;
 `;
 
 export const Img = styled(Image)`

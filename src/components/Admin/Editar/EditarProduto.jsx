@@ -16,6 +16,8 @@ import { FormContent, FormInput, FormLabel, Form } from "../AdminForm";
 import api from "../../../services/api";
 
 export default function EditarProdutos(props) {
+  const router = useRouter();
+
   const [title, setTitle] = useState("");
   const [stock, setStock] = useState("");
   const [slug, setSlug] = useState("");
