@@ -13,12 +13,12 @@ const Produto = (props) => {
   return (
     <ProdutoWrap href={props.destiny}>
         <ImgWrap>
-            <Img src={props.image} height="200px" width="200px"/>
+            <Img src={props.image ? props.image : "/images/wthout-image.png"} height="200px" width="200px"/>
         </ImgWrap>
         <Description>
             <Category>{props.category}</Category>
             <ProductName>{props.name}</ProductName>
-            <ProductPrice>${props.price}</ProductPrice>
+            <ProductPrice>${props.price.toFixed(2).toString()}</ProductPrice>
         </Description>
     </ProdutoWrap>
   )

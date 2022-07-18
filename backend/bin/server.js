@@ -6,7 +6,7 @@ import app from '../src/app.js'
 
 debug('nodestr:server');
 
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || "8000");
 app.set('port', port);
 
 const server = http.createServer(app);

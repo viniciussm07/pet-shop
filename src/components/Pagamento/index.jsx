@@ -21,6 +21,7 @@ const Pagamento = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const [infoCartao, setInfoCartao] = useState({
+    numero:"",
     cvv: "",
     mesValidade: "",
     anoValidade: "",
@@ -28,7 +29,7 @@ const Pagamento = () => {
     cpf: "",
   });
 
-   //Pegar os items do carrinho
+   //Pegar os items do cliente
    useEffect(() => {
     const items = JSON.parse(localStorage.getItem("items"));
     if (items != null) {
@@ -40,8 +41,9 @@ const Pagamento = () => {
     if (metodoPagamento == "") {
       event.preventDefault();
       alert("Escolha um metodo de pagamento!");
-    } else if (metodoPagamento == "Cartão") {
+    } else if (metodoPagamento == "Card") {
       if (
+        infoCartao.numero == "" ||
         infoCartao.cvv == "" ||
         infoCartao.mesValidade == "" ||
         infoCartao.anoValidade == "" ||
@@ -51,7 +53,7 @@ const Pagamento = () => {
         event.preventDefault();
         alert("Preencha as informações do cartão!");
       } else {
-        if (localStorage.getItem("Dados Cartao") == null) {
+        if (sessionStorage.getItem("Dados Cartao") == null) {
           event.preventDefault();
           alert("Salve as informações do cartão!");
         }
@@ -65,7 +67,7 @@ const Pagamento = () => {
     let metodo = e.target.value;
     setMetodoPagamento(metodo);
     sessionStorage.setItem("Payment", payment);
-    if (payment != "Cartão") {
+    if (payment != "Card") {
       sessionStorage.removeItem("Dados Cartao");
     }
   };
@@ -73,6 +75,7 @@ const Pagamento = () => {
   const salvarInfoCartao = (e) => {
     setInfoCartao({ ...infoCartao, [e.target.name]: e.target.value });
     setFormErrors("");
+    errorsNum = 0;
   };
 
   const [formErrors, setFormErrors] = useState({});
@@ -90,6 +93,7 @@ const Pagamento = () => {
   const validate = (infoCartao) => {
     const errors = {};
     if (
+      infoCartao.numero == "" ||
       infoCartao.cvv == "" ||
       infoCartao.mesValidade == "" ||
       infoCartao.anoValidade == "" ||
@@ -101,6 +105,11 @@ const Pagamento = () => {
     } else {
       const dataAtual = new Date();
       const anoAtual = dataAtual.getFullYear();
+
+      if (Object.keys(infoCartao.numero).length != 15) {
+        errors.numero = "Número inválido!";
+        errorsNum++;
+      }
 
       if (Object.keys(infoCartao.cvv).length != 3) {
         errors.cvv = "CVV inválido!";
@@ -127,13 +136,14 @@ const Pagamento = () => {
 
   console.log(infoCartao);
   const addCartao = () => {
+    const numero = infoCartao.numero;
     const cvv = infoCartao.cvv;
     const mesValidade = infoCartao.mesValidade;
     const anoValidade = infoCartao.anoValidade;
     const name = infoCartao.name;
     const cpf = infoCartao.cpf;
 
-    const dataObj = { cvv, mesValidade, anoValidade, name, cpf };
+    const dataObj = { numero, cvv, mesValidade, anoValidade, name, cpf };
 
     sessionStorage.setItem("Dados Cartao", JSON.stringify([dataObj]));
     alert("Informações salvas!");
@@ -170,12 +180,22 @@ const Pagamento = () => {
                   type="radio"
                   id="cartao"
                   name="pagamento"
-                  value="Cartão"
-                  onChange={(event) => onChange(event, "Cartão")}
+                  value="Card"
+                  onChange={(event) => onChange(event, "Card")}
                 />
                 <label htmlFor="cartao">&nbsp;Cartão</label>
-                {metodoPagamento == "Cartão" && (
+                {metodoPagamento == "Card" && (
                   <PagamentoCartao>
+                    <label>Numero*</label>
+                    <Input
+                      type="number"
+                      placeholder="Numero*"
+                      name="numero"
+                      maxLength={15}
+                      required
+                      onChange={salvarInfoCartao}
+                    />
+                    <Errors>{formErrors.numero}</Errors>
                     <label>CVV*</label>
                     <Input
                       type="number"

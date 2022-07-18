@@ -4,11 +4,28 @@ const Product = mongoose.model("Product");
 
 const controller = {};
 
+function verificaStock(num) {
+  if (num > 0) return true 
+  else return false 
+}
+
 controller.getActive = async (req, res) => {
   try {
     const data = await Product.find(
       { active: true },
       "_id title description price slug tags image stock"
+    );
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+controller.getAll = async (req, res) => {
+  try {
+    const data = await Product.find(
+      {},
+      "title price slug image active image stock"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -32,8 +49,31 @@ controller.getById = async (req, res) => {
   try {
     const data = await Product.findById(
       req.params.id,
-      "title price slug image "
+      "_id title slug price stock description image active tags"
     );
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+controller.updateById = async (req, res) => {
+  try {
+    console.log(req.body)
+    const data = await Product.findById(req.params.id);
+    const newStock = data.stock - req.body.stock
+    await Product.findByIdAndUpdate(req.params.id,{
+      $set: {
+        stock:newStock
+      },
+    });
+    if(newStock ===0){
+      await Product.findByIdAndUpdate(req.params.id,{
+        $set: {
+          active:false
+        },
+      });
+    }
     res.status(200).send(data);
   } catch (error) {
     res.status(400).send(error);
@@ -51,6 +91,7 @@ controller.getByTag = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
 controller.post = async (req, res) => {
   const product = new Product(req.body);
   try {
@@ -74,6 +115,9 @@ controller.put = async (req, res) => {
         description: req.body.description,
         price: req.body.price,
         slug: req.body.slug,
+        stock: req.body.stock,
+        image: req.body.image,
+        active: req.body.active
       },
     });
     res.status(201).send({

@@ -3,9 +3,16 @@ import Image from "next/image";
 import { Button } from "../Utils/style";
 
 export const Title = styled.h2`
-  margin-left: 4rem;
-  margin-bottom: 3rem;
+  margin: ${(props) => (props.margin ? props.margin : "0 0 3rem 3rem")};
 `;
+
+export const Title2 = styled.p`
+  /* text-align: center; */
+  margin: 0 0 0.25rem 0;
+  padding: 0;
+  font-weight: bold;
+  /* display: flex; */
+`
 
 export const ListaContainer = styled.div`
   width: 100%;
@@ -19,13 +26,14 @@ export const ListaContainer = styled.div`
 
 export const ListaWrap = styled.div`
   background-color: white;
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 1rem;
   padding-top: 2.5rem;
-  min-height: 500px;
+  padding-bottom: 2.5rem;
+  /* min-height: 400px; */
 `;
 
 export const Content = styled.div`
@@ -37,16 +45,17 @@ export const Content = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 1rem 1rem;
+  margin: ${(props) => (props.margin ? props.margin : "1rem 1rem")};
   width: ${(props) => (props.width ? props.width : "80%")};
   align-items: center;
   height: ${(props) => (props.height ? props.height : "6rem")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : "100%")};
   align-items: ${(props) => (props.align ? props.align : "flex-start")};
 `;
 
@@ -78,7 +87,8 @@ export const WrapButton = styled.div`
 `;
 
 export const EditButton = styled(Button)`
-  margin: 0;
+  margin: ${(props) => (props.margin ? props.margin : "0 0 0 0")};
+  align-self: ${(props) => (props.align ? props.align : "center")};
 `;
 
 export const Trash = styled.div`
@@ -90,11 +100,12 @@ export const Trash = styled.div`
 `;
 
 export const ImgWrap = styled.div`
-  width: 30%;
-  padding-right: 1rem;
+  width: ${(props) => (props.width ? props.width : "25%")};
+  margin-right: 1rem;
+  display: flex;
 `;
 
 export const Img = styled(Image)`
-  height: 200px;
+  height: 100px;
   width: 100px;
 `;
