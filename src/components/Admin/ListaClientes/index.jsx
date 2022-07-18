@@ -41,14 +41,16 @@ export default function ListaClientes() {
   return (
     <>
       <WrapFixedButton>
-        <FixedButton>
-          <FaPlus
-            size={40}
-            style={{
-              padding: "0 0 0 0",
-            }}
-          />
-        </FixedButton>
+        <Link href="/admin/add-cliente">
+          <FixedButton>
+            <FaPlus
+              size={40}
+              style={{
+                padding: "0 0 0 0",
+              }}
+            />
+          </FixedButton>
+        </Link>
       </WrapFixedButton>
       <ListaContainer>
         <Title>Lista Clientes</Title>
@@ -68,7 +70,7 @@ export default function ListaClientes() {
                   <EditButton>Editar</EditButton>
                 </Link>
               </WrapButton>
-              <Trash onClick={() => deleteCliente(cliente_id)}>
+              <Trash onClick={() => deleteCliente(cliente._id)}>
                 <FaTrash color="red" size={20} />
               </Trash>
             </Row>

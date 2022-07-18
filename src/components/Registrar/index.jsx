@@ -85,7 +85,7 @@ const SignUp = () => {
       errors.email = "Formato de email inválido!";
       errorsNum++;
     }
-    if (Object.keys(values.psw).length != 8) {
+    if (Object.keys(values.psw).length < 8) {
       errors.senha = "Senha muito curta!";
       errorsNum++;
     }

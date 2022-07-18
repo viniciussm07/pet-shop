@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import {
   ListaContainer,
   Title,
@@ -7,14 +6,9 @@ import {
   Column,
   Row,
   ListaWrap,
-  FixedButton,
-  WrapFixedButton,
   EditButton,
-  WrapButton,
-  Trash,
   ImgWrap,
   Img,
-  Title2,
 } from "../AdminElements";
 import { FormContent, FormInput, FormLabel, Form } from "../AdminForm";
 import api from "../../../services/api";
