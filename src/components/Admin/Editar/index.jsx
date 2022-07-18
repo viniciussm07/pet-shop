@@ -66,7 +66,6 @@ export default function EditarProdutos(props) {
                 <ImgWrap width="50%">
                   <Img src={props.image} height={200} width={200} />
                 </ImgWrap>
-                <EditButton margin="2.5rem 0 0 0">Alterar foto</EditButton>
               </Column>
               <Column>
                 <FormContent>

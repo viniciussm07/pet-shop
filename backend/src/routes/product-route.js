@@ -10,7 +10,8 @@ router.get('/', controller.getActive);
 router.get('/:slug', controller.getBySlug);
 router.get('/tags/:tag', controller.getByTag);
 
-router.post('/admin', multer(teste).single('file'), controller.post);
+// router.post('/admin', multer(teste).single('file'), controller.post);
+router.post('/admin', controller.post);
 router.get('/admin/list', controller.getAll)
 router.get('/admin/:id', controller.getById);
 router.put('/admin/:id', controller.put);

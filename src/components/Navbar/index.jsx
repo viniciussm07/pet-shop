@@ -17,24 +17,31 @@ import {
   WrapButtons,
 } from "./NavbarElements.jsx";
 import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
-import { getIsLoggedIn, getToken, getUserType, logout } from "../../services/auth.js";
-import { LOGGEDIN } from "../../services/auth.js";
+import {
+  getIsLoggedIn,
+  getToken,
+  getUserType,
+  logout,
+} from "../../services/auth.js";
+import { LOGGEDIN, USER_TYPE } from "../../services/auth.js";
 import api from "../../services/api.js";
 
 const Navbar = () => {
   const [loggedNav, setLoggedNav] = useState(false);
   const [meusDados, setMeusDados] = useState("");
   const [numItems, setNumItems] = useState("");
+  const [loggedAdmin, setLoggedAdmin] = useState(false);
 
   const changeNav = () => {
     if (getIsLoggedIn() == "true") {
       setLoggedNav(true);
       const userType = getUserType();
-      if(userType === "1"){
+      if (userType === "1") {
+        setLoggedAdmin(true);
         setMeusDados("/admin");
-      }
-      else if (userType ==="2"){
+      } else if (userType === "2") {
         setMeusDados("/minha-conta");
+        setLoggedAdmin(false);
       }
     } else {
       setLoggedNav(false);
@@ -54,7 +61,7 @@ const Navbar = () => {
       }
     }
     changeNav();
-  }, [LOGGEDIN]);
+  }, [LOGGEDIN, USER_TYPE]);
 
   const confirmarSair = async () => {
     if (window.confirm("Deseja realmente sair?")) {
@@ -91,19 +98,30 @@ const Navbar = () => {
             </CartButton>
             {loggedNav ? (
               <>
-              <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
-              <LoginButton onClick={confirmarSair}><AiOutlineLogout size={25}/> &nbsp; Sair </LoginButton>
+                <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
+                <LoginButton onClick={confirmarSair}>
+                  <AiOutlineLogout size={25} /> &nbsp; Sair{" "}
+                </LoginButton>
               </>
             ) : null}
           </WrapButtons>
         </NavbarContainer1>
-        <NavbarContainer2>
-          <NavMenu>
-            <MenuButton href="/animal/cachorro">Cachorro</MenuButton>
-            <MenuButton href="/animal/gato">Gato</MenuButton>
-            <MenuButton href="/animal/passaro">Pássaro</MenuButton>
-          </NavMenu>
-        </NavbarContainer2>
+        {loggedAdmin ? (
+          <NavbarContainer2>
+            <NavMenu>
+              <MenuButton href="/admin/lista-clientes">Clientes</MenuButton>
+              <MenuButton href="/admin/lista-produtos">Produtos</MenuButton>
+            </NavMenu>
+          </NavbarContainer2>
+        ) : (
+          <NavbarContainer2>
+            <NavMenu>
+              <MenuButton href="/animal/cachorro">Cachorro</MenuButton>
+              <MenuButton href="/animal/gato">Gato</MenuButton>
+              <MenuButton href="/animal/passaro">Pássaro</MenuButton>
+            </NavMenu>
+          </NavbarContainer2>
+        )}
       </Nav>
     </>
   );

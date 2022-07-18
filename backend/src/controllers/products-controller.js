@@ -91,10 +91,17 @@ controller.getByTag = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
 controller.post = async (req, res) => {
-  const product = new Product(req.body);
   try {
-    await product.save();
+    const product = Product.create({
+      title: req.body.title,
+      slug: req.body.slug,
+      description: req.body.description,
+      price: req.body.price,
+      stock: req.body.stock,
+      image: req.body.image
+    })
     res.status(201).send({
       message: "Produto cadastrado.",
     });

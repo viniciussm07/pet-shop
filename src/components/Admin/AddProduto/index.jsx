@@ -49,7 +49,6 @@ export default function AddProduto() {
                 <ImgWrap width="50%">
                   <Img src="/images/wthout-image.png" height={200} width={200} />
                 </ImgWrap>
-                <EditButton margin="2.5rem 0 0 0">Alterar foto</EditButton>
               </Column>
               <Column>
                 <FormContent>
