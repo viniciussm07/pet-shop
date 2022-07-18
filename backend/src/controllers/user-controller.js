@@ -274,7 +274,7 @@ controller.delete = async (req, res) => {
     try {
         await User.deleteById(req.params.id);
         res.status(200).send({
-            message: 'Ususario deletado com sucesso!'
+            message: 'Usuário deletado com sucesso!'
         });
     } catch (error) {
         res.status(400).send({

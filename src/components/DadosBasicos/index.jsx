@@ -95,7 +95,6 @@ const Dados = () => {
             placeholder={dateNasc}
             name="date-nasc"
             value={dateNasc}
-            onChange={(e) => setDateNasc(e.target.value)}
             disabled
           />
           <br />

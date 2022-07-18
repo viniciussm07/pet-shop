@@ -44,7 +44,7 @@ export const Pedidos = () => {
                         <tr>
                           <td>#{pedido.number}</td>
                           <td>{pedido.createDate.substr(0, 10)}</td>
-                          <td>{pedido.total}</td>
+                          <td>R$ {(pedido.total).toFixed(2)}</td>
                           <td>{pedido.payment}</td>
                           <td>{pedido.status}</td>
                         </tr>

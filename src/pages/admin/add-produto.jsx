@@ -1,30 +1,28 @@
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-import ListaClientes from "../../../components/Admin/ListaClientes";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import AddProduto from "../../components/Admin/AddProduto";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { getIsLoggedIn, getUserType } from "../../../services/auth";
+import { getIsLoggedIn, getUserType } from "../../services/auth";
 
-export default function () {
+export default function EditarClientes() {
   const router = useRouter();
   let isLoggedIn;
   useEffect(() => {
     isLoggedIn = getIsLoggedIn();
     if (isLoggedIn != "true") {
       router.push("/login");
-    }
-    else{
+    } else {
       const userType = getUserType();
-      if(userType === "2"){
+      if (userType === "2") {
         router.push("/");
       }
     }
   }, []);
-
   return (
     <>
       <Navbar />
-      <ListaClientes/>
+      <AddProduto />
       <Footer />
     </>
   );

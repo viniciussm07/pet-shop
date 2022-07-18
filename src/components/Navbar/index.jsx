@@ -16,17 +16,26 @@ import {
   MyAccountButton,
   WrapButtons,
 } from "./NavbarElements.jsx";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { getIsLoggedIn } from "../../services/auth.js";
+import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
+import { getIsLoggedIn, getToken, getUserType, logout } from "../../services/auth.js";
 import { LOGGEDIN } from "../../services/auth.js";
+import api from "../../services/api.js";
 
 const Navbar = () => {
   const [loggedNav, setLoggedNav] = useState(false);
+  const [meusDados, setMeusDados] = useState("");
   const [numItems, setNumItems] = useState("");
 
   const changeNav = () => {
     if (getIsLoggedIn() == "true") {
       setLoggedNav(true);
+      const userType = getUserType();
+      if(userType === "1"){
+        setMeusDados("/admin");
+      }
+      else if (userType ==="2"){
+        setMeusDados("/minha-conta");
+      }
     } else {
       setLoggedNav(false);
     }
@@ -34,7 +43,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const getItems = localStorage.getItem("items");
-    console.log(getItems);
+    console.log("items", getItems);
     if (getItems == "") {
       localStorage.removeItem("items");
     } else {
@@ -46,6 +55,18 @@ const Navbar = () => {
     }
     changeNav();
   }, [LOGGEDIN]);
+
+  const confirmarSair = async () => {
+    if (window.confirm("Deseja realmente sair?")) {
+      const response = await api.get("/customer/auth/destroyToken", {
+        headers: { token: getToken() },
+      });
+      if (response.status === 200) {
+        logout();
+        window.location.href = "/";
+      }
+    }
+  };
 
   return (
     <>
@@ -69,7 +90,10 @@ const Navbar = () => {
               {numItems}
             </CartButton>
             {loggedNav ? (
-              <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton>
+              <>
+              <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
+              <LoginButton onClick={confirmarSair}><AiOutlineLogout size={25}/> &nbsp; Sair </LoginButton>
+              </>
             ) : null}
           </WrapButtons>
         </NavbarContainer1>
