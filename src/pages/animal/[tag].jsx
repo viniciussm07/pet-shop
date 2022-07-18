@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   };
 }
 
-// Retorna um produto que corresponde ao id passado no path
+// Retorna uma lista de produtos que possuem a tag passada no path
 export async function getStaticProps({ params }) {
   const resp = await api.get(`/products/tags/${params.tag}`);
   const produtos = resp.data;
