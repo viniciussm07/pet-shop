@@ -23,18 +23,7 @@ export default function Home() {
     }
   }, []);
 
-  const confirmarSair = async () => {
-    if (window.confirm("Deseja realmente sair?")) {
-      const response = await api.get("/customer/auth/destroyToken", {
-        headers: { token: getToken() },
-      });
-      if (response.status === 200) {
-        logout();
-        window.location.href = "/";
-      }
-    }
-  };
-
+ 
   return (
     <>
       <Head>
@@ -45,7 +34,6 @@ export default function Home() {
         <h3>
           <FontBold>MINHA CONTA</FontBold>
         </h3>
-        <Button onClick={confirmarSair}>Sair</Button>
         <InfoContainer>
           <UserPage />
         </InfoContainer>

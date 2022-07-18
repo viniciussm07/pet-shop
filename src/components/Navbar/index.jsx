@@ -16,9 +16,10 @@ import {
   MyAccountButton,
   WrapButtons,
 } from "./NavbarElements.jsx";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { getIsLoggedIn } from "../../services/auth.js";
+import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
+import { getIsLoggedIn, getToken, logout } from "../../services/auth.js";
 import { LOGGEDIN } from "../../services/auth.js";
+import api from "../../services/api.js";
 
 const Navbar = () => {
   const [loggedNav, setLoggedNav] = useState(false);
@@ -47,6 +48,18 @@ const Navbar = () => {
     changeNav();
   }, [LOGGEDIN]);
 
+  const confirmarSair = async () => {
+    if (window.confirm("Deseja realmente sair?")) {
+      const response = await api.get("/customer/auth/destroyToken", {
+        headers: { token: getToken() },
+      });
+      if (response.status === 200) {
+        logout();
+        window.location.href = "/";
+      }
+    }
+  };
+
   return (
     <>
       <Nav>
@@ -69,7 +82,10 @@ const Navbar = () => {
               {numItems}
             </CartButton>
             {loggedNav ? (
+              <>
               <MyAccountButton href="/minha-conta">Minha Conta</MyAccountButton>
+              <LoginButton onClick={confirmarSair}><AiOutlineLogout size={25}/> &nbsp; Sair </LoginButton>
+              </>
             ) : null}
           </WrapButtons>
         </NavbarContainer1>
