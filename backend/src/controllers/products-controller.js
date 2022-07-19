@@ -37,7 +37,7 @@ controller.getBySlug = async (req, res) => {
   try {
     const data = await Product.findOne(
       { active: true, slug: req.params.slug },
-      "_id title description price slug tags image stock"
+      "_id title description price slug tags image stock active"
     );
     res.status(200).send(data);
   } catch (error) {

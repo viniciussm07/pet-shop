@@ -24,6 +24,7 @@ export default function AddProduto() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState([]);
+  const [active, setActive] = useState(true);
   
   const tagsHandler = (t) => {
     const auxTags1 = t.split(" ");
@@ -41,8 +42,23 @@ export default function AddProduto() {
     setTags(resp);
   }
 
+  const stockHandler = (s) => {
+    if (s < 0){
+      setStock(0)
+    } else {
+      setStock(s)
+    }
+  }
+
+  const activeHandler = (s) => {
+    if (s == 0){
+      setActive(false)
+    }
+  }
+
   const addHandler = async (event) => {
     event.preventDefault();
+    activeHandler(stock);
     tagsHandler(title)
     const data = {
       title: title,
@@ -50,7 +66,8 @@ export default function AddProduto() {
       slug: slug,
       price: price,
       description: description,
-      tags: tags
+      tags: tags,
+      active: active
     };
     const response = await api.post("products/admin", data);
 
@@ -91,7 +108,7 @@ export default function AddProduto() {
                       name="stock"
                       type="number"
                       value={stock}
-                      onChange={(e) => setStock(e.target.value)}
+                      onChange={(e) => stockHandler(e.target.value)}
                     />
                     <FormLabel htmlFor="for">Slug</FormLabel>
                     <FormInput

@@ -24,6 +24,7 @@ export default function EditarProdutos(props) {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState([]);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     setTitle(props.produto.title);
@@ -49,8 +50,23 @@ export default function EditarProdutos(props) {
     setTags(resp);
   }
 
+  const stockHandler = (s) => {
+    if (s < 0){
+      setStock(0)
+    } else {
+      setStock(s)
+    }
+  }
+
+  const activeHandler = (s) => {
+    if (s == 0){
+      setActive(false)
+    }
+  }
+
   const updateHandler = async (event) => {
     event.preventDefault();
+    activeHandler(stock);
     tagsHandler(title);
     const data = {
       title: title,
@@ -58,7 +74,8 @@ export default function EditarProdutos(props) {
       slug: slug,
       price: price,
       description: description,
-      tags: tags
+      tags: tags,
+      active: active
     };
 
     const response = await api.put(
@@ -104,7 +121,7 @@ export default function EditarProdutos(props) {
                       name="stock"
                       type="number"
                       value={stock}
-                      onChange={(e) => setStock(e.target.value)}
+                      onChange={(e) => stockHandler(e.target.value)}
                     />
                     <FormLabel htmlFor="for">Slug</FormLabel>
                     <FormInput
