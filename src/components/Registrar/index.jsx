@@ -46,9 +46,10 @@ const SignUp = () => {
 
     if (response.status === 201) {
       setIsSubmit(true);
+      alert("cadastrado com sucesso!")
       setTimeout(() => {
         router.push("/login");
-      }, 2000);
+      }, 800);
     } else if (response.status === 200) {
       const errors = {};
       if (response.data.status === 1) {

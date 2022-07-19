@@ -25,7 +25,7 @@ controller.getAll = async (req, res) => {
   try {
     const data = await Product.find(
       {},
-      "title price slug image active image stock"
+      "title price slug image active image stock tags"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -37,7 +37,7 @@ controller.getBySlug = async (req, res) => {
   try {
     const data = await Product.findOne(
       { active: true, slug: req.params.slug },
-      "_id title description price slug tags image stock"
+      "_id title description price slug tags image stock active"
     );
     res.status(200).send(data);
   } catch (error) {
@@ -57,6 +57,20 @@ controller.getById = async (req, res) => {
   }
 };
 
+controller.getByTag = async (req, res) => {
+  try {
+    const data = await Product.find(
+      { active: true, tags: req.params.tag },
+      "title description price slug tags image stock"
+    );
+    console.log(data)
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+
 controller.updateById = async (req, res) => {
   try {
     console.log(req.body)
@@ -74,18 +88,6 @@ controller.updateById = async (req, res) => {
         },
       });
     }
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-};
-
-controller.getByTag = async (req, res) => {
-  try {
-    const data = await Product.find(
-      { active: true, tags: req.params.tag },
-      "title description price slug tags image stock"
-    );
     res.status(200).send(data);
   } catch (error) {
     res.status(400).send(error);

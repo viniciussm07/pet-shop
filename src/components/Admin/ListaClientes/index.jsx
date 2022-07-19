@@ -10,11 +10,13 @@ import {
   EditButton,
   WrapButton,
   Trash,
+  Title2
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import api from "../../../services/api";
+import Router from "next/router";
 
 export default function ListaClientes() {
   const [clientes, setClientes] = useState([]);
@@ -23,8 +25,6 @@ export default function ListaClientes() {
     api.get("/customer/").then(({ data }) => {
       setClientes(data);
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteCliente = async (id) => {
@@ -36,6 +36,9 @@ export default function ListaClientes() {
         alert("erro ao excluir cliente");
       }
     }
+    api.get("/customer/").then(({ data }) => {
+      setClientes(data);
+    });
   };
 
   return (
@@ -59,7 +62,7 @@ export default function ListaClientes() {
             {clientes?.map((cliente) => (
               <Row shadow="0px 0px 5px black">
               <Column>
-                <Row height="0.5rem">{cliente.name}</Row>
+                <Row height="0.5rem"><Title2>Nome: {cliente.name}</Title2></Row>
                 <Row height="0.5rem">
                   <Column>Id: </Column>
                   <Column>{cliente._id}</Column>

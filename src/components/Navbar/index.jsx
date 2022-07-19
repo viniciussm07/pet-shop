@@ -15,6 +15,8 @@ import {
   CartButton,
   MyAccountButton,
   WrapButtons,
+  SearchButton,
+  Img
 } from "./NavbarElements.jsx";
 import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
 import {
@@ -26,7 +28,7 @@ import {
 import { LOGGEDIN, USER_TYPE } from "../../services/auth.js";
 import api from "../../services/api.js";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [loggedNav, setLoggedNav] = useState(false);
   const [meusDados, setMeusDados] = useState("");
   const [numItems, setNumItems] = useState("");
@@ -50,7 +52,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const getItems = localStorage.getItem("items");
-    console.log("items", getItems);
+    // console.log("items", getItems);
     if (getItems == "") {
       localStorage.removeItem("items");
     } else {
@@ -75,6 +77,7 @@ const Navbar = () => {
     }
   };
 
+
   return (
     <>
       <Nav>
@@ -82,16 +85,8 @@ const Navbar = () => {
           <NavLogoWrap href="/">
             <Logo>Pet Shop</Logo>
           </NavLogoWrap>
-          <Search>
-            <Label />
-            <InputWrap>
-              <Input placeholder="Pesquisar" />
-            </InputWrap>
-          </Search>
+          {props.children}
           <WrapButtons>
-            {loggedNav ? null : (
-              <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
-            )}
             <CartButton href="/carrinho">
               <AiOutlineShoppingCart size={30} color="#FFA10A" />
               {numItems}
@@ -99,11 +94,11 @@ const Navbar = () => {
             {loggedNav ? (
               <>
                 <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
-                <LoginButton onClick={confirmarSair}>
+                <LoginButton backgroundColor="transparent" onClick={confirmarSair} color="#ffa10a">
                   <AiOutlineLogout size={25} /> &nbsp; Sair{" "}
                 </LoginButton>
               </>
-            ) : null}
+            ) : <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>}
           </WrapButtons>
         </NavbarContainer1>
         {loggedAdmin ? (
