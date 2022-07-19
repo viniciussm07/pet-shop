@@ -17,9 +17,7 @@ import {
   Title2,
 } from "../AdminElements";
 import { FaPlus, FaTrash } from "react-icons/fa";
-
 import api from "../../../services/api";
-import Router from "next/router";
 
 export default function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);
@@ -28,8 +26,6 @@ export default function ListaProdutos() {
     api.get("/products/admin/list").then(({ data }) => {
       setProdutos(data);
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteProduct = async (id) => {
@@ -41,7 +37,9 @@ export default function ListaProdutos() {
         alert("erro ao atualizar os dados");
       }
     }
-    Router.reload()
+    api.get("/products/admin/list").then(({ data }) => {
+      setProdutos(data);
+    });
   };
 
   function formatPreco(s){

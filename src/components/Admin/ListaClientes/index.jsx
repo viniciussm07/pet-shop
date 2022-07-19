@@ -25,8 +25,6 @@ export default function ListaClientes() {
     api.get("/customer/").then(({ data }) => {
       setClientes(data);
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteCliente = async (id) => {
@@ -38,7 +36,9 @@ export default function ListaClientes() {
         alert("erro ao excluir cliente");
       }
     }
-    Router.reload();
+    api.get("/customer/").then(({ data }) => {
+      setClientes(data);
+    });
   };
 
   return (
