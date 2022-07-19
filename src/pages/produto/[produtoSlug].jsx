@@ -119,7 +119,7 @@ export default ({ produto }, props) => {
                 <LayoutWrap bgColor = "#fff" mgTop="2.5rem">
                     <ImgWrap>
                         <Img
-                        src={produto.image}
+                        src={produto.image ? produto.image : "/images/wthout-image.png"}
                         width="1000%"
                         height="1000%"
                         />
