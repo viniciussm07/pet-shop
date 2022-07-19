@@ -63,6 +63,7 @@ controller.getByTag = async (req, res) => {
       { active: true, tags: req.params.tag },
       "title description price slug tags image stock"
     );
+    console.log(data)
     res.status(200).send(data);
   } catch (error) {
     res.status(400).send(error);
