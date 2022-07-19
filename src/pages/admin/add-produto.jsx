@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { getIsLoggedIn, getUserType } from "../../services/auth";
 
-export default function EditarClientes() {
+export default function AdicionarProdutos() {
   const router = useRouter();
   let isLoggedIn;
   useEffect(() => {

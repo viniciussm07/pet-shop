@@ -25,7 +25,7 @@ controller.getAll = async (req, res) => {
   try {
     const data = await Product.find(
       {},
-      "title price slug image active image stock"
+      "title price slug image active image stock tags"
     );
     res.status(200).send(data);
   } catch (error) {

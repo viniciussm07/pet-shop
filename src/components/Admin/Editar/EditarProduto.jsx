@@ -23,6 +23,7 @@ export default function EditarProdutos(props) {
   const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     setTitle(props.produto.title);
@@ -32,14 +33,32 @@ export default function EditarProdutos(props) {
     setDescription(props.produto.description);
   }, []);
 
+  const tagsHandler = (t) => {
+    const auxTags1 = t.split(" ");
+    const auxTags2 = []
+    let resp = []
+
+    for (let i = 0; i < auxTags1.length; i++) {
+      if (auxTags1[i].length > 3){
+        auxTags2.push(auxTags1[i].toLowerCase());
+      }
+    }
+    for (let i = 0; i < auxTags2.length; i++){
+      resp.push(auxTags2[i].normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
+    }
+    setTags(resp);
+  }
+
   const updateHandler = async (event) => {
     event.preventDefault();
+    tagsHandler(title);
     const data = {
       title: title,
       stock: stock,
       slug: slug,
       price: price,
       description: description,
+      tags: tags
     };
 
     const response = await api.put(
@@ -66,7 +85,7 @@ export default function EditarProdutos(props) {
             <Row height="auto" padding="0 0 4rem 0">
               <Column align="center">
                 <ImgWrap width="50%">
-                  <Img src={props.image} height={200} width={200} />
+                  <Img src={props.image ? props.image : "/images/wthout-image.png"} height={200} width={200} />
                 </ImgWrap>
               </Column>
               <Column>

@@ -14,6 +14,7 @@ import {
 export default function WrapContent() {
   const [produtos, setProdutos] = useState([]);
   const [tags, setTag] = useState("");
+  const [inputUsuario, setInputUsuario] = useState("")
 
   useEffect(() => {
     api.get("/products").then(({ data }) => {
@@ -22,9 +23,13 @@ export default function WrapContent() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const search = async (event) => {
     event.preventDefault();
 
+    let aux = inputUsuario.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    console.log(aux)
+    setTag(aux)
     const searchTags = tags.split(" ");
     const auxArr = [];
     
@@ -47,8 +52,8 @@ export default function WrapContent() {
           <Input
             placeholder="Pesquisar"
             name="tag"
-            value={tags}
-            onChange={(e) => setTag(e.target.value.toLowerCase())}
+            value={inputUsuario}
+            onChange={(e) => setInputUsuario(e.target.value)}
             type="text"
             required
           />

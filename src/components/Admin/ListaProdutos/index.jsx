@@ -19,6 +19,7 @@ import {
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 import api from "../../../services/api";
+import Router from "next/router";
 
 export default function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);
@@ -40,7 +41,12 @@ export default function ListaProdutos() {
         alert("erro ao atualizar os dados");
       }
     }
+    Router.reload()
   };
+
+  function formatPreco(s){
+    return s.replace('.',',')
+}
 
   return (
     <>
@@ -77,7 +83,7 @@ export default function ListaProdutos() {
                   </Row>
                   <Row height="0.25rem" margin="10px 10px">
                     <Column>Preço: </Column>
-                    <Column>R$ {produto.price}</Column>
+                    <Column>R$ {formatPreco(produto.price.toFixed(2).toString())}</Column>
                   </Row>
                   <Row height="0.25rem" margin="10px 10px">
                     <Column>Estoque: </Column>

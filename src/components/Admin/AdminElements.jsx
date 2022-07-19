@@ -48,7 +48,7 @@ export const Row = styled.div`
   margin: ${(props) => (props.margin ? props.margin : "1rem 1rem")};
   width: ${(props) => (props.width ? props.width : "80%")};
   align-items: center;
-  height: ${(props) => (props.height ? props.height : "6rem")};
+  height: ${(props) => (props.height ? props.height : "10rem")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   box-shadow: ${(props) => (props.shadow ? props.shadow : "0 0 0 0")};
   border-radius: 10px;

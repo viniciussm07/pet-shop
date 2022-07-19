@@ -23,24 +23,42 @@ export default function AddProduto() {
   const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [tags, setTags] = useState([]);
   
+  const tagsHandler = (t) => {
+    const auxTags1 = t.split(" ");
+    const auxTags2 = []
+    let resp = []
+
+    for (let i = 0; i < auxTags1.length; i++) {
+      if (auxTags1[i].length > 3){
+        auxTags2.push(auxTags1[i].toLowerCase());
+      }
+    }
+    for (let i = 0; i < auxTags2.length; i++){
+      resp.push(auxTags2[i].normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
+    }
+    setTags(resp);
+  }
 
   const addHandler = async (event) => {
     event.preventDefault();
+    tagsHandler(title)
     const data = {
       title: title,
       stock: stock,
       slug: slug,
       price: price,
       description: description,
+      tags: tags
     };
     const response = await api.post("products/admin", data);
 
     if (response.status === 201) {
       alert("Produto adicionado!");
-      setTimeout(() => {
-        router.push("/admin/lista-produtos");
-      }, 1000);
+      // setTimeout(() => {
+      //   router.push("/admin/lista-produtos");
+      // }, 1000);
     } else {
       alert("erro ao adicionar produto");
     }
@@ -96,8 +114,6 @@ export default function AddProduto() {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
-                    {/* <FormLabel htmlFor="for">Tags</FormLabel>
-                    <FormInput name="tags" type="text" value={props.tags}/> */}
                     <EditButton margin="1rem">Adicionar</EditButton>
                   </Form>
                 </FormContent>
