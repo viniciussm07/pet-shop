@@ -52,7 +52,9 @@ export default function AddProduto() {
 
   const activeHandler = (s) => {
     if (s == 0){
-      setActive(false)
+      setActive(false);
+    } else {
+      setActive(true);
     }
   }
 
