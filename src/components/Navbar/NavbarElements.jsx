@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const Nav = styled.nav`
   color: white;
-  min-width: 560px;
+  min-width: 400px;
 `;
 
 export const NavbarContainer1 = styled.div`
@@ -49,7 +50,8 @@ export const Logo = styled.span`
 `;
 
 export const Search = styled.form`
-  width: 30rem;
+  padding-left: 10rem;
+  width: 50%;
 `;
 
 export const Label = styled.label`
@@ -60,17 +62,21 @@ export const Label = styled.label`
 
 export const InputWrap = styled.div`
   display: flex;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209 213 219);
 `;
 
 export const Input = styled.input`
-    display: block;
-    padding: 0.8rem 1rem 0.8rem 1rem;
-    width: 100%;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: black;
-    border-radius: 0.5rem;
-    border: 1px solid rgb(209 213 219);
+  display: block;
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: black;
+  border-radius: 0.5rem;
+  border: 0px solid rgb(209 213 219);
+  background-color: transparent;
 
   ::placeholder {
     color: #b8b0b0;
@@ -118,7 +124,7 @@ const NavButton = styled.a`
   border-width: 0px;
   background-color: #ffa10a;
   color: white;
-  padding: 0.8rem 1rem 0.8rem 1rem;
+  padding: 0.8rem 0.8rem 0.5rem 0.8rem;
   font-size: 1rem;
   line-height: 1.5rem;
   text-decoration: none;
@@ -130,21 +136,43 @@ const NavButton = styled.a`
 `;
 
 export const LoginButton = styled(NavButton)`
-     display: flex;
-`
+  display: flex;
+  color: ${(props) => (props.color ? props.color : "white")};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "#ffa10a"};
+`;
 
 export const CartButton = styled(NavButton)`
-    display: flex;
-    margin: 0 20px;
-    background-color: transparent;
-`
+  display: flex;
+  margin: 0 0.8;
+  background-color: transparent;
+`;
 
 export const MyAccountButton = styled(NavButton)`
-    display: flex;
-    margin: 0 20px;
-`
+  display: flex;
+  margin: 0 0.8rem;
+`;
 
 export const WrapButtons = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
+`;
+
+export const SearchButton = styled.button`
+  background-color: transparent;
+  border: 0px;
+  border-radius: 0.5rem;
+  padding: 0.8rem 0.8rem 0.5rem 0.8rem;
+
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 5px black;
+  }
+  /* padding: 0.5rem 0; */
+`;
+
+export const Img = styled(Image)`
+  height: 100px;
+  width: 100px;
 `;

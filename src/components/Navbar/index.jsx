@@ -15,6 +15,8 @@ import {
   CartButton,
   MyAccountButton,
   WrapButtons,
+  SearchButton,
+  Img
 } from "./NavbarElements.jsx";
 import { AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
 import {
@@ -31,6 +33,10 @@ const Navbar = () => {
   const [meusDados, setMeusDados] = useState("");
   const [numItems, setNumItems] = useState("");
   const [loggedAdmin, setLoggedAdmin] = useState(false);
+
+  // Variáveis para pesquisa na searchBar
+  const [searchResults, setSearchResults] = useState([]);
+  const [tags, setTag] = useState("");
 
   const changeNav = () => {
     if (getIsLoggedIn() == "true") {
@@ -50,7 +56,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const getItems = localStorage.getItem("items");
-    console.log("items", getItems);
+    // console.log("items", getItems);
     if (getItems == "") {
       localStorage.removeItem("items");
     } else {
@@ -75,6 +81,24 @@ const Navbar = () => {
     }
   };
 
+  const search = async (event) => {
+    event.preventDefault();
+
+    const searchTags = tags.split(" ");
+    const produtos = []
+
+
+    for (let i = 0; i < searchTags.length; i++) {
+      const response = await api.get(`/products/tags/${searchTags[i]}`);
+      for (let j = 0; j < response.data.length; j++){
+        produtos.push(response.data[i]);
+      }
+    }
+    
+    console.log(produtos);
+    setSearchResults(produtos);
+  };
+
   return (
     <>
       <Nav>
@@ -82,11 +106,20 @@ const Navbar = () => {
           <NavLogoWrap href="/">
             <Logo>Pet Shop</Logo>
           </NavLogoWrap>
-          <Search>
+          <Search onSubmit={search}>
             <Label />
             <InputWrap>
-              <Input placeholder="Pesquisar" />
+              <Input
+                  placeholder="Pesquisar" name="tag"
+                  value={tags}
+                  onChange={(e) => setTag(e.target.value.toLowerCase())}
+                  type="text"
+                  required />
+              <SearchButton>
+                <Img src="/images/lupa50x50.webp" alt="" width={20} height={20}/>
+              </SearchButton>
             </InputWrap>
+            
           </Search>
           <WrapButtons>
             {loggedNav ? null : (
@@ -99,7 +132,7 @@ const Navbar = () => {
             {loggedNav ? (
               <>
                 <MyAccountButton href={meusDados}>Minha Conta</MyAccountButton>
-                <LoginButton onClick={confirmarSair}>
+                <LoginButton backgroundColor="transparent" onClick={confirmarSair} color="#ffa10a">
                   <AiOutlineLogout size={25} /> &nbsp; Sair{" "}
                 </LoginButton>
               </>

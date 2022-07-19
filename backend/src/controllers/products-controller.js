@@ -57,6 +57,19 @@ controller.getById = async (req, res) => {
   }
 };
 
+controller.getByTag = async (req, res) => {
+  try {
+    const data = await Product.find(
+      { active: true, tags: req.params.tag },
+      "title description price slug tags image stock"
+    );
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+
 controller.updateById = async (req, res) => {
   try {
     console.log(req.body)
@@ -74,18 +87,6 @@ controller.updateById = async (req, res) => {
         },
       });
     }
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-};
-
-controller.getByTag = async (req, res) => {
-  try {
-    const data = await Product.find(
-      { active: true, tags: req.params.tag },
-      "title description price slug tags image stock"
-    );
     res.status(200).send(data);
   } catch (error) {
     res.status(400).send(error);
