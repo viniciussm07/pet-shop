@@ -51,6 +51,10 @@ const SignUp = () => {
       }, 2000);
     } else if (response.status === 200) {
       const errors = {};
+      if (response.data.status === 1) {
+        errors.cpf = "CPF já cadastrado!";
+        setFormErrors(errors);
+      }
       if (response.data.status === 2) {
         errors.email = "Email já cadastrado!";
         setFormErrors(errors);

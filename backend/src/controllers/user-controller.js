@@ -20,7 +20,14 @@ controller.get = async (req, res) => {
 controller.register = async (req, res) => {
 
     const emailExists = await User.findOne({email: req.body.email});
+    const cpfExists = await User.findOne({cpf: req.body.cpf});
     
+    if(cpfExists){
+        return res.status(200).send({
+            status:1,
+            message: "CPF já cadastrado.",
+        })
+    }
     if(emailExists){
         return res.status(200).send({
             status:2,
