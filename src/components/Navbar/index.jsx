@@ -122,9 +122,6 @@ const Navbar = () => {
             
           </Search>
           <WrapButtons>
-            {loggedNav ? null : (
-              <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>
-            )}
             <CartButton href="/carrinho">
               <AiOutlineShoppingCart size={30} color="#FFA10A" />
               {numItems}
@@ -136,7 +133,7 @@ const Navbar = () => {
                   <AiOutlineLogout size={25} /> &nbsp; Sair{" "}
                 </LoginButton>
               </>
-            ) : null}
+            ) : <LoginButton href="/login">Entre ou Cadastre-se</LoginButton>}
           </WrapButtons>
         </NavbarContainer1>
         {loggedAdmin ? (

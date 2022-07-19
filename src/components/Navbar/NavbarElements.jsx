@@ -140,6 +140,7 @@ export const LoginButton = styled(NavButton)`
   color: ${(props) => (props.color ? props.color : "white")};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "#ffa10a"};
+  margin: 0 0.8rem;
 `;
 
 export const CartButton = styled(NavButton)`
